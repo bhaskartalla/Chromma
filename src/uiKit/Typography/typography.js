@@ -9,7 +9,7 @@ const Typography = ({ variant, text, children, ...rest }) => (
 );
 
 Typography.propTypes = {
-  variant: PropTypes.string,
+  variant: PropTypes.string.isRequired,
   text: PropTypes.any,
   children: PropTypes.any,
 };

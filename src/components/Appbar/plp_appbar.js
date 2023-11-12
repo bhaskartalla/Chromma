@@ -11,16 +11,17 @@ const plp_appbar = ({ pincode }) => {
     <div className={styles.plp_appbar_wrapper}>
       <div className={styles.plp_appbar_title}>
         <img width={24} height={24} src={leftChevronIcon} alt="leftChevron" />
-        <Typography variant="body-x-small-semibold" marginLeft="8px">
-          Deliver to
-        </Typography>
         <Typography
           variant="body-x-small-semibold"
+          text={"Deliver to"}
+          marginLeft="8px"
+        />
+        <Typography
+          variant="body-x-small-semibold"
+          text={pincode}
           marginLeft="4px"
           color="#12DAA8"
-        >
-          {pincode}
-        </Typography>
+        />
       </div>
       <div>
         <img width={24} height={24} src={wishlistIcon} alt="leftChevron" />

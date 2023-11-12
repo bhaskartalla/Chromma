@@ -1,0 +1,105 @@
+.card_wrapper {
+  margin: 20px 16px 0 16px;
+}
+
+.card_section {
+  display: flex;
+}
+
+.badges {
+  display: flex;
+  margin-top: 8px;
+}
+
+.tag_wishlist_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  padding-right: 8px;
+}
+
+.image_section {
+  min-width: 136px;
+  border-radius: 8px;
+  background: #303030;
+  height: inherit;
+  position: relative;
+  margin-right: 20px;
+}
+
+.product_image_wrapper {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.product_image {
+  object-fit: contain;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+}
+
+.card_tag {
+  border-radius: 0px 8px 8px 0px;
+  background: var(--dark-success, #5fe06d);
+  height: 20px;
+  padding: 0 8px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+/* .review_ratings {
+}
+
+.product_name {
+} */
+
+.mrp_mop {
+  margin-top: 12px;
+}
+
+.discount_emi {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.discount_chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(146, 144, 148, 0.48);
+  margin-left: 8px;
+}
+
+.delivery_details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.nonserviceable_details {
+  display: flex;
+  align-items: center;
+}
+
+.product_badge {
+  display: flex;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  width: fit-content;
+}

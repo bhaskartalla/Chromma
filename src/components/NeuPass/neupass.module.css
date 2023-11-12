@@ -1,0 +1,9 @@
+.neu_coins {
+  display: flex;
+  height: 20px;
+  padding: 2px 4px;
+  align-items: center;
+  border-radius: 4px;
+  background: #383838;
+  width: fit-content;
+}
