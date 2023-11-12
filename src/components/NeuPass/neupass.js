@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./neupass.module.css";
-import Typography from "../../uiKit/Typography/typography";
-import neuIcon from "../../assets/icons/neu-icon.svg";
+import Typography from "uiKit/Typography/typography";
+import neuIcon from "assets/icons/neu-icon.svg";
 
 const Neupass = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import FilterChips from "../../../components/FilterChips/filter_chips";
+import FilterChips from "components/FilterChips/filter_chips";
 import styles from "./filter_chips_section.module.css";
-import filtersIcon from "../../../assets/icons/filters-icon.svg";
+import filtersIcon from "assets/icons/filters-icon.svg";
 
 const FilterChipsSection = () => {
   return (

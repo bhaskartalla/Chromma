@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./wishlist.module.css";
-import wishlistIcon from "../../assets/icons/wishlist-icon.svg";
-import wishlistAddedIcon from "../../assets/icons/wishlist-added-icon.svg";
+import wishlistIcon from "assets/icons/wishlist-icon.svg";
+import wishlistAddedIcon from "assets/icons/wishlist-added-icon.svg";
 
 const Wishlist = ({ isAddedToWishlist }) => {
   return (

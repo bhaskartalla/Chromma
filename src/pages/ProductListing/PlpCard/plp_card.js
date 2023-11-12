@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./plp_card.module.css";
-import Wishlist from "../../../components/Wishlist/wishlist";
-import Typography from "../../../uiKit/Typography/typography";
-import ratingIcon from "../../../assets/icons/rating-icon.svg";
-import nonServiceableIcon from "../../../assets/icons/non-serviceable-icon.svg";
-import truckIcon from "../../../assets/icons/truck-icon.svg";
-import availableIcon from "../../../assets/icons/available-icon.svg";
-import Neupass from "../../../components/NeuPass/neupass";
+import Wishlist from "components/Wishlist/wishlist";
+import Typography from "uiKit/Typography/typography";
+import ratingIcon from "assets/icons/rating-icon.svg";
+import nonServiceableIcon from "assets/icons/non-serviceable-icon.svg";
+import truckIcon from "assets/icons/truck-icon.svg";
+import availableIcon from "assets/icons/available-icon.svg";
+import Neupass from "components/NeuPass/neupass";
 
 const PlpCard = ({ isAddedToWishlist }) => {
   const DeliveryDetails = ({ src, primaryText, secondaryText }) => {

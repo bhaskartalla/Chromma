@@ -1,7 +1,7 @@
 import React from "react";
-import downChevron from "../../assets/icons/down-chevron-icon.svg";
-import downChevronGreen from "../../assets/icons/down-chevron-green.svg";
-import Typography from "../../uiKit/Typography/typography";
+import downChevron from "assets/icons/down-chevron-icon.svg";
+import downChevronGreen from "assets/icons/down-chevron-green.svg";
+import Typography from "uiKit/Typography/typography";
 import styles from "./filter_chips.module.css";
 import PropTypes from "prop-types";
 

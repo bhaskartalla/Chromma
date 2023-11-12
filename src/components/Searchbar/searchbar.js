@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./searchbar.module.css";
-import searchIcon from "../../assets/icons/search-icon.svg";
-import circleCloseIcon from "../../assets/icons/circle-close-icon.svg";
-import Typography from "../../uiKit/Typography/typography";
+import searchIcon from "assets/icons/search-icon.svg";
+import circleCloseIcon from "assets/icons/circle-close-icon.svg";
+import Typography from "uiKit/Typography/typography";
 
 const Searchbar = () => {
   return (

@@ -1,8 +1,8 @@
 import React from "react";
-import Typography from "../../uiKit/Typography/typography";
-import leftChevronIcon from "../../assets/icons/left-chevron-icon.svg";
-import wishlistIcon from "../../assets/icons/wishlist-icon.svg";
-import cartIcon from "../../assets/icons/cart-icon.svg";
+import Typography from "uiKit/Typography/typography";
+import leftChevronIcon from "assets/icons/left-chevron-icon.svg";
+import wishlistIcon from "assets/icons/wishlist-icon.svg";
+import cartIcon from "assets/icons/cart-icon.svg";
 import styles from "./plp_appbar.module.css";
 import PropTypes from "prop-types";
 
