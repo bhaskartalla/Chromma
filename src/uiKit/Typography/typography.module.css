@@ -1,0 +1,21 @@
+.body-x-small-semibold {
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 0px;
+}
+
+.body-x-small-regular {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.caption-xx-small-semibold {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}

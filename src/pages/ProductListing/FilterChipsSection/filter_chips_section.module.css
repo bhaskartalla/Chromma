@@ -1,0 +1,17 @@
+.filter_chips_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.filter_chips_section {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  padding-right: 4px;
+}
+
+.filter_chips_section::-webkit-scrollbar {
+  display: none;
+}

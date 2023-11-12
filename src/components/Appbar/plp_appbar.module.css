@@ -1,0 +1,12 @@
+.plp_appbar_wrapper {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin: 0px 16px;
+  justify-content: space-between;
+}
+
+.plp_appbar_title {
+  display: flex;
+  align-items: center;
+}
