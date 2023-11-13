@@ -10,34 +10,60 @@ import plpResponse from "apiData/plp_response.json";
 
 const plpPage = () => {
   console.log({ plpResponse });
+
+  const headerSection = () => (
+    <div className={styles.header_section}>
+      <PlpAppbar pincode={400013} />
+      <Searchbar />
+      <div className={styles.filter_chips_section}>
+        <FilterChipsSection facets={plpResponse.data.facets} />
+      </div>
+    </div>
+  );
+
+  const noOfProducts = (facet, filterItemCount) => {
+    return (
+      <div className={styles.no_of_products}>
+        <Typography
+          variant="body-x-small-regular"
+          color="#A6A6A6"
+          text={`${filterItemCount} ${
+            filterItemCount > 0 ? "Products" : "Product"
+          } found`}
+          marginRight="4px"
+        />
+        <Dropdown brandList={facet.values} />
+      </div>
+    );
+  };
+
+  const renderPlpCards = (products) => {
+    return (
+      <>
+        {products.map((product, index) => {
+          return (
+            <div key={index}>
+              <PlpCard productDetails={product} />
+              {index !== products.length - 1 && (
+                <div id={index} className={styles.divider} />
+              )}
+            </div>
+          );
+        })}
+      </>
+    );
+  };
   return (
     <div className={styles.page_wrapper}>
-      <div className={styles.header_section}>
-        <PlpAppbar pincode={400013} />
-        <Searchbar />
-        <div className={styles.filter_chips_section}>
-          <FilterChipsSection />
-        </div>
-      </div>
+      {headerSection()}
       <div className={styles.cards_section}>
-        <div className={styles.no_of_products}>
-          <Typography
-            variant="body-x-small-regular"
-            color="#A6A6A6"
-            text="127 Products found"
-            marginRight="4px"
-          />
-          <Dropdown />
-        </div>
-        <PlpCard />
-        <div className={styles.divider} />
-        <PlpCard />
-        <div className={styles.divider} />
-        <PlpCard />
-        <div className={styles.divider} />
-        <PlpCard />
-        <div className={styles.divider} />
-        <PlpCard />
+        {noOfProducts(
+          plpResponse.data.facets.filter(
+            (facet) => facet.code === "category"
+          )[0],
+          plpResponse.data.filterItemCount
+        )}
+        {renderPlpCards(plpResponse.data.products)}
       </div>
     </div>
   );

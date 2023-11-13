@@ -6,7 +6,7 @@ import cartIcon from "assets/icons/cart-icon.svg";
 import styles from "./plp_appbar.module.css";
 import PropTypes from "prop-types";
 
-const plp_appbar = ({ pincode }) => {
+const PLPAppbar = ({ pincode }) => {
   return (
     <div className={styles.plp_appbar_wrapper}>
       <div className={styles.plp_appbar_title}>
@@ -37,7 +37,7 @@ const plp_appbar = ({ pincode }) => {
   );
 };
 
-plp_appbar.propTypes = {
+PLPAppbar.propTypes = {
   pincode: PropTypes.any,
 };
-export default plp_appbar;
+export default PLPAppbar;

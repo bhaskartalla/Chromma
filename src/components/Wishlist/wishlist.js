@@ -6,12 +6,11 @@ import wishlistAddedIcon from "assets/icons/wishlist-added-icon.svg";
 const Wishlist = ({ isAddedToWishlist }) => {
   return (
     <>
-      {isAddedToWishlist ? (
+      {!isAddedToWishlist ? (
         <div
-          style={{
-            backgroundColor: "rgba(18, 218, 168, 0.12)",
-          }}
-          className={styles.wishlist_wrapper}
+          className={`${styles.wishlist_wrapper} ${
+            isAddedToWishlist && styles.is_added_wishlist
+          }`}
         >
           <img
             width={16}
@@ -21,10 +20,7 @@ const Wishlist = ({ isAddedToWishlist }) => {
           />
         </div>
       ) : (
-        <div
-          style={{ backgroundColor: "#444347" }}
-          className={styles.wishlist_wrapper}
-        >
+        <div className={styles.wishlist_wrapper}>
           <img width={16} height={16} src={wishlistIcon} alt="wishlistIcon" />
         </div>
       )}

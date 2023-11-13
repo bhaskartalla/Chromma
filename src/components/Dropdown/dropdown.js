@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import styles from "./dropdown.module.css";
 import Typography from "uiKit/Typography/typography";
 import downChevronGreenIcon from "assets/icons/down-chevron-green-icon.svg";
+import PropTypes from "prop-types";
 
-const Dropdown = () => {
-  const [dropDown, toggleDropDown] = useState(!false);
+const Dropdown = ({ brandList }) => {
+  const [dropDown, toggleDropDown] = useState(false);
 
   const handleToggleDropDown = () => {
-    console.log("handleToggleDropDown", dropDown);
+    // Navigate to SERP page
     toggleDropDown((prev) => !prev);
   };
 
-  const list = ["Westside", "TATA Cliq", "Big Basket"];
+  const handleRedirectionToSerp = () => {
+    // Navigate to SERP page
+  };
 
   return (
     <div className={styles.dd_wrapper}>
@@ -27,16 +30,16 @@ const Dropdown = () => {
       </div>
       {dropDown && (
         <div className={styles.dd_options}>
-          {list.map((el, index) => (
+          {brandList.map((brand, index) => (
             <div
               key={index}
               className={styles.dd_option}
-              onClick={handleToggleDropDown}
+              onClick={handleRedirectionToSerp}
             >
               <Typography
                 variant="body-small-regular"
                 color="#DCDCDC"
-                text={el}
+                text={brand.name}
               />
             </div>
           ))}
@@ -46,4 +49,7 @@ const Dropdown = () => {
   );
 };
 
+Dropdown.propTypes = {
+  brandList: PropTypes.array.isRequired,
+};
 export default Dropdown;

@@ -57,17 +57,21 @@
   height: inherit;
 }
 
-/* .review_ratings {
+.wrap_product_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-.product_name {
-} */
-
 .mrp_mop {
+  display: flex;
+  align-items: center;
   margin-top: 12px;
 }
 
-.discount_emi {
+.mrp_discount {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
@@ -82,6 +86,7 @@
   border-radius: 4px;
   border: 1px solid rgba(146, 144, 148, 0.48);
   margin-left: 8px;
+  width: fit-content;
 }
 
 .delivery_details {
@@ -102,4 +107,5 @@
   align-items: center;
   border-radius: 4px;
   width: fit-content;
+  margin-right: 8px;
 }

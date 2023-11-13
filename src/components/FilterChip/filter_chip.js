@@ -2,10 +2,13 @@ import React from "react";
 import downChevron from "assets/icons/down-chevron-icon.svg";
 import downChevronGreenIcon from "assets/icons/down-chevron-green-icon.svg";
 import Typography from "uiKit/Typography/typography";
-import styles from "./filter_chips.module.css";
+import styles from "./filter_chip.module.css";
 import PropTypes from "prop-types";
 
-const index = ({ text, children, isSelected, filterChipClick }) => {
+const FilterChip = ({ facet, filterChipClick }) => {
+  // change this calculation to 'facetSelectedCount' after api integration
+  const isSelected = facet.values.some((value) => value.selected);
+
   return (
     <div
       className={`${styles.filter_chips_wrapper} ${
@@ -18,7 +21,7 @@ const index = ({ text, children, isSelected, filterChipClick }) => {
           variant="caption-xx-small-semibold"
           color={`${isSelected ? "#12DAA8" : "#ABABAB"}`}
         >
-          {text || children}
+          {facet.name}
         </Typography>
       </div>
       {isSelected ? (
@@ -42,11 +45,9 @@ const index = ({ text, children, isSelected, filterChipClick }) => {
   );
 };
 
-index.propTypes = {
-  text: PropTypes.string,
-  children: PropTypes.string,
-  isSelected: PropTypes.bool,
+FilterChip.propTypes = {
+  facet: PropTypes.object.isRequired,
   filterChipClick: PropTypes.func,
 };
 
-export default index;
+export default FilterChip;

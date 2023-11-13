@@ -1,32 +1,479 @@
 {
   "path": "/v1/product/search",
-  "timestamp": "2023-11-12T13:32:30.561Z",
+  "timestamp": "2023-11-13T13:23:58.057Z",
   "data": {
     "products": [
       {
-        "skuId": "275649",
+        "skuId": "220175",
+        "averageRating": 3.3766233766,
+        "finalReviewRating": 3.2,
+        "finalReviewRatingCount": 57.0,
+        "mrp": {
+          "currencyIso": "",
+          "formattedValue": "₹2,500",
+          "priceType": "FROM",
+          "value": 2500.0
+        },
+        "price": {
+          "currencyIso": "",
+          "formattedValue": "₹699",
+          "priceType": "BUY",
+          "value": 699.0
+        },
+        "name": "SWISS MILITARY 4-in-1 Grooming Kit (SHV-7, Black)",
+        "plpImage": "https://media.croma.com/image/upload/v1605197377/Croma%20Assets/Small%20Appliances/Grooming/Images/8890892877854.png",
+        "quickViewDesc": "<ul><li>Functions: Trimming </li><li>Ideal For: Unisex</li><li>Operation Type: Dry | Wet </li><li>Water Resistant Attachments For Easy of Cleaning</li><li>Stainless Steel</li><li>24 Months Warranty</li></ul>",
+        "summary": "Swiss Military 4 in 1 Grooming Kit SHV-7",
+        "neuPassTotal": 34.95,
+        "inventory": {
+          "skuId": "220175",
+          "pinCode": 400001,
+          "isServiceable": true,
+          "isAvailable": true,
+          "requestedQuantity": 1,
+          "deliveryCharge": 0,
+          "tradeInIndicator": "N",
+          "formattedDeliveryCharge": "₹0",
+          "deliveryModes": {
+            "expressDelivery": [
+              {
+                "shipNode": "A119",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A027",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "standardDelivery": [
+              {
+                "shipNode": "D017",
+                "estimatedDeliveryDate": "2023-11-20T08:23:57.99+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:57.997+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:58.001+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "storePickup": [
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              }
+            ]
+          }
+        },
+        "minimumEmiAmount": 0.0,
+        "productTag": "2 Year Warranty",
+        "productTag1": "",
+        "discount": 0,
+        "discountPercentageValue": "72%",
+        "numberOfReviews": 57,
+        "numberOfRatings": 77,
+        "manufacturer": "Swiss Military",
+        "applianceType": "SA",
+        "categoryL0": "1021",
+        "categoryL1": "1021111",
+        "categoryL2": "444"
+      },
+      {
+        "skuId": "231597",
+        "averageRating": 0.0,
+        "finalReviewRating": 4.0,
+        "finalReviewRatingCount": 317.0,
+        "mrp": {
+          "currencyIso": "",
+          "formattedValue": "₹14,200",
+          "priceType": "FROM",
+          "value": 14200.0
+        },
+        "price": {
+          "currencyIso": "",
+          "formattedValue": "₹110",
+          "priceType": "BUY",
+          "value": 110.0
+        },
+        "name": "Philips Series 3000 Stainless Steel Blades Cordless Nose, Ear & Eyebrow Trimmer (Precision Trim Technology, NT3650/16, Grey)",
+        "plpImage": "null",
+        "quickViewDesc": "<ul> <li>Functions: Trimming</li> <li>Ideal For: Men, Cordless Operation</li> <li>Operation Type: Dry and Wet, Battery Type: AA</li> <li>Trimming Range: 3 and 5 mm</li> <li>Stainless Steel Blades</li> <li>24 Months Warranty</li> </ul>",
+        "summary": "PHILIPS NOSE TRIMMER NT3650/16",
+        "neuPassTotal": 5.5,
+        "inventory": {
+          "skuId": "231597",
+          "pinCode": 400001,
+          "isServiceable": true,
+          "isAvailable": true,
+          "requestedQuantity": 1,
+          "deliveryCharge": 0,
+          "tradeInIndicator": "N",
+          "formattedDeliveryCharge": "₹0",
+          "deliveryModes": {
+            "expressDelivery": [
+              {
+                "shipNode": "A119",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A027",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "standardDelivery": [
+              {
+                "shipNode": "D017",
+                "estimatedDeliveryDate": "2023-11-20T08:23:57.99+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:57.997+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:58.001+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "storePickup": [
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              }
+            ]
+          }
+        },
+        "minimumEmiAmount": 0.0,
+        "productTag": "",
+        "productTag1": "",
+        "discount": 0,
+        "discountPercentageValue": "99%",
+        "numberOfReviews": 0,
+        "numberOfRatings": 0,
+        "manufacturer": "Philips",
+        "applianceType": "SA",
+        "categoryL0": "1021",
+        "categoryL1": "1021111",
+        "categoryL2": "444"
+      },
+      {
+        "skuId": "231596",
+        "averageRating": 4.52,
+        "finalReviewRating": 4.4,
+        "finalReviewRatingCount": 110.0,
+        "mrp": {
+          "currencyIso": "",
+          "formattedValue": "₹1,695",
+          "priceType": "FROM",
+          "value": 1695.0
+        },
+        "price": {
+          "currencyIso": "",
+          "formattedValue": "₹1,334",
+          "priceType": "BUY",
+          "value": 1334.0
+        },
+        "name": "PHILIPS Series 3000 Stainless Steel Blades Corded Hair Clipper (13 Length Settings, HC3505/15, Blue)",
+        "plpImage": "https://media.croma.com/image/upload/v1614686269/Croma%20Assets/Small%20Appliances/Grooming/Images/231596_xejglv.png",
+        "quickViewDesc": "<ul> <li>Functions: Trimming</li> <li>Ideal For: Men, Corded Operation</li> <li>Operation Type: Dry</li> <li>Trimming Range: 0.5mm to 23mm</li> <li>Stainless Steel Blades</li> <li>24 Months Warranty</li> </ul>",
+        "summary": "PHILIPS HC3505/15 HAIR CLIPPER",
+        "neuPassTotal": 66.7,
+        "inventory": {
+          "skuId": "231596",
+          "pinCode": 400001,
+          "isServiceable": true,
+          "isAvailable": true,
+          "requestedQuantity": 1,
+          "deliveryCharge": 0,
+          "tradeInIndicator": "N",
+          "formattedDeliveryCharge": "₹0",
+          "deliveryModes": {
+            "expressDelivery": [
+              {
+                "shipNode": "A119",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A027",
+                "estimatedDeliveryDate": "2023-11-14T13:00+05:30",
+                "fulfillmentType": "SDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "standardDelivery": [
+              {
+                "shipNode": "D017",
+                "estimatedDeliveryDate": "2023-11-20T08:23:57.99+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:57.997+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "D001",
+                "estimatedDeliveryDate": "2023-11-15T08:23:58.001+00:00",
+                "fulfillmentType": "HDEL",
+                "availableQuantity": 1
+              }
+            ],
+            "storePickup": [
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:57.997+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A026",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.001+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A074",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              },
+              {
+                "shipNode": "A039",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 2
+              },
+              {
+                "shipNode": "A001",
+                "estimatedDeliveryDate": "2023-11-13T13:23:58.009+00:00",
+                "fulfillmentType": "STOR",
+                "availableQuantity": 1
+              }
+            ]
+          }
+        },
+        "minimumEmiAmount": 0.0,
+        "productTag": "",
+        "productTag1": "",
+        "discount": 0,
+        "discountPercentageValue": "21%",
+        "numberOfReviews": 20,
+        "numberOfRatings": 25,
+        "manufacturer": "Philips",
+        "applianceType": "SA",
+        "categoryL0": "1021",
+        "categoryL1": "1021111",
+        "categoryL2": "444"
+      },
+      {
+        "skuId": "269103",
         "averageRating": 0.0,
         "finalReviewRating": 0.0,
         "finalReviewRatingCount": 0.0,
         "mrp": {
           "currencyIso": "",
-          "formattedValue": "₹14,499",
+          "formattedValue": "₹1,185",
           "priceType": "FROM",
-          "value": 14499.0
+          "value": 1185.0
         },
         "price": {
           "currencyIso": "",
-          "formattedValue": "₹13,499",
+          "formattedValue": "₹649",
           "priceType": "BUY",
-          "value": 13499.0
+          "value": 649.0
         },
-        "name": "Redmi 12 5G (6GB RAM, 128GB, Moonstone Silver)",
-        "plpImage": "https://media.croma.com/image/upload/v1692282023/Croma%20Assets/Communication/Mobiles/Images/275649_hectep.png",
-        "quickViewDesc": "<ul><li>6.79 inches (17.24 cm), FHD+ Display, 90Hz</li><li>Memory: 6GB RAM, 128GB ROM</li><li>Processor: Qualcomm Snapdragon 4 Gen 2, Octa Core, 2.2GHz</li><li>Camera: 50 MP + 2MP AI Dual Camera & 8MP Front Camera</li><li>Battery: 5000 mAh, 22.5W Type -C Fast Charger</li><li>USP: IP53 Rated Splash and Dust Resistant, Corning Gorilla Glass</li></ul>",
-        "summary": "Redmi 12 5G (6GB+128GB) Moonstone Silver",
-        "neuPassTotal": 674.95,
+        "name": "Groomiist Copper Series Stainless Steel Blades Cordless Operation Trimmer (Over Charge Protection, CS-555, Blue and Black)",
+        "plpImage": "https://media.croma.com/image/upload/v1675919029/Croma%20Assets/Small%20Appliances/Grooming/Images/269103_zp46kh.png",
+        "quickViewDesc": "<ul> <li>Functions: Trimming</li> <li>Ideal For: Men, Corded/Cordless Operation</li> <li>Operation Type: Dry and Wet</li> <li>500mAh Lithium-Ion Battery</li> <li>Stainless Steel Blades</li> <li>12 Months Warranty</li> </ul> ",
+        "summary": "E-Groomiist Beard Trimmer CS-555 black",
+        "neuPassTotal": 32.45,
         "inventory": {
-          "skuId": "275649",
+          "skuId": "269103",
           "pinCode": 400001,
           "isServiceable": true,
           "isAvailable": false,
@@ -40,39 +487,39 @@
         "productTag": "",
         "productTag1": "",
         "discount": 0,
-        "discountPercentageValue": "7%",
+        "discountPercentageValue": "45%",
         "numberOfReviews": 0,
         "numberOfRatings": 0,
-        "manufacturer": "Redmi",
+        "manufacturer": "Groomiist",
         "applianceType": "SA",
-        "categoryL0": "1",
-        "categoryL1": "10",
-        "categoryL2": "95"
+        "categoryL0": "1021",
+        "categoryL1": "1021111",
+        "categoryL2": "444"
       },
       {
-        "skuId": "275640",
+        "skuId": "236806",
         "averageRating": 0.0,
         "finalReviewRating": 0.0,
         "finalReviewRatingCount": 0.0,
         "mrp": {
           "currencyIso": "",
-          "formattedValue": "₹12,499",
+          "formattedValue": "₹1,999",
           "priceType": "FROM",
-          "value": 12499.0
+          "value": 1999.0
         },
         "price": {
           "currencyIso": "",
-          "formattedValue": "₹11,499",
+          "formattedValue": "₹499",
           "priceType": "BUY",
-          "value": 11499.0
+          "value": 499.0
         },
-        "name": "Redmi 12 (6GB RAM, 128GB, Moonstone Silver)",
-        "plpImage": "https://media.croma.com/image/upload/v1690866847/Croma%20Assets/Communication/Mobiles/Images/275640_wrq3n3.png",
-        "quickViewDesc": "<ul><li>6.79 inches (17.24 cm), FHD Plus Display, 90Hz</li><li>Memory: 6GB RAM, 128GB ROM</li><li>Processor: Mediatek helio G88, Octa Core 2.0GHz</li><li>Camera: 50 MP Main Camera + 8MP Ultrawide Camera + 2MP Macro Camera & 8MP Front Camera</li><li>Battery: 5000 mAh, 22.5W Type -C Fast Charger</li><li>USP: IP53 Rated Splash and Dust Resistant, Corning Gorilla Glass</li></ul>",
-        "summary": "Redmi 12 (6GB+128GB) Moonstone Silver",
-        "neuPassTotal": 574.95,
+        "name": "STAUNCH Stainless Steel Blades Cordless Operation Trimmer (Water Resistant, SBT3011, Black )",
+        "plpImage": "https://media.croma.com/image/upload/v1629288651/Croma%20Assets/Miscellanous/5K%20SKU_Images/Images/236806_sninmh.png",
+        "quickViewDesc": "<ul><li>Functions: Trimming</li><li>Ideal For: Men, Cordless Operation</li><li>Operation Type: Dry, Standard Battery Life: 30 Minutes</li><li>Trimming Range: 0.5 - 20 mm</li><li>Stainless Steel Blade </li><li>24 Months Warranty</li></ul>",
+        "summary": "E-STAUNCH TRIMMER SBT3011 BLACK",
+        "neuPassTotal": 24.95,
         "inventory": {
-          "skuId": "275640",
+          "skuId": "236806",
           "pinCode": 400001,
           "isServiceable": true,
           "isAvailable": false,
@@ -86,152 +533,14 @@
         "productTag": "",
         "productTag1": "",
         "discount": 0,
-        "discountPercentageValue": "8%",
+        "discountPercentageValue": "75%",
         "numberOfReviews": 0,
         "numberOfRatings": 0,
-        "manufacturer": "Redmi",
+        "manufacturer": "Staunch",
         "applianceType": "SA",
-        "categoryL0": "1",
-        "categoryL1": "10",
-        "categoryL2": "95"
-      },
-      {
-        "skuId": "275650",
-        "averageRating": 0.0,
-        "finalReviewRating": 0.0,
-        "finalReviewRatingCount": 0.0,
-        "mrp": {
-          "currencyIso": "",
-          "formattedValue": "₹14,499",
-          "priceType": "FROM",
-          "value": 14499.0
-        },
-        "price": {
-          "currencyIso": "",
-          "formattedValue": "₹13,499",
-          "priceType": "BUY",
-          "value": 13499.0
-        },
-        "name": "Redmi 12 5G (6GB RAM, 128GB, Pastel Blue)",
-        "plpImage": "https://media.croma.com/image/upload/v1692281993/Croma%20Assets/Communication/Mobiles/Images/275650_qqyx7b.png",
-        "quickViewDesc": "<ul><li>6.79 inches (17.24 cm), FHD Plus Display, 90Hz</li><li>Memory: 6GB RAM, 128GB ROM</li><li>Processor: Qualcomm Snapdragon 4 Gen 2, Octa Core, 2.2GHz</li><li>Camera: 50 MP + 2MP AI Dual Camera & 8MP Front Camera</li><li>Battery: 5000 mAh, 22.5W Type -C Fast Charger</li><li>USP: IP53 Rated Splash and Dust Resistant, Corning Gorilla Glass</li></ul>",
-        "summary": "Redmi 12 5G (6GB+128GB) Pastel Blue",
-        "neuPassTotal": 674.95,
-        "inventory": {
-          "skuId": "275650",
-          "pinCode": 400001,
-          "isServiceable": true,
-          "isAvailable": false,
-          "requestedQuantity": 1,
-          "deliveryCharge": 0,
-          "tradeInIndicator": "N",
-          "formattedDeliveryCharge": "₹0",
-          "deliveryModes": {}
-        },
-        "minimumEmiAmount": 0.0,
-        "productTag": "",
-        "productTag1": "",
-        "discount": 0,
-        "discountPercentageValue": "7%",
-        "numberOfReviews": 0,
-        "numberOfRatings": 0,
-        "manufacturer": "Redmi",
-        "applianceType": "SA",
-        "categoryL0": "1",
-        "categoryL1": "10",
-        "categoryL2": "95"
-      },
-      {
-        "skuId": "275648",
-        "averageRating": 0.0,
-        "finalReviewRating": 0.0,
-        "finalReviewRatingCount": 0.0,
-        "mrp": {
-          "currencyIso": "",
-          "formattedValue": "₹14,499",
-          "priceType": "FROM",
-          "value": 14499.0
-        },
-        "price": {
-          "currencyIso": "",
-          "formattedValue": "₹13,499",
-          "priceType": "BUY",
-          "value": 13499.0
-        },
-        "name": "Redmi 12 5G (6GB RAM, 128GB, Jade Black)",
-        "plpImage": "https://media.croma.com/image/upload/v1692282011/Croma%20Assets/Communication/Mobiles/Images/275648_pvvqbx.png",
-        "quickViewDesc": "<ul><li>6.79 inches (17.24 cm), FHD+ Display, 90Hz</li><li>Memory: 6GB RAM, 128GB ROM</li><li>Processor: Qualcomm Snapdragon 4 Gen 2, Octa Core, 2.2GHz</li><li>Camera: 50 MP + 2MP AI Dual Camera & 8MP Front Camera</li><li>Battery: 5000 mAh, 22.5W Type -C Fast Charger</li><li>USP: IP53 Rated Splash and Dust Resistant, Corning Gorilla Glass</li></ul>",
-        "summary": "Redmi 12 5G (6GB+128GB) Jade Black",
-        "neuPassTotal": 674.95,
-        "inventory": {
-          "skuId": "275648",
-          "pinCode": 400001,
-          "isServiceable": true,
-          "isAvailable": false,
-          "requestedQuantity": 1,
-          "deliveryCharge": 0,
-          "tradeInIndicator": "N",
-          "formattedDeliveryCharge": "₹0",
-          "deliveryModes": {}
-        },
-        "minimumEmiAmount": 0.0,
-        "productTag": "",
-        "productTag1": "",
-        "discount": 0,
-        "discountPercentageValue": "7%",
-        "numberOfReviews": 0,
-        "numberOfRatings": 0,
-        "manufacturer": "Redmi",
-        "applianceType": "SA",
-        "categoryL0": "1",
-        "categoryL1": "10",
-        "categoryL2": "95"
-      },
-      {
-        "skuId": "271382",
-        "averageRating": 0.0,
-        "finalReviewRating": 0.0,
-        "finalReviewRatingCount": 0.0,
-        "mrp": {
-          "currencyIso": "",
-          "formattedValue": "₹18,999",
-          "priceType": "FROM",
-          "value": 18999.0
-        },
-        "price": {
-          "currencyIso": "",
-          "formattedValue": "₹13,999",
-          "priceType": "BUY",
-          "value": 13999.0
-        },
-        "name": "vivo T2x 5G (6GB RAM, 128GB, Aurora Gold)",
-        "plpImage": "https://media.croma.com/image/upload/v1688575001/Croma%20Assets/Communication/Mobiles/Images/271382_0_shynbu.png",
-        "quickViewDesc": "<ul><li>Display: 6.58 inches (16.72 cm), FHD +</li><li>Memory: 6GB RAM, 128GB ROM, Memory Card upto 1TB</li><li>Processor: MediaTek Dimensity 6020, Octa Core, 2.2 GHz</li><li>Camera: 50 MP + 2 MP Dual Rear & 8 MP Front Camera</li><li>Battery: 5000 mAh</li><li>USP: Extended RAM 3.0</li></ul>",
-        "summary": "E-Vivo T2X (6GB+128GB) Aurora Gold",
-        "neuPassTotal": 699.95,
-        "inventory": {
-          "skuId": "271382",
-          "pinCode": 400001,
-          "isServiceable": true,
-          "isAvailable": false,
-          "requestedQuantity": 1,
-          "deliveryCharge": 0,
-          "tradeInIndicator": "N",
-          "formattedDeliveryCharge": "₹0",
-          "deliveryModes": {}
-        },
-        "minimumEmiAmount": 0.0,
-        "productTag": "500 off on payment otp page",
-        "productTag1": "",
-        "discount": 0,
-        "discountPercentageValue": "26%",
-        "numberOfReviews": 0,
-        "numberOfRatings": 0,
-        "manufacturer": "Vivo",
-        "applianceType": "SA",
-        "categoryL0": "1",
-        "categoryL1": "10",
-        "categoryL2": "95"
+        "categoryL0": "1021",
+        "categoryL1": "1021111",
+        "categoryL2": "444"
       }
     ],
     "facets": [
@@ -245,27 +554,27 @@
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "95",
-            "count": 661,
-            "code": "95",
+            "name": "444",
+            "count": 119,
+            "code": "444",
             "selected": false
           },
           {
-            "name": "107",
-            "count": 178,
-            "code": "107",
+            "name": "445",
+            "count": 22,
+            "code": "445",
             "selected": false
           },
           {
-            "name": "97",
-            "count": 45,
-            "code": "97",
-            "selected": false
-          },
-          {
-            "name": "199",
+            "name": "748",
             "count": 19,
-            "code": "199",
+            "code": "748",
+            "selected": false
+          },
+          {
+            "name": "1021111",
+            "count": 1,
+            "code": "1021111",
             "selected": false
           }
         ],
@@ -282,13 +591,13 @@
         "values": [
           {
             "name": "Express Delivery",
-            "count": 303,
+            "count": 38,
             "code": "Express Delivery",
             "selected": false
           },
           {
             "name": "Home Delivery",
-            "count": 428,
+            "count": 93,
             "code": "Home Delivery",
             "selected": false
           }
@@ -305,81 +614,33 @@
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "10,001 - 20,000",
-            "count": 205,
-            "code": "10,001 - 20,000",
+            "name": "501 - 1,000",
+            "count": 32,
+            "code": "501 - 1,000",
             "selected": false
           },
           {
-            "name": "5,001 - 10,000",
-            "count": 113,
-            "code": "5,001 - 10,000",
+            "name": "1,001 - 1,500",
+            "count": 32,
+            "code": "1,001 - 1,500",
             "selected": false
           },
           {
-            "name": "20,001 - 30,000",
-            "count": 104,
-            "code": "20,001 - 30,000",
+            "name": "1,501 - 3,000",
+            "count": 32,
+            "code": "1,501 - 3,000",
             "selected": false
           },
           {
             "name": "3,001 - 5,000",
-            "count": 5,
+            "count": 4,
             "code": "3,001 - 5,000",
             "selected": false
           },
           {
-            "name": "30,001 - 40,000",
-            "count": 51,
-            "code": "30,001 - 40,000",
-            "selected": false
-          },
-          {
-            "name": "1,00,001 - 2,00,000",
-            "count": 57,
-            "code": "1,00,001 - 2,00,000",
-            "selected": false
-          },
-          {
             "name": "500 & Below",
-            "count": 94,
+            "count": 25,
             "code": "500 & Below",
-            "selected": false
-          },
-          {
-            "name": "70,001 - 80,000",
-            "count": 16,
-            "code": "70,001 - 80,000",
-            "selected": false
-          },
-          {
-            "name": "90,001 - 1,00,000",
-            "count": 16,
-            "code": "90,001 - 1,00,000",
-            "selected": false
-          },
-          {
-            "name": "50,001 - 60,000",
-            "count": 13,
-            "code": "50,001 - 60,000",
-            "selected": false
-          },
-          {
-            "name": "80,001 - 90,000",
-            "count": 13,
-            "code": "80,001 - 90,000",
-            "selected": false
-          },
-          {
-            "name": "40,001 - 50,000",
-            "count": 12,
-            "code": "40,001 - 50,000",
-            "selected": false
-          },
-          {
-            "name": "60,001 - 70,000",
-            "count": 7,
-            "code": "60,001 - 70,000",
             "selected": false
           }
         ],
@@ -395,81 +656,147 @@
         "isSearchEnabled": true,
         "values": [
           {
-            "name": "vivo",
-            "count": 82,
-            "code": "vivo",
+            "name": "VGR",
+            "count": 24,
+            "code": "VGR",
             "selected": false
           },
           {
-            "name": "realme",
-            "count": 94,
-            "code": "realme",
+            "name": "PHILIPS",
+            "count": 18,
+            "code": "PHILIPS",
             "selected": false
           },
           {
-            "name": "oppo",
-            "count": 40,
-            "code": "oppo",
+            "name": "Groomiist",
+            "count": 13,
+            "code": "Groomiist",
             "selected": false
           },
           {
-            "name": "SAMSUNG",
-            "count": 190,
-            "code": "SAMSUNG",
+            "name": "VGR India",
+            "count": 13,
+            "code": "VGR India",
             "selected": false
           },
           {
-            "name": "Redmi",
-            "count": 129,
-            "code": "Redmi",
+            "name": "HAVELLS",
+            "count": 10,
+            "code": "HAVELLS",
             "selected": false
           },
           {
-            "name": "NOKIA",
-            "count": 53,
-            "code": "NOKIA",
+            "name": "SWISS MILITARY",
+            "count": 7,
+            "code": "SWISS MILITARY",
             "selected": false
           },
           {
-            "name": "Apple",
-            "count": 45,
-            "code": "Apple",
+            "name": "SYSKA",
+            "count": 7,
+            "code": "SYSKA",
             "selected": false
           },
           {
-            "name": "OnePlus",
-            "count": 35,
-            "code": "OnePlus",
+            "name": "Lifelong",
+            "count": 5,
+            "code": "Lifelong",
+            "selected": false
+          },
+          {
+            "name": "Panasonic",
+            "count": 4,
+            "code": "Panasonic",
+            "selected": false
+          },
+          {
+            "name": "Philips",
+            "count": 4,
+            "code": "Philips",
+            "selected": false
+          },
+          {
+            "name": "VEGA",
+            "count": 3,
+            "code": "VEGA",
             "selected": false
           },
           {
             "name": "Xiaomi",
-            "count": 26,
+            "count": 3,
             "code": "Xiaomi",
             "selected": false
           },
           {
-            "name": "I KALL",
-            "count": 6,
-            "code": "I KALL",
-            "selected": false
-          },
-          {
-            "name": "Itel",
+            "name": "Croma",
             "count": 2,
-            "code": "Itel",
+            "code": "Croma",
             "selected": false
           },
           {
-            "name": "TECNO",
+            "name": "GUBB",
             "count": 2,
-            "code": "TECNO",
+            "code": "GUBB",
             "selected": false
           },
           {
-            "name": "Samsung",
+            "name": "AGARO",
             "count": 1,
-            "code": "Samsung",
+            "code": "AGARO",
+            "selected": false
+          },
+          {
+            "name": "BaByliss",
+            "count": 1,
+            "code": "BaByliss",
+            "selected": false
+          },
+          {
+            "name": "Carlton London",
+            "count": 1,
+            "code": "Carlton London",
+            "selected": false
+          },
+          {
+            "name": "Havells",
+            "count": 1,
+            "code": "Havells",
+            "selected": false
+          },
+          {
+            "name": "REMINGTON",
+            "count": 1,
+            "code": "REMINGTON",
+            "selected": false
+          },
+          {
+            "name": "STAUNCH",
+            "count": 1,
+            "code": "STAUNCH",
+            "selected": false
+          },
+          {
+            "name": "Swiss Military",
+            "count": 1,
+            "code": "Swiss Military",
+            "selected": false
+          },
+          {
+            "name": "VGR ",
+            "count": 1,
+            "code": "VGR ",
+            "selected": false
+          },
+          {
+            "name": "ZEBRONICS",
+            "count": 1,
+            "code": "ZEBRONICS",
+            "selected": false
+          },
+          {
+            "name": "beurer",
+            "count": 1,
+            "code": "beurer",
             "selected": false
           }
         ],
@@ -485,27 +812,33 @@
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "Below 20%",
-            "count": 321,
-            "code": "Below 20%",
+            "name": "40% To 60%",
+            "count": 46,
+            "code": "40% To 60%",
             "selected": false
           },
           {
             "name": "20% To 40%",
-            "count": 228,
+            "count": 26,
             "code": "20% To 40%",
             "selected": false
           },
           {
             "name": "80% And Above",
-            "count": 94,
+            "count": 22,
             "code": "80% And Above",
             "selected": false
           },
           {
-            "name": "40% To 60%",
+            "name": "60% To 80%",
             "count": 18,
-            "code": "40% To 60%",
+            "code": "60% To 80%",
+            "selected": false
+          },
+          {
+            "name": "Below 20%",
+            "count": 9,
+            "code": "Below 20%",
             "selected": false
           }
         ],
@@ -513,693 +846,33 @@
       },
       {
         "category": false,
-        "code": "SG-M&TStorageSpecifications-RAM",
+        "code": "SG-GPCategory-IdealFor",
         "multiSelect": true,
-        "name": "RAM",
+        "name": "Ideal For",
         "priority": 0,
-        "order": 6,
+        "order": 4,
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "8.0",
-            "count": 232,
-            "code": "8.0",
+            "name": "Men",
+            "count": 109,
+            "code": "Men",
             "selected": false
           },
           {
-            "name": "6.0",
-            "count": 120,
-            "code": "6.0",
+            "name": "Unisex",
+            "count": 9,
+            "code": "Unisex",
             "selected": false
           },
           {
-            "name": "4.0",
-            "count": 163,
-            "code": "4.0",
-            "selected": false
-          },
-          {
-            "name": "12.0",
-            "count": 61,
-            "code": "12.0",
-            "selected": false
-          },
-          {
-            "name": "3.0",
-            "count": 35,
-            "code": "3.0",
-            "selected": false
-          },
-          {
-            "name": "16.0",
-            "count": 8,
-            "code": "16.0",
-            "selected": false
-          },
-          {
-            "name": "2.0",
-            "count": 34,
-            "code": "2.0",
-            "selected": false
-          },
-          {
-            "name": "-1.0",
-            "count": 53,
-            "code": "-1.0",
+            "name": "Women",
+            "count": 6,
+            "code": "Women",
             "selected": false
           }
         ],
         "popular": true
-      },
-      {
-        "category": false,
-        "code": "SG-M&TProcessorDetails-ProcessorName",
-        "multiSelect": true,
-        "name": "Processor Name",
-        "priority": 0,
-        "order": 7,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "Snapdragon",
-            "count": 117,
-            "code": "Snapdragon",
-            "selected": false
-          },
-          {
-            "name": "Dimensity",
-            "count": 102,
-            "code": "Dimensity",
-            "selected": false
-          },
-          {
-            "name": "Helio",
-            "count": 87,
-            "code": "Helio",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 8",
-            "count": 30,
-            "code": "Snapdragon 8",
-            "selected": false
-          },
-          {
-            "name": "A16 Bionic Chip",
-            "count": 21,
-            "code": "A16 Bionic Chip",
-            "selected": false
-          },
-          {
-            "name": "A15 Bionic Chip",
-            "count": 20,
-            "code": "A15 Bionic Chip",
-            "selected": false
-          },
-          {
-            "name": "T612",
-            "count": 20,
-            "code": "T612",
-            "selected": false
-          },
-          {
-            "name": "Exynos 2100",
-            "count": 16,
-            "code": "Exynos 2100",
-            "selected": false
-          },
-          {
-            "name": "SC9863A",
-            "count": 14,
-            "code": "SC9863A",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 4",
-            "count": 11,
-            "code": "Snapdragon 4",
-            "selected": false
-          },
-          {
-            "name": "1330",
-            "count": 9,
-            "code": "1330",
-            "selected": false
-          },
-          {
-            "name": "9863A1",
-            "count": 9,
-            "code": "9863A1",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 7050",
-            "count": 9,
-            "code": "Dimensity 7050",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 920 5G",
-            "count": 9,
-            "code": "Dimensity 920 5G",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 888",
-            "count": 9,
-            "code": "Snapdragon 888",
-            "selected": false
-          },
-          {
-            "name": "Exynos",
-            "count": 8,
-            "code": "Exynos",
-            "selected": false
-          },
-          {
-            "name": "Helio G35",
-            "count": 8,
-            "code": "Helio G35",
-            "selected": false
-          },
-          {
-            "name": "Exynos ",
-            "count": 7,
-            "code": "Exynos ",
-            "selected": false
-          },
-          {
-            "name": "Helio P35",
-            "count": 7,
-            "code": "Helio P35",
-            "selected": false
-          },
-          {
-            "name": "MT6769",
-            "count": 7,
-            "code": "MT6769",
-            "selected": false
-          },
-          {
-            "name": "SC9863A1",
-            "count": 7,
-            "code": "SC9863A1",
-            "selected": false
-          },
-          {
-            "name": "1280",
-            "count": 6,
-            "code": "1280",
-            "selected": false
-          },
-          {
-            "name": "850",
-            "count": 6,
-            "code": "850",
-            "selected": false
-          },
-          {
-            "name": "Helio G88",
-            "count": 6,
-            "code": "Helio G88",
-            "selected": false
-          },
-          {
-            "name": "P35",
-            "count": 6,
-            "code": "P35",
-            "selected": false
-          },
-          {
-            "name": "T606",
-            "count": 6,
-            "code": "T606",
-            "selected": false
-          },
-          {
-            "name": "695",
-            "count": 5,
-            "code": "695",
-            "selected": false
-          },
-          {
-            "name": "Dimensity ",
-            "count": 5,
-            "code": "Dimensity ",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 9200",
-            "count": 5,
-            "code": "Dimensity 9200",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 778G",
-            "count": 5,
-            "code": "Snapdragon 778G",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 778G 5G",
-            "count": 5,
-            "code": "Snapdragon 778G 5G",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 8+",
-            "count": 5,
-            "code": "Snapdragon 8+",
-            "selected": false
-          },
-          {
-            "name": "Spreadtrum",
-            "count": 5,
-            "code": "Spreadtrum",
-            "selected": false
-          },
-          {
-            "name": "A15 Bionic",
-            "count": 4,
-            "code": "A15 Bionic",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 8100 Max",
-            "count": 4,
-            "code": "Dimensity 8100 Max",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon ",
-            "count": 4,
-            "code": "Snapdragon ",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 695",
-            "count": 4,
-            "code": "Snapdragon 695",
-            "selected": false
-          },
-          {
-            "name": "T107?",
-            "count": 4,
-            "code": "T107?",
-            "selected": false
-          },
-          {
-            "name": "T610",
-            "count": 4,
-            "code": "T610",
-            "selected": false
-          },
-          {
-            "name": "Tiger T616",
-            "count": 4,
-            "code": "Tiger T616",
-            "selected": false
-          },
-          {
-            "name": "Exynos 7904",
-            "count": 3,
-            "code": "Exynos 7904",
-            "selected": false
-          },
-          {
-            "name": "Exynos 9611",
-            "count": 3,
-            "code": "Exynos 9611",
-            "selected": false
-          },
-          {
-            "name": "MT6762",
-            "count": 3,
-            "code": "MT6762",
-            "selected": false
-          },
-          {
-            "name": "Not-Available",
-            "count": 3,
-            "code": "Not-Available",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 680",
-            "count": 3,
-            "code": "Snapdragon 680",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 720G",
-            "count": 3,
-            "code": "Snapdragon 720G",
-            "selected": false
-          },
-          {
-            "name": "Exynos 990",
-            "count": 2,
-            "code": "Exynos 990",
-            "selected": false
-          },
-          {
-            "name": "Helio A25",
-            "count": 2,
-            "code": "Helio A25",
-            "selected": false
-          },
-          {
-            "name": "Helio G96",
-            "count": 2,
-            "code": "Helio G96",
-            "selected": false
-          },
-          {
-            "name": "SC9832E",
-            "count": 2,
-            "code": "SC9832E",
-            "selected": false
-          },
-          {
-            "name": "SC9863a",
-            "count": 2,
-            "code": "SC9863a",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 732G",
-            "count": 2,
-            "code": "Snapdragon 732G",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 8 Plus Gen 1",
-            "count": 2,
-            "code": "Snapdragon 8 Plus Gen 1",
-            "selected": false
-          },
-          {
-            "name": "Tiger",
-            "count": 2,
-            "code": "Tiger",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 810",
-            "count": 1,
-            "code": "Dimensity 810",
-            "selected": false
-          },
-          {
-            "name": "Dimensity 810 5G",
-            "count": 1,
-            "code": "Dimensity 810 5G",
-            "selected": false
-          },
-          {
-            "name": "Exynos 9610",
-            "count": 1,
-            "code": "Exynos 9610",
-            "selected": false
-          },
-          {
-            "name": "G96",
-            "count": 1,
-            "code": "G96",
-            "selected": false
-          },
-          {
-            "name": "Helio ",
-            "count": 1,
-            "code": "Helio ",
-            "selected": false
-          },
-          {
-            "name": "Not Available",
-            "count": 1,
-            "code": "Not Available",
-            "selected": false
-          },
-          {
-            "name": "P22",
-            "count": 1,
-            "code": "P22",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 4 ",
-            "count": 1,
-            "code": "Snapdragon 4 ",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 4 Gen 2 Mobile Platform",
-            "count": 1,
-            "code": "Snapdragon 4 Gen 2 Mobile Platform",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 4 Mobile Platform",
-            "count": 1,
-            "code": "Snapdragon 4 Mobile Platform",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 450",
-            "count": 1,
-            "code": "Snapdragon 450",
-            "selected": false
-          },
-          {
-            "name": "Snapdragon 662",
-            "count": 1,
-            "code": "Snapdragon 662",
-            "selected": false
-          },
-          {
-            "name": "T107",
-            "count": 1,
-            "code": "T107",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-NetworkTechnology-DataGenerationSupported",
-        "multiSelect": true,
-        "name": "Data Generation Supported",
-        "priority": 0,
-        "order": 10,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "5G",
-            "count": 395,
-            "code": "5G",
-            "selected": false
-          },
-          {
-            "name": "4G",
-            "count": 274,
-            "code": "4G",
-            "selected": false
-          },
-          {
-            "name": "4G VoLTE",
-            "count": 67,
-            "code": "4G VoLTE",
-            "selected": false
-          },
-          {
-            "name": "2G",
-            "count": 40,
-            "code": "2G",
-            "selected": false
-          },
-          {
-            "name": "3G",
-            "count": 40,
-            "code": "3G",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 2,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-M&TStorageSpecifications-InternalStorage",
-        "multiSelect": true,
-        "name": "Internal Storage",
-        "priority": 0,
-        "order": 11,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "128GB",
-            "count": 300,
-            "code": "128GB",
-            "selected": false
-          },
-          {
-            "name": "256GB",
-            "count": 155,
-            "code": "256GB",
-            "selected": false
-          },
-          {
-            "name": "64GB",
-            "count": 137,
-            "code": "64GB",
-            "selected": false
-          },
-          {
-            "name": "32GB",
-            "count": 51,
-            "code": "32GB",
-            "selected": false
-          },
-          {
-            "name": "512GB",
-            "count": 36,
-            "code": "512GB",
-            "selected": false
-          },
-          {
-            "name": "1TB",
-            "count": 10,
-            "code": "1TB",
-            "selected": false
-          },
-          {
-            "name": "128MB",
-            "count": 8,
-            "code": "128MB",
-            "selected": false
-          },
-          {
-            "name": "16GB",
-            "count": 2,
-            "code": "16GB",
-            "selected": false
-          },
-          {
-            "name": "6GB",
-            "count": 2,
-            "code": "6GB",
-            "selected": false
-          },
-          {
-            "name": "8MB",
-            "count": 2,
-            "code": "8MB",
-            "selected": false
-          },
-          {
-            "name": "3GB",
-            "count": 1,
-            "code": "3GB",
-            "selected": false
-          },
-          {
-            "name": "4GB",
-            "count": 1,
-            "code": "4GB",
-            "selected": false
-          },
-          {
-            "name": "8GB",
-            "count": 1,
-            "code": "8GB",
-            "selected": false
-          }
-        ],
-        "popular": true
-      },
-      {
-        "category": false,
-        "code": "SG-MobileCategory-MobileType",
-        "multiSelect": true,
-        "name": "Mobile Type",
-        "priority": 0,
-        "order": 13,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "Android Smartphone",
-            "count": 650,
-            "code": "Android Smartphone",
-            "selected": false
-          },
-          {
-            "name": "iOS Smartphone",
-            "count": 45,
-            "code": "iOS Smartphone",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 6,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          },
-          {
-            "name": "Feature Phone",
-            "count": 5,
-            "code": "Feature Phone",
-            "selected": false
-          }
-        ],
-        "popular": true
-      },
-      {
-        "category": false,
-        "code": "SG-CompanyContactInformation-CountryofOrigin",
-        "multiSelect": true,
-        "name": "Country of Manufacture",
-        "priority": 0,
-        "order": 14,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "India",
-            "count": 403,
-            "code": "India",
-            "selected": false
-          },
-          {
-            "name": "China",
-            "count": 282,
-            "code": "China",
-            "selected": false
-          },
-          {
-            "name": "Vietnam",
-            "count": 19,
-            "code": "Vietnam",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 1,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          },
-          {
-            "name": "Finland",
-            "count": 1,
-            "code": "Finland",
-            "selected": false
-          }
-        ],
-        "popular": false
       },
       {
         "category": false,
@@ -1207,265 +880,103 @@
         "multiSelect": true,
         "name": "Color",
         "priority": 0,
-        "order": 15,
+        "order": 6,
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "BLACK",
-            "count": 177,
-            "code": "BLACK",
-            "selected": false
-          },
-          {
-            "name": "BLUE",
-            "count": 118,
-            "code": "BLUE",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 104,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          },
-          {
-            "name": "GREEN",
-            "count": 82,
-            "code": "GREEN",
-            "selected": false
-          },
-          {
-            "name": "GOLD",
-            "count": 41,
-            "code": "GOLD",
-            "selected": false
-          },
-          {
-            "name": "WHITE",
-            "count": 39,
-            "code": "WHITE",
-            "selected": false
-          },
-          {
-            "name": "PURPLE",
-            "count": 35,
-            "code": "PURPLE",
-            "selected": false
-          },
-          {
-            "name": "GREY",
-            "count": 31,
-            "code": "GREY",
-            "selected": false
-          },
-          {
-            "name": "SILVER",
-            "count": 22,
-            "code": "SILVER",
-            "selected": false
-          },
-          {
-            "name": "RED",
-            "count": 12,
-            "code": "RED",
-            "selected": false
-          },
-          {
             "name": "Black",
-            "count": 9,
+            "count": 46,
             "code": "Black",
             "selected": false
           },
           {
-            "name": "ORANGE",
-            "count": 9,
-            "code": "ORANGE",
-            "selected": false
-          },
-          {
-            "name": "BRONZE",
-            "count": 6,
-            "code": "BRONZE",
-            "selected": false
-          },
-          {
-            "name": "PINK",
-            "count": 4,
-            "code": "PINK",
-            "selected": false
-          },
-          {
-            "name": "Silver",
-            "count": 4,
-            "code": "Silver",
-            "selected": false
-          },
-          {
-            "name": "YELLOW",
-            "count": 4,
-            "code": "YELLOW",
-            "selected": false
-          },
-          {
-            "name": "BROWN",
-            "count": 3,
-            "code": "BROWN",
-            "selected": false
-          },
-          {
             "name": "Blue",
-            "count": 3,
+            "count": 12,
             "code": "Blue",
             "selected": false
           },
           {
+            "name": "Gold",
+            "count": 10,
+            "code": "Gold",
+            "selected": false
+          },
+          {
+            "name": "White",
+            "count": 8,
+            "code": "White",
+            "selected": false
+          },
+          {
+            "name": "Grey",
+            "count": 5,
+            "code": "Grey",
+            "selected": false
+          },
+          {
+            "name": "Silver",
+            "count": 5,
+            "code": "Silver",
+            "selected": false
+          },
+          {
             "name": "Green",
-            "count": 2,
+            "count": 3,
             "code": "Green",
             "selected": false
           },
           {
-            "name": "LAVENDER",
-            "count": 1,
-            "code": "LAVENDER",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-M&TScreenSpecifications-ScreenSizeinInches_range",
-        "multiSelect": true,
-        "name": "Screen Size in Inches",
-        "priority": 0,
-        "order": 17,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "6.4 inch & Above",
-            "count": 628,
-            "code": "6.4 inch & Above",
+            "name": "Multi Color",
+            "count": 3,
+            "code": "Multi Color",
             "selected": false
           },
           {
-            "name": "6 - 6.3 inch",
-            "count": 55,
-            "code": "6 - 6.3 inch",
-            "selected": false
-          },
-          {
-            "name": "6.38",
-            "count": 13,
-            "code": "6.38",
-            "selected": false
-          },
-          {
-            "name": "Up to 3 inch",
-            "count": 5,
-            "code": "Up to 3 inch",
-            "selected": false
-          },
-          {
-            "name": "5.45",
-            "count": 4,
-            "code": "5.45",
-            "selected": false
-          },
-          {
-            "name": "-1",
-            "count": 1,
-            "code": "-1",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-M&TOperatingSystem-OSType",
-        "multiSelect": true,
-        "name": "OS Type",
-        "priority": 0,
-        "order": 20,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "Android OS",
-            "count": 648,
-            "code": "Android OS",
-            "selected": false
-          },
-          {
-            "name": "iOS",
-            "count": 45,
-            "code": "iOS",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 6,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          },
-          {
-            "name": "S30+",
-            "count": 5,
-            "code": "S30+",
-            "selected": false
-          },
-          {
-            "name": "Windows OS",
+            "name": "BLACK",
             "count": 2,
-            "code": "Windows OS",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-Battery-Capacity_range",
-        "multiSelect": true,
-        "name": "Battery Capacity",
-        "priority": 0,
-        "order": 21,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "4001 - 5000",
-            "count": 554,
-            "code": "4001 - 5000",
+            "code": "BLACK",
             "selected": false
           },
           {
-            "name": "3001 - 4000",
-            "count": 55,
-            "code": "3001 - 4000",
+            "name": "Brown",
+            "count": 2,
+            "code": "Brown",
             "selected": false
           },
           {
-            "name": "0 - 1000",
-            "count": 45,
-            "code": "0 - 1000",
+            "name": "Purple",
+            "count": 2,
+            "code": "Purple",
             "selected": false
           },
           {
-            "name": "5001 - 6000",
-            "count": 43,
-            "code": "5001 - 6000",
+            "name": "Red",
+            "count": 2,
+            "code": "Red",
             "selected": false
           },
           {
-            "name": "1001 - 2000",
-            "count": 5,
-            "code": "1001 - 2000",
+            "name": "WINE",
+            "count": 2,
+            "code": "WINE",
             "selected": false
           },
           {
-            "name": "2001 - 3000",
-            "count": 4,
-            "code": "2001 - 3000",
+            "name": "ORANGE",
+            "count": 1,
+            "code": "ORANGE",
+            "selected": false
+          },
+          {
+            "name": "Pink",
+            "count": 1,
+            "code": "Pink",
+            "selected": false
+          },
+          {
+            "name": "WHITE",
+            "count": 1,
+            "code": "WHITE",
             "selected": false
           }
         ],
@@ -1477,277 +988,49 @@
         "multiSelect": true,
         "name": "Country of Origin",
         "priority": 0,
-        "order": 22,
+        "order": 8,
         "isSearchEnabled": true,
         "values": [
           {
             "name": "China",
-            "count": 409,
+            "count": 35,
             "code": "China",
             "selected": false
           },
           {
-            "name": "South Korea",
-            "count": 190,
-            "code": "South Korea",
-            "selected": false
-          },
-          {
-            "name": "Finland",
-            "count": 52,
-            "code": "Finland",
-            "selected": false
-          },
-          {
-            "name": "USA",
-            "count": 45,
-            "code": "USA",
-            "selected": false
-          },
-          {
             "name": "India",
-            "count": 9,
+            "count": 32,
             "code": "India",
             "selected": false
           },
           {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 1,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "SG-M&TOperatingSystem-OSName&Version",
-        "multiSelect": true,
-        "name": "OS Name & Version",
-        "priority": 0,
-        "order": 25,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "Android 12",
-            "count": 200,
-            "code": "Android 12",
-            "selected": false
-          },
-          {
-            "name": "Android 13",
-            "count": 196,
-            "code": "Android 13",
-            "selected": false
-          },
-          {
-            "name": "Android 11",
-            "count": 108,
-            "code": "Android 11",
-            "selected": false
-          },
-          {
-            "name": "iOS 16",
-            "count": 41,
-            "code": "iOS 16",
-            "selected": false
-          },
-          {
-            "name": "Android 12.0",
+            "name": "Netherlands",
             "count": 18,
-            "code": "Android 12.0",
+            "code": "Netherlands",
             "selected": false
           },
           {
-            "name": "Android",
+            "name": "Germany",
             "count": 13,
-            "code": "Android",
+            "code": "Germany",
             "selected": false
           },
           {
-            "name": "Android 11 (Go Edition)",
-            "count": 12,
-            "code": "Android 11 (Go Edition)",
-            "selected": false
-          },
-          {
-            "name": "Android 13 Go Edition",
-            "count": 12,
-            "code": "Android 13 Go Edition",
-            "selected": false
-          },
-          {
-            "name": "Android 12 (Go edition)",
-            "count": 10,
-            "code": "Android 12 (Go edition)",
-            "selected": false
-          },
-          {
-            "name": "Funtouch OS 13",
-            "count": 10,
-            "code": "Funtouch OS 13",
-            "selected": false
-          },
-          {
-            "name": "Android 10",
-            "count": 9,
-            "code": "Android 10",
-            "selected": false
-          },
-          {
-            "name": "Android 13.0",
-            "count": 7,
-            "code": "Android 13.0",
-            "selected": false
-          },
-          {
-            "name": "Android 9 (Pie)",
-            "count": 7,
-            "code": "Android 9 (Pie)",
-            "selected": false
-          },
-          {
-            "name": "ColorOS 12.1",
-            "count": 7,
-            "code": "ColorOS 12.1",
-            "selected": false
-          },
-          {
-            "name": "Android 13 (Go Edition)",
-            "count": 6,
-            "code": "Android 13 (Go Edition)",
-            "selected": false
-          },
-          {
-            "name": "Funtouch OS 12",
-            "count": 6,
-            "code": "Funtouch OS 12",
-            "selected": false
-          },
-          {
-            "name": "Android 8.1 (Oreo)",
-            "count": 4,
-            "code": "Android 8.1 (Oreo)",
-            "selected": false
-          },
-          {
-            "name": "Android OS",
-            "count": 4,
-            "code": "Android OS",
-            "selected": false
-          },
-          {
-            "name": "Android Q 11",
-            "count": 4,
-            "code": "Android Q 11",
-            "selected": false
-          },
-          {
-            "name": "ColorOS 13.1",
-            "count": 4,
-            "code": "ColorOS 13.1",
-            "selected": false
-          },
-          {
-            "name": "iOS 15",
-            "count": 4,
-            "code": "iOS 15",
-            "selected": false
-          },
-          {
-            "name": "Android 11 Go",
-            "count": 3,
-            "code": "Android 11 Go",
-            "selected": false
-          },
-          {
-            "name": "S30+",
-            "count": 3,
-            "code": "S30+",
-            "selected": false
-          },
-          {
-            "name": "Android 11 (Go)",
+            "name": "USA",
             "count": 2,
-            "code": "Android 11 (Go)",
+            "code": "USA",
             "selected": false
           },
           {
-            "name": "ColorOS 12.1.1",
-            "count": 2,
-            "code": "ColorOS 12.1.1",
-            "selected": false
-          },
-          {
-            "name": "MIUI 13",
-            "count": 2,
-            "code": "MIUI 13",
-            "selected": false
-          },
-          {
-            "name": "S30 +",
-            "count": 2,
-            "code": "S30 +",
-            "selected": false
-          },
-          {
-            "name": " Android 12",
+            "name": "Japan",
             "count": 1,
-            "code": " Android 12",
+            "code": "Japan",
             "selected": false
           },
           {
-            "name": "?Android 12",
+            "name": "Switzerland",
             "count": 1,
-            "code": "?Android 12",
-            "selected": false
-          },
-          {
-            "name": "Android 10.0",
-            "count": 1,
-            "code": "Android 10.0",
-            "selected": false
-          },
-          {
-            "name": "Android 12 Go Edition",
-            "count": 1,
-            "code": "Android 12 Go Edition",
-            "selected": false
-          },
-          {
-            "name": "Android 12 Go edition",
-            "count": 1,
-            "code": "Android 12 Go edition",
-            "selected": false
-          },
-          {
-            "name": "Android 6 (Marshmallow)",
-            "count": 1,
-            "code": "Android 6 (Marshmallow)",
-            "selected": false
-          },
-          {
-            "name": "ColorOS 11.1",
-            "count": 1,
-            "code": "ColorOS 11.1",
-            "selected": false
-          },
-          {
-            "name": "ColorOS 13.0",
-            "count": 1,
-            "code": "ColorOS 13.0",
-            "selected": false
-          },
-          {
-            "name": "Funtouch OS 12 (Android 12 Go edition)",
-            "count": 1,
-            "code": "Funtouch OS 12 (Android 12 Go edition)",
-            "selected": false
-          },
-          {
-            "name": "OxygenOS 13.1 based on Android™ 13",
-            "count": 1,
-            "code": "OxygenOS 13.1 based on Android™ 13",
+            "code": "Switzerland",
             "selected": false
           }
         ],
@@ -1755,209 +1038,53 @@
       },
       {
         "category": false,
-        "code": "SG-M&TScreenSpecifications-Resolution",
+        "code": "SG-CompanyContactInformation-CountryofOrigin",
         "multiSelect": true,
-        "name": "Resolution",
+        "name": "Country of Manufacture",
         "priority": 0,
-        "order": 27,
+        "order": 9,
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "2400 x 1080 pixels",
-            "count": 179,
-            "code": "2400 x 1080 pixels",
+            "name": "China",
+            "count": 60,
+            "code": "China",
             "selected": false
           },
           {
-            "name": "720 x 1600 pixels",
-            "count": 131,
-            "code": "720 x 1600 pixels",
+            "name": "India",
+            "count": 34,
+            "code": "India",
             "selected": false
           },
           {
-            "name": "2408x1080pixels",
-            "count": 58,
-            "code": "2408x1080pixels",
-            "selected": false
-          },
-          {
-            "name": "2340 x 1080 pixels",
-            "count": 53,
-            "code": "2340 x 1080 pixels",
-            "selected": false
-          },
-          {
-            "name": "2412 x 1080 pixels",
-            "count": 47,
-            "code": "2412 x 1080 pixels",
-            "selected": false
-          },
-          {
-            "name": "1612 x 720 pixels",
-            "count": 42,
-            "code": "1612 x 720 pixels",
-            "selected": false
-          },
-          {
-            "name": "Not Applicable",
-            "count": 19,
-            "code": "Not Applicable",
-            "selected": false
-          },
-          {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 18,
-            "code": "DATA NOT PROVIDED BY BRAND",
-            "selected": false
-          },
-          {
-            "name": "2640x1080pixels",
-            "count": 16,
-            "code": "2640x1080pixels",
-            "selected": false
-          },
-          {
-            "name": "3088 x 1440 pixels",
-            "count": 15,
-            "code": "3088 x 1440 pixels",
-            "selected": false
-          },
-          {
-            "name": "2532 x 1170 pixels",
-            "count": 12,
-            "code": "2532 x 1170 pixels",
-            "selected": false
-          },
-          {
-            "name": "2556 x 1179 pixels",
-            "count": 12,
-            "code": "2556 x 1179 pixels",
-            "selected": false
-          },
-          {
-            "name": "2460x1080pixels",
-            "count": 11,
-            "code": "2460x1080pixels",
-            "selected": false
-          },
-          {
-            "name": "1560 x 720 pixels",
-            "count": 10,
-            "code": "1560 x 720 pixels",
-            "selected": false
-          },
-          {
-            "name": "2772x1240pixels",
-            "count": 10,
-            "code": "2772x1240pixels",
-            "selected": false
-          },
-          {
-            "name": "2778 x 1284 pixels",
-            "count": 10,
-            "code": "2778 x 1284 pixels",
-            "selected": false
-          },
-          {
-            "name": "2796 x 1290 pixels",
-            "count": 9,
-            "code": "2796 x 1290 pixels",
-            "selected": false
-          },
-          {
-            "name": "3216 x 1440 pixels",
-            "count": 9,
-            "code": "3216 x 1440 pixels",
-            "selected": false
-          },
-          {
-            "name": "2040x1080pixels",
-            "count": 7,
-            "code": "2040x1080pixels",
-            "selected": false
-          },
-          {
-            "name": "2176x1812pixels",
-            "count": 7,
-            "code": "2176x1812pixels",
-            "selected": false
-          },
-          {
-            "name": "1520 x 720 pixels",
+            "name": "Indonesia",
             "count": 5,
-            "code": "1520 x 720 pixels",
+            "code": "Indonesia",
             "selected": false
           },
           {
-            "name": "1440 x 720 pixels",
-            "count": 4,
-            "code": "1440 x 720 pixels",
-            "selected": false
-          },
-          {
-            "name": "1600 x 720 pixels",
-            "count": 4,
-            "code": "1600 x 720 pixels",
-            "selected": false
-          },
-          {
-            "name": "2388 x 1080  pixels",
-            "count": 4,
-            "code": "2388 x 1080  pixels",
-            "selected": false
-          },
-          {
-            "name": "2376 × 1080 pixels",
-            "count": 3,
-            "code": "2376 × 1080 pixels",
-            "selected": false
-          },
-          {
-            "name": "Data Not Provided By Brand",
-            "count": 3,
-            "code": "Data Not Provided By Brand",
-            "selected": false
-          },
-          {
-            "name": "1080 x 720 pixels",
+            "name": "Not Available",
             "count": 2,
-            "code": "1080 x 720 pixels",
+            "code": "Not Available",
             "selected": false
           },
           {
-            "name": "1440 x 900 pixels",
+            "name": "Germany",
             "count": 1,
-            "code": "1440 x 900 pixels",
+            "code": "Germany",
             "selected": false
           },
           {
-            "name": "1620 x 1080 pixels",
+            "name": "North Korea",
             "count": 1,
-            "code": "1620 x 1080 pixels",
+            "code": "North Korea",
             "selected": false
           },
           {
-            "name": "320 x 240 pixels",
+            "name": "hina",
             "count": 1,
-            "code": "320 x 240 pixels",
-            "selected": false
-          },
-          {
-            "name": "3200 x 1440 pixels",
-            "count": 1,
-            "code": "3200 x 1440 pixels",
-            "selected": false
-          },
-          {
-            "name": "854 x 480 pixels",
-            "count": 1,
-            "code": "854 x 480 pixels",
-            "selected": false
-          },
-          {
-            "name": "960 x 480 pixels",
-            "count": 1,
-            "code": "960 x 480 pixels",
+            "code": "hina",
             "selected": false
           }
         ],
@@ -1965,29 +1092,47 @@
       },
       {
         "category": false,
-        "code": "SG-SIMDetails-NumberofSIMsSupported",
+        "code": "SG-GPCategory-ProductFunctions",
         "multiSelect": true,
-        "name": "Number of SIMs Supported",
+        "name": "Product Functions",
         "priority": 0,
-        "order": 30,
+        "order": 10,
         "isSearchEnabled": false,
         "values": [
           {
-            "name": "2",
-            "count": 700,
-            "code": "2",
+            "name": "Trimming",
+            "count": 116,
+            "code": "Trimming",
             "selected": false
           },
           {
-            "name": "DATA NOT PROVIDED BY BRAND",
-            "count": 6,
-            "code": "DATA NOT PROVIDED BY BRAND",
+            "name": "Shaving",
+            "count": 22,
+            "code": "Shaving",
             "selected": false
           },
           {
-            "name": "Data Not Provided By Brand",
+            "name": "Cleansing",
             "count": 1,
-            "code": "Data Not Provided By Brand",
+            "code": "Cleansing",
+            "selected": false
+          }
+        ],
+        "popular": false
+      },
+      {
+        "category": false,
+        "code": "BUYBACKFLAG",
+        "multiSelect": true,
+        "name": "BUY BACK",
+        "priority": 0,
+        "order": 11,
+        "isSearchEnabled": false,
+        "values": [
+          {
+            "name": "false",
+            "count": 125,
+            "code": "false",
             "selected": false
           }
         ],
@@ -2008,8 +1153,18 @@
             "code": "CROMA",
             "scope": "Electronics",
             "programId": "73eb6345-9cc9-4c37-a8e8-8620d6d32cf5",
-            "redirectionUrl": "/native-electronics/product-listing?query=mobiles",
+            "redirectionUrl": "/native-electronics/product-listing?query=trimmer",
             "redirect": "internalLink",
+            "selected": false
+          },
+          {
+            "name": "CLiQ Luxury",
+            "count": 0.0,
+            "code": "TATACLIQ LUXURY",
+            "scope": "Fashion",
+            "programId": "tcfasfab-0bfd-5c0e-7a7d-7bee045eea59",
+            "redirectionUrl": "/v2/serp?query=trimmer&search=trimmer&scope=Fashion&store=TATACLIQ LUXURY",
+            "redirect": "searchEngineResultPage",
             "selected": false
           },
           {
@@ -2018,18 +1173,18 @@
             "code": "TATACLIQ",
             "scope": "Fashion",
             "programId": "tcfasfab-0bfd-5c0e-7a7d-7bee045eea59",
-            "redirectionUrl": "/v2/serp?query=mobiles&search=mobiles&scope=Fashion&store=TATACLIQ",
+            "redirectionUrl": "/v2/serp?query=trimmer&search=trimmer&scope=Fashion&store=TATACLIQ",
             "redirect": "searchEngineResultPage",
             "selected": false
           },
           {
-            "name": "CLiQ Indiluxe",
+            "name": "Big Basket",
             "count": 0.0,
-            "code": "TATACLIQ INDILUX",
-            "scope": "Fashion",
-            "programId": "tcfasfab-0bfd-5c0e-7a7d-7bee045eea59",
-            "redirectionUrl": "/v2/serp?query=mobiles&search=mobiles&scope=Fashion&store=TATACLIQ INDILUX",
-            "redirect": "searchEngineResultPage",
+            "code": "BIGBASKET",
+            "scope": "Grocery",
+            "programId": "bbgrsfab-0bfd-5c0e-7a7d-7bee045ee970",
+            "redirectionUrl": "https://hqa1.bigbasket.com/ps/?q=trimmer&tcp_bb_gating=1",
+            "redirect": "external",
             "selected": false
           }
         ],
@@ -2039,8 +1194,8 @@
     "pagination": {
       "currentPage": 0,
       "pageSize": 5,
-      "totalPages": 142,
-      "totalResults": 706
+      "totalPages": 25,
+      "totalResults": 125
     },
     "sorts": [
       {
@@ -2074,6 +1229,6 @@
         "selected": false
       }
     ],
-    "filterItemCount": 706
+    "filterItemCount": 125
   }
 }

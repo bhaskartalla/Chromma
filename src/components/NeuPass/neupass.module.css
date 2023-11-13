@@ -1,4 +1,4 @@
-.neu_coins {
+.loggedIn_wrapper {
   display: flex;
   height: 20px;
   padding: 2px 4px;
@@ -6,4 +6,15 @@
   border-radius: 4px;
   background: #383838;
   width: fit-content;
+}
+
+.anonymous_wrapper {
+  display: flex;
+  height: 20px;
+  padding: 2px 4px;
+  align-items: center;
+  border-radius: 4px;
+  width: fit-content;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #a43cff 0%, #6f32a4 100%);
 }
