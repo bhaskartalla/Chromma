@@ -1,0 +1,32 @@
+.page_wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.header_section {
+  background: #212121;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.filter_chips_section {
+  margin-top: 20px;
+  padding-bottom: 12px;
+}
+
+.cards_section {
+  overflow-y: auto;
+  height: calc(100vh - 160px);
+}
+
+.no_of_products {
+  margin: 16px 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  opacity: 0.24;
+  background: var(--dark-outline, #616161);
+  height: 1px;
+}

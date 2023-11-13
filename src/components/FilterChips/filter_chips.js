@@ -1,6 +1,6 @@
 import React from "react";
 import downChevron from "assets/icons/down-chevron-icon.svg";
-import downChevronGreen from "assets/icons/down-chevron-green.svg";
+import downChevronGreenIcon from "assets/icons/down-chevron-green-icon.svg";
 import Typography from "uiKit/Typography/typography";
 import styles from "./filter_chips.module.css";
 import PropTypes from "prop-types";
@@ -25,8 +25,8 @@ const index = ({ text, children, isSelected, filterChipClick }) => {
         <img
           width={16}
           height={16}
-          src={downChevronGreen}
-          alt="downChevronGreen"
+          src={downChevronGreenIcon}
+          alt="downChevronGreenIcon"
           style={{ marginLeft: "8px" }}
         />
       ) : (
