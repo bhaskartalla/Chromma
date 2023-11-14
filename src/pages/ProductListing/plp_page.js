@@ -12,10 +12,11 @@ import NoResultsFound from "components/NoResultsFound/no_results_found";
 
 const PlpPage = () => {
   const products = plpResponse?.data?.products;
+  const showNoResultsCard = !products.length;
 
   const scrollToTop = useRef(null);
 
-  console.log({ plpResponse, scrollToTop });
+  console.log({ plpResponse });
 
   const handleScrollToTop = () =>
     scrollToTop.current.scrollTo({
@@ -27,8 +28,14 @@ const PlpPage = () => {
     <div className={styles.header_section}>
       <PlpAppbar pincode={400013} />
       <Searchbar />
-      <div className={styles.filter_chips_section}>
-        <FilterChipsSection facets={plpResponse.data.facets} />
+      <div
+        className={`${styles.filter_chips_section} ${
+          showNoResultsCard && styles.filter_chips_section_remove_margin
+        }`}
+      >
+        {!showNoResultsCard && (
+          <FilterChipsSection facets={plpResponse.data.facets} />
+        )}
       </div>
     </div>
   );
@@ -74,10 +81,10 @@ const PlpPage = () => {
   return (
     <div className={styles.page_wrapper}>
       {renderHeaderBlock()}
-      {products.length ? (
-        <>{renderPlpScrollCardsBlock()}</>
-      ) : (
+      {showNoResultsCard ? (
         <NoResultsFound />
+      ) : (
+        <>{renderPlpScrollCardsBlock()}</>
       )}
     </div>
   );

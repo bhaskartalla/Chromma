@@ -14,6 +14,10 @@
   padding-bottom: 12px;
 }
 
+.filter_chips_section_remove_margin {
+  margin-top: 0;
+}
+
 .cards_section {
   overflow-y: auto;
   height: calc(100vh - 160px);
