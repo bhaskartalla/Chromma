@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import PlpAppbar from "components/Appbar/plp_appbar";
 import Searchbar from "components/Searchbar/searchbar";
 import FilterChipsSection from "./FilterChipsSection/filter_chips_section";
@@ -7,9 +7,17 @@ import styles from "./plp_page.module.css";
 import Typography from "uiKit/Typography/typography";
 import Dropdown from "components/Dropdown/dropdown";
 import plpResponse from "apiData/plp_response.json";
+import EndOfScroll from "./EndOfScroll/end_of_scroll";
 
-const plpPage = () => {
-  console.log({ plpResponse });
+const PlpPage = () => {
+  const scrollToTop = useRef(null);
+
+  console.log({ plpResponse, scrollToTop });
+  const handleScrollToTop = () =>
+    scrollToTop.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
   const headerSection = () => (
     <div className={styles.header_section}>
@@ -58,7 +66,8 @@ const plpPage = () => {
   return (
     <div className={styles.page_wrapper}>
       {headerSection()}
-      <div className={styles.cards_section}>
+
+      <div ref={scrollToTop} className={styles.cards_section}>
         {noOfProducts(
           plpResponse.data.facets.filter(
             (facet) => facet.code === "category"
@@ -66,9 +75,10 @@ const plpPage = () => {
           plpResponse.data.filterItemCount
         )}
         {renderPlpCards(plpResponse.data.products)}
+        <EndOfScroll handleScrollToTop={handleScrollToTop} />
       </div>
     </div>
   );
 };
 
-export default plpPage;
+export default PlpPage;

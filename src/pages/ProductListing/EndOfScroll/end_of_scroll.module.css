@@ -1,0 +1,20 @@
+.end_of_scroll_wrapper {
+  display: flex;
+  padding: 56px 27px 49px 27px;
+  flex-direction: column;
+  align-items: center;
+  background: #303030;
+}
+
+.back_to_top_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #454545;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3))
+    drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.15));
+  margin-top: 30px;
+}

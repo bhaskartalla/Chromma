@@ -69,3 +69,10 @@
   font-weight: 700;
   line-height: 20px;
 }
+
+.title-medium-bold {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
