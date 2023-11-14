@@ -44,7 +44,7 @@ const plpPage = () => {
       <>
         {products.map((product, index) => {
           return (
-            <div key={index}>
+            <div key={product.skuId}>
               <PlpCard productDetails={product} />
               {index !== products.length - 1 && (
                 <div id={index} className={styles.divider} />
