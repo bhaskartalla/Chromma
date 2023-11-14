@@ -8,18 +8,22 @@ import Typography from "uiKit/Typography/typography";
 import Dropdown from "components/Dropdown/dropdown";
 import plpResponse from "apiData/plp_response.json";
 import EndOfScroll from "./EndOfScroll/end_of_scroll";
+import NoResultsFound from "components/NoResultsFound/no_results_found";
 
 const PlpPage = () => {
+  const products = plpResponse?.data?.products;
+
   const scrollToTop = useRef(null);
 
   console.log({ plpResponse, scrollToTop });
+
   const handleScrollToTop = () =>
     scrollToTop.current.scrollTo({
       top: 0,
       behavior: "smooth",
     });
 
-  const headerSection = () => (
+  const renderHeaderBlock = () => (
     <div className={styles.header_section}>
       <PlpAppbar pincode={400013} />
       <Searchbar />
@@ -47,36 +51,34 @@ const PlpPage = () => {
     );
   };
 
-  const renderPlpCards = (products) => {
-    return (
-      <>
-        {products.map((product, index) => {
-          return (
-            <div key={product.skuId}>
-              <PlpCard productDetails={product} />
-              {index !== products.length - 1 && (
-                <div id={index} className={styles.divider} />
-              )}
-            </div>
-          );
-        })}
-      </>
-    );
-  };
+  const renderPlpScrollCardsBlock = () => (
+    <div ref={scrollToTop} className={styles.cards_section}>
+      {noOfProducts(
+        plpResponse.data.facets.filter((facet) => facet.code === "category")[0],
+        plpResponse.data.filterItemCount
+      )}
+      {products.map((product, index) => {
+        return (
+          <div key={product.skuId}>
+            <PlpCard productDetails={product} />
+            {index !== products.length - 1 && (
+              <div id={index} className={styles.divider} />
+            )}
+          </div>
+        );
+      })}
+      <EndOfScroll handleScrollToTop={handleScrollToTop} />
+    </div>
+  );
+
   return (
     <div className={styles.page_wrapper}>
-      {headerSection()}
-
-      <div ref={scrollToTop} className={styles.cards_section}>
-        {noOfProducts(
-          plpResponse.data.facets.filter(
-            (facet) => facet.code === "category"
-          )[0],
-          plpResponse.data.filterItemCount
-        )}
-        {renderPlpCards(plpResponse.data.products)}
-        <EndOfScroll handleScrollToTop={handleScrollToTop} />
-      </div>
+      {renderHeaderBlock()}
+      {products.length ? (
+        <>{renderPlpScrollCardsBlock()}</>
+      ) : (
+        <NoResultsFound />
+      )}
     </div>
   );
 };

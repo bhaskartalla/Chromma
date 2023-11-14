@@ -1,0 +1,10 @@
+.no_results_found_wrapper {
+  display: flex;
+  height: 304px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  background: #303030;
+  margin: 16px;
+}

@@ -3,6 +3,7 @@ import styles from "./end_of_scroll.module.css";
 import endOfScrollImage from "assets/images/end-of-scroll-image.png";
 import Typography from "uiKit/Typography/typography";
 import topArrowIcon from "assets/icons/top-arrow-icon.svg";
+import PropTypes from "prop-types";
 
 const EndOfScroll = ({ handleScrollToTop }) => {
   return (
@@ -23,6 +24,10 @@ const EndOfScroll = ({ handleScrollToTop }) => {
       </div>
     </div>
   );
+};
+
+EndOfScroll.propTypes = {
+  handleScrollToTop: PropTypes.func.isRequired,
 };
 
 export default EndOfScroll;
