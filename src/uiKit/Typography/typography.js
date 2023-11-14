@@ -12,5 +12,6 @@ Typography.propTypes = {
   variant: PropTypes.string.isRequired,
   text: PropTypes.any,
   children: PropTypes.any,
+  style: PropTypes.object,
 };
 export default Typography;
