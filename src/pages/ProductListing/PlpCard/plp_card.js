@@ -8,9 +8,11 @@ import truckIcon from "assets/icons/truck-icon.svg";
 import availableIcon from "assets/icons/available-icon.svg";
 import Neupass from "components/NeuPass/neupass";
 import PropTypes from "prop-types";
+import LoadDefaultImg from "uiKit/PlaceholderImage/placeholderImage";
 
 const PlpCard = ({ productDetails }) => {
   const imageUrl = productDetails?.plpImage;
+  const skuId = productDetails?.skuId;
   const productName = productDetails?.name;
   const mop = productDetails?.price?.value;
   const mrp = productDetails?.mrp?.value;
@@ -110,10 +112,11 @@ const PlpCard = ({ productDetails }) => {
         <Wishlist isAddedToWishlist={true} />
       </div>
       <div className={styles.product_image_wrapper}>
-        <img
+        <LoadDefaultImg
           src={imageUrl}
-          alt={productName}
+          alt={skuId}
           className={styles.product_image}
+          component={"img"}
         />
       </div>
     </div>
