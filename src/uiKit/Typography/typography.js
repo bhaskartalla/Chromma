@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./typography.module.css";
 import PropTypes from "prop-types";
 
-const Typography = ({ variant, text, children, ...rest }) => (
-  <span style={{ ...rest }} className={styles[variant]}>
+const Typography = ({ variant, text, children, style, ...rest }) => (
+  <span style={{ ...style }} className={styles[variant]} {...rest}>
     {children || text}
   </span>
 );

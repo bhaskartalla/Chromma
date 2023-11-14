@@ -17,13 +17,15 @@ const Neupass = ({ isLoggedIn, coins }) => {
       <Typography
         variant="caption-xxx-small-regular"
         text={"Earn up to "}
-        color="#EFEFEF"
-        marginRight="3px"
+        style={{
+          color: "#EFEFEF",
+          marginRight: "3px",
+        }}
       />
       <Typography
         variant="caption-xxx-small-semibold"
         text={`${coins} NeuCoins`}
-        color="#EFEFEF"
+        style={{ color: "#EFEFEF" }}
       />
     </div>
   );
@@ -40,13 +42,17 @@ const Neupass = ({ isLoggedIn, coins }) => {
       <Typography
         variant="caption-xxx-small-semibold"
         text={`${coins} NeuCoins`}
-        color="#EFEFEF"
-        marginRight="3px"
+        style={{
+          color: "#EFEFEF",
+          marginRight: "3px",
+        }}
       />
       <Typography
         variant="caption-xxx-small-regular"
         text={"with NeuPass"}
-        color="##C6C6C6"
+        style={{
+          color: "##C6C6C6",
+        }}
       />
     </div>
   );

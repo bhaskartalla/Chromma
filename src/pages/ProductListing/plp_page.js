@@ -26,11 +26,13 @@ const plpPage = () => {
       <div className={styles.no_of_products}>
         <Typography
           variant="body-x-small-regular"
-          color="#A6A6A6"
           text={`${filterItemCount} ${
             filterItemCount > 0 ? "Products" : "Product"
           } found`}
-          marginRight="4px"
+          style={{
+            marginRight: "4px",
+            color: "#A6A6A6",
+          }}
         />
         <Dropdown brandList={facet.values} />
       </div>

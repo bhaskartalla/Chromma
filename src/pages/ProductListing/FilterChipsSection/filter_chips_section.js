@@ -7,8 +7,6 @@ import PropTypes from "prop-types";
 import Typography from "uiKit/Typography/typography";
 
 const FilterChipsSection = ({ facets }) => {
-  console.log({ facets });
-
   const SelectedFilterIcon = (count) => {
     const selected = count > 0;
     return (
@@ -22,8 +20,10 @@ const FilterChipsSection = ({ facets }) => {
             <div className={styles.filter_selected_count}>
               <Typography
                 variant="caption-xx-small-semibold"
-                color="#191919"
                 text={count}
+                style={{
+                  color: "#191919",
+                }}
               />
             </div>
             <img

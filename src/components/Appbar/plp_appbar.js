@@ -14,13 +14,15 @@ const PLPAppbar = ({ pincode }) => {
         <Typography
           variant="body-x-small-semibold"
           text={"Deliver to"}
-          marginLeft="8px"
+          style={{ marginLeft: "8px" }}
         />
         <Typography
           variant="body-x-small-semibold"
           text={pincode}
-          marginLeft="4px"
-          color="#12DAA8"
+          style={{
+            marginLeft: "4px",
+            color: "#12DAA8",
+          }}
         />
       </div>
       <div>

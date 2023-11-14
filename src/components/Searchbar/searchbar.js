@@ -12,7 +12,9 @@ const Searchbar = () => {
         <Typography
           variant="body-x-small-regular"
           text="air conditioner"
-          marginLeft="8px"
+          style={{
+            marginLeft: "8px",
+          }}
         />
       </div>
       <img width={24} height={24} src={circleCloseIcon} alt="circleCloseIcon" />

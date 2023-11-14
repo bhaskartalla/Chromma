@@ -19,7 +19,11 @@ const Dropdown = ({ brandList }) => {
   return (
     <div className={styles.dd_wrapper}>
       <div className={styles.dd_value} onClick={handleToggleDropDown}>
-        <Typography variant="body-x-small-bold" color="#12DAA8" text="Croma" />
+        <Typography
+          variant="body-x-small-bold"
+          style={{ color: "#12DAA8" }}
+          text="Croma"
+        />
         <img
           width={12}
           height={12}
@@ -38,7 +42,7 @@ const Dropdown = ({ brandList }) => {
             >
               <Typography
                 variant="body-small-regular"
-                color="#DCDCDC"
+                style={{ color: "#DCDCDC" }}
                 text={brand.name}
               />
             </div>

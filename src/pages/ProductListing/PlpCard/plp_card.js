@@ -3,9 +3,9 @@ import styles from "./plp_card.module.css";
 import Wishlist from "components/Wishlist/wishlist";
 import Typography from "uiKit/Typography/typography";
 import ratingIcon from "assets/icons/rating-icon.svg";
-// import nonServiceableIcon from "assets/icons/non-serviceable-icon.svg";
+import nonServiceableIcon from "assets/icons/non-serviceable-icon.svg";
 import truckIcon from "assets/icons/truck-icon.svg";
-// import availableIcon from "assets/icons/available-icon.svg";
+import availableIcon from "assets/icons/available-icon.svg";
 import Neupass from "components/NeuPass/neupass";
 import PropTypes from "prop-types";
 
@@ -19,6 +19,21 @@ const PlpCard = ({ productDetails }) => {
   const ratings = productDetails?.numberOfRatings;
   const averageRating = productDetails?.averageRating;
   const neuCoins = productDetails?.neuPassTotal;
+  const expressDelivery =
+    productDetails?.inventory?.deliveryModes?.expressDelivery;
+  const standardDelivery =
+    productDetails?.inventory?.deliveryModes?.standardDelivery;
+  const storePickup = productDetails?.inventory?.deliveryModes?.storePickup;
+  const isAvailable = productDetails?.inventory?.isAvailable;
+  const isServiceable = productDetails?.inventory?.isServiceable;
+  const pinCode = productDetails?.inventory?.pinCode;
+  const productTag = productDetails?.productTag;
+  const productTag1 = productDetails?.productTag1;
+
+  const handleStorePickup = (shipNode) =>
+    console.log("handleStorePickup", shipNode);
+  const handleNonServiceable = () => console.log("handleNonServiceable");
+  const handleProductCardClick = () => console.log("handleProductCardClick");
 
   const getExpressTime = (timeStamp) => {
     const time = new Date(timeStamp);
@@ -40,7 +55,12 @@ const PlpCard = ({ productDetails }) => {
     return `${hours}:${minutes} ${amPm}`;
   };
 
-  const deliveryDetails = (src, primaryText, secondaryText) => {
+  const deliveryDetails = (
+    src,
+    primaryText,
+    secondaryText,
+    handleSecondaryTextClick
+  ) => {
     return (
       <div style={{ marginTop: "8px" }}>
         <div className={styles.delivery_details}>
@@ -54,15 +74,20 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant="caption-xxx-small-semibold"
             text={primaryText}
-            color="#A6A6A6"
-            marginRight="3px"
+            style={{
+              color: "#A6A6A6",
+              marginRight: "3px",
+            }}
           />
           {secondaryText && (
             <Typography
               variant="caption-xxx-small-semibold"
               text={secondaryText}
-              color="#A6A6A6"
-              textDecoration="underline"
+              style={{
+                color: "#A6A6A6",
+                textDecoration: "underline",
+              }}
+              onClick={(param) => handleSecondaryTextClick(param)}
             />
           )}
         </div>
@@ -77,10 +102,12 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant="caption-xxx-small-semibold"
             text={"Deals of the day"}
-            color="#00390A"
+            style={{
+              color: "#00390A",
+            }}
           />
         </div> */}
-        <Wishlist isAddedToWishlist={!false} />
+        <Wishlist isAddedToWishlist={true} />
       </div>
       <div className={styles.product_image_wrapper}>
         <img
@@ -102,7 +129,9 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant="caption-xxx-small-semibold"
             text={text}
-            color={textColor}
+            style={{
+              color: textColor,
+            }}
           />
         </div>
       )}
@@ -114,8 +143,10 @@ const PlpCard = ({ productDetails }) => {
       <Typography
         variant="body-medium-bold"
         text={mop}
-        color="#EFEFEF"
-        marginRight="6px"
+        style={{
+          color: "#EFEFEF",
+          marginRight: "6px",
+        }}
       />
     ) : (
       ""
@@ -127,8 +158,10 @@ const PlpCard = ({ productDetails }) => {
         <Typography
           variant="body-small-regular"
           text={`₹${mrp}`}
-          color="#a6a6a6"
-          textDecoration="line-through"
+          style={{
+            color: "#a6a6a6",
+            textDecoration: "line-through",
+          }}
         />
       )}
       {parseInt(discount.split("%")[0]) && (
@@ -136,7 +169,9 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant="caption-xxx-small-semibold"
             text={`${discount} OFF`}
-            color="#DCDCDC"
+            style={{
+              color: "#DCDCDC",
+            }}
           />
         </div>
       )}
@@ -148,13 +183,17 @@ const PlpCard = ({ productDetails }) => {
       <Typography
         variant="body-small-regular"
         text={"or"}
-        color="#EFEFEF"
-        marginRight="6px"
+        style={{
+          marginRight: "6px",
+          color: "#EFEFEF",
+        }}
       />
       <Typography
         variant="body-x-small-semibold"
         text={`₹${emiAmount}/mo*`}
-        color="#A6A6A6"
+        style={{
+          color: "#A6A6A6",
+        }}
       />
     </>
   ) : (
@@ -162,22 +201,39 @@ const PlpCard = ({ productDetails }) => {
   );
 
   let deliveryModes;
-
-  if (productDetails?.inventory?.deliveryModes?.expressDelivery) {
+  if (expressDelivery) {
     deliveryModes = deliveryDetails(
       truckIcon,
       `Express Delivery by ${getExpressTime(
-        productDetails?.inventory?.deliveryModes?.expressDelivery[0]
-          .estimatedDeliveryDate
+        expressDelivery[0].estimatedDeliveryDate
       )} `
     );
-  } else if (productDetails?.inventory?.deliveryModes?.standardDelivery) {
+  } else if (standardDelivery) {
     deliveryModes = deliveryDetails(
       truckIcon,
       `Delivery by ${getExpressTime(
-        productDetails?.inventory?.deliveryModes?.standardDelivery[0]
-          .estimatedDeliveryDate
+        standardDelivery[0].estimatedDeliveryDate
       )} `
+    );
+  }
+
+  let storePickUp;
+  if (storePickup) {
+    storePickUp = deliveryDetails(
+      availableIcon,
+      "Available for Pickup",
+      "View Stores",
+      () => handleStorePickup(storePickup[0].shipNode)
+    );
+  }
+
+  let nonServiceable;
+  if (!(isAvailable && isServiceable)) {
+    nonServiceable = deliveryDetails(
+      nonServiceableIcon,
+      "Non serviceable at this Pincode ",
+      pinCode,
+      handleNonServiceable
     );
   }
 
@@ -209,7 +265,9 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant="body-small-bold"
             text={productName}
-            color="#EFEFEF"
+            style={{
+              color: "#EFEFEF",
+            }}
           />
         </span>
       </div>
@@ -225,18 +283,20 @@ const PlpCard = ({ productDetails }) => {
         coins={Math.round((neuCoins + Number.EPSILON) * 100) / 100}
       />
       {deliveryModes}
+      {storePickUp}
+      {nonServiceable}
     </div>
   );
 
   return (
-    <div className={styles.card_wrapper}>
+    <div className={styles.card_wrapper} onClick={handleProductCardClick}>
       <div className={styles.card_section}>
         {productImage()}
         {productDetailsBlock()}
       </div>
       <div className={styles.badges}>
-        {productBadge(productDetails.productTag, "#BEE3FF", "#191919")}
-        {productBadge(productDetails.productTag1, "#1D649A", "#FFFFFF")}
+        {productBadge(productTag, "#BEE3FF", "#191919")}
+        {productBadge(productTag1, "#1D649A", "#FFFFFF")}
       </div>
     </div>
   );

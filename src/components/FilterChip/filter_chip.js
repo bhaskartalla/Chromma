@@ -19,10 +19,9 @@ const FilterChip = ({ facet, filterChipClick }) => {
       <div className={styles.filter_chips_text}>
         <Typography
           variant="caption-xx-small-semibold"
-          color={`${isSelected ? "#12DAA8" : "#ABABAB"}`}
-        >
-          {facet.name}
-        </Typography>
+          style={{ color: `${isSelected ? "#12DAA8" : "#ABABAB"}` }}
+          text={facet.name}
+        />
       </div>
       {isSelected ? (
         <img
