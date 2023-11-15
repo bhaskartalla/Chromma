@@ -3,10 +3,17 @@ import styles from "./searchbar.module.css";
 import searchIcon from "assets/icons/search-icon.svg";
 import circleCloseIcon from "assets/icons/circle-close-icon.svg";
 import Typography from "uiKit/Typography/typography";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.searchbar_wrapper}>
+    <div
+      id="searchbar_wrapper"
+      className={styles.searchbar_wrapper}
+      onClick={() => navigate("/global-search")}
+    >
       <div className={styles.search_text}>
         <img width={16} height={16} src={searchIcon} alt="searchIcon" />
         <Typography

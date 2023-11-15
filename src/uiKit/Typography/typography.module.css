@@ -85,3 +85,10 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+.body-medium-regular {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 133.333% */
+}

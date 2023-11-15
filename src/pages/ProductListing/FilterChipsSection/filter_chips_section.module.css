@@ -16,6 +16,7 @@
   margin-left: 16px;
   border: 1px solid rgba(146, 144, 148, 0.4);
   background: rgba(42, 42, 42, 0.24);
+  cursor: pointer;
 }
 
 .filter_icon_wrapper_selected {

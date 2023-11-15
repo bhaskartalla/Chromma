@@ -15,7 +15,6 @@ const Chip = ({
 }) => {
   return (
     <div
-      id="lallan"
       className={`${styles.chip_wrapper} ${
         isSelected && styles.chip_wrapper_selected
       }`}

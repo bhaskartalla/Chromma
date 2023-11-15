@@ -5,45 +5,16 @@ import filtersIcon from "assets/icons/filters-icon.svg";
 import filtersSelectedIcon from "assets/icons/filters-selected-icon.svg";
 import PropTypes from "prop-types";
 import Typography from "uiKit/Typography/typography";
-
-const selectedFilterIcon = (count) => {
-  const selected = count > 0;
-  return (
-    <div
-      className={`${styles.filter_icon_wrapper} ${
-        selected && styles.filter_icon_wrapper_selected
-      }`}
-    >
-      {selected ? (
-        <>
-          <div className={styles.filter_selected_count}>
-            <Typography
-              variant="caption-xx-small-semibold"
-              text={count}
-              style={{
-                color: "#191919",
-              }}
-            />
-          </div>
-          <img
-            width={16}
-            height={16}
-            src={filtersSelectedIcon}
-            alt="filtersSelectedIcon"
-          />
-        </>
-      ) : (
-        <img width={16} height={16} src={filtersIcon} alt="filtersIcon" />
-      )}
-    </div>
-  );
-};
+import { useNavigate } from "react-router-dom";
 
 const FilterChipsSection = ({ facets }) => {
   let filtersSelectedCount = 0;
+  const navigate = useNavigate();
 
-  const handleChipClick = (facetCode) =>
+  const handleChipClick = (facetCode) => {
     console.log("handleChipClick", { facetCode });
+    navigate("/filters", { state: { facetCode } });
+  };
 
   // Compute this value after the api response is received
   facets.forEach((facet) => {
@@ -51,6 +22,40 @@ const FilterChipsSection = ({ facets }) => {
       filtersSelectedCount++;
     }
   });
+
+  const selectedFilterIcon = (count) => {
+    const selected = count > 0;
+    return (
+      <div
+        className={`${styles.filter_icon_wrapper} ${
+          selected && styles.filter_icon_wrapper_selected
+        }`}
+        onClick={() => navigate("/filters")}
+      >
+        {selected ? (
+          <>
+            <div className={styles.filter_selected_count}>
+              <Typography
+                variant="caption-xx-small-semibold"
+                text={count}
+                style={{
+                  color: "#191919",
+                }}
+              />
+            </div>
+            <img
+              width={16}
+              height={16}
+              src={filtersSelectedIcon}
+              alt="filtersSelectedIcon"
+            />
+          </>
+        ) : (
+          <img width={16} height={16} src={filtersIcon} alt="filtersIcon" />
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className={styles.filter_chips_wrapper}>

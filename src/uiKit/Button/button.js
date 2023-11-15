@@ -3,9 +3,16 @@ import styles from "./button.module.css";
 import Typography from "uiKit/Typography/typography";
 import PropTypes from "prop-types";
 
-const Button = ({ textVariant, textColor, text, children, handleOnClick }) => {
+const Button = ({
+  textVariant,
+  textColor,
+  text,
+  children,
+  handleOnClick,
+  style,
+}) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} style={{ ...style }}>
       <Typography
         variant={textVariant}
         text={text || children}
@@ -19,6 +26,7 @@ const Button = ({ textVariant, textColor, text, children, handleOnClick }) => {
 Button.propTypes = {
   textVariant: PropTypes.string.isRequired,
   textColor: PropTypes.string,
+  style: PropTypes.object,
   text: PropTypes.string,
   children: PropTypes.string,
   handleOnClick: PropTypes.func.isRequired,
