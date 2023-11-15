@@ -557,7 +557,7 @@
             "name": "444",
             "count": 119,
             "code": "444",
-            "selected": false
+            "selected": true
           },
           {
             "name": "445",
@@ -593,7 +593,7 @@
             "name": "Express Delivery",
             "count": 38,
             "code": "Express Delivery",
-            "selected": false
+            "selected": true
           },
           {
             "name": "Home Delivery",

@@ -9,6 +9,7 @@ import Dropdown from "components/Dropdown/dropdown";
 import plpResponse from "apiData/plp_response.json";
 import EndOfScroll from "./EndOfScroll/end_of_scroll";
 import NoResultsFound from "components/NoResultsFound/no_results_found";
+import InlineFilters from "./InlineFilterCard/inline_filters";
 
 const PlpPage = () => {
   const products = plpResponse?.data?.products;
@@ -68,8 +69,13 @@ const PlpPage = () => {
         return (
           <div key={product.skuId}>
             <PlpCard productDetails={product} />
-            {index !== products.length - 1 && (
-              <div id={index} className={styles.divider} />
+            <div className={styles.divider} />
+            {!((index + 1) % 2) && (
+              <InlineFilters
+                facets={plpResponse?.data?.facets.filter(
+                  (facet) => facet.popular
+                )}
+              />
             )}
           </div>
         );

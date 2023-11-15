@@ -76,3 +76,12 @@
   font-weight: 700;
   line-height: 28px;
 }
+
+.label-button-x-small {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
