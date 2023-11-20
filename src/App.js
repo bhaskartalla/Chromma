@@ -3,7 +3,7 @@ import Cart from "./pages/Cart/cart";
 import Wishlist from "./pages/Wishlist/wishlist";
 import PlpPage from "./pages/ProductListing/plp_page";
 import GlobalSearchPage from "./pages/GlobalSearch/global_search";
-import FiltersPage from "./pages/Filters/filters";
+import FiltersPage from "./pages/ProductListing/Filters/filters";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -36,6 +36,15 @@ function App() {
 /**
  * remove product with no skuid
  * create facets array for inline filters with popular value true
+ * make -> below props as required
+- facets: PropTypes.array,
+- handleCloseFilterModal: PropTypes.func,
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 
 export default App;

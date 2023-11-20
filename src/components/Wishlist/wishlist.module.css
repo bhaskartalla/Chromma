@@ -7,6 +7,7 @@
   justify-content: center;
   margin-left: auto;
   background-color: #444347;
+  z-index: 1;
 }
 
 .is_added_wishlist {

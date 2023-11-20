@@ -3,14 +3,15 @@
   height: 40px;
   border-radius: 4px;
   background-color: #c8c5ca;
-  background: var(
-    --dark-states-on-background-high-contrast-opacity-012,
-    rgba(226, 226, 226, 0.12)
-  );
+  background: rgba(226, 226, 226, 0.12);
   display: flex;
   align-items: center;
   padding: 0 12px;
   justify-content: space-between;
+}
+
+.searchbar_wrapper_white {
+  background: rgba(27, 27, 27, 0.08);
 }
 
 .search_text {

@@ -2,15 +2,11 @@ import React from "react";
 import styles from "./inline_filters.module.css";
 import Typography from "uiKit/Typography/typography";
 import Button from "uiKit/Button/button";
+import PropTypes from "prop-types";
 
 import Chip from "components/Chip/chip";
 
-const InlineFilters = ({ facets }) => {
-  const handleChipClick = (valueCode) =>
-    console.log("handleChipClick", { valueCode });
-
-  const handleSeeAllFilters = () => console.log("handleSeeAllFilters");
-
+const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const handleShowItems = () => console.log("handleShowItems");
 
   return (
@@ -23,7 +19,7 @@ const InlineFilters = ({ facets }) => {
             style={{ color: "#C6C6C6", margin: "0 16px" }}
           />
           <div className={styles.filter_chips}>
-            {facets[1].values.map((value, index) => (
+            {facet.values.map((value, index) => (
               <div
                 key={value.code}
                 style={{
@@ -37,7 +33,14 @@ const InlineFilters = ({ facets }) => {
                   text={value.name}
                   isSelected={value.selected}
                   textVariant="body-x-small-regular"
-                  handleChipClick={() => handleChipClick(value.code)}
+                  handleChipClick={() => {
+                    // call filter change function
+                    console.log({
+                      facetCode: facet.code,
+                      valueCode: value.code,
+                      state: value.selected,
+                    });
+                  }}
                 />
               </div>
             ))}
@@ -60,6 +63,11 @@ const InlineFilters = ({ facets }) => {
       </div>
     </div>
   );
+};
+
+InlineFilters.propTypes = {
+  facets: PropTypes.array.isRequired,
+  handleSeeAllFilters: PropTypes.func.isRequired,
 };
 
 export default InlineFilters;

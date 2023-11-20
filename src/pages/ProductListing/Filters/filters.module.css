@@ -32,3 +32,30 @@
   align-items: center;
   gap: 32px;
 }
+
+.accordion_wrapper {
+  overflow-y: auto;
+  height: calc(100vh - 96px);
+}
+
+.accordion_divider {
+  height: 1px;
+  margin: 0 16px;
+  box-sizing: border-box;
+  opacity: 0.24;
+  background: #c5c5c5;
+}
+
+.accordion_details {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkbox_wrapper {
+  margin: 0 16px;
+}
+
+.view_more {
+  text-align: center;
+  margin-bottom: 16px;
+}

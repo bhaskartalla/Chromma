@@ -5,16 +5,9 @@ import filtersIcon from "assets/icons/filters-icon.svg";
 import filtersSelectedIcon from "assets/icons/filters-selected-icon.svg";
 import PropTypes from "prop-types";
 import Typography from "uiKit/Typography/typography";
-import { useNavigate } from "react-router-dom";
 
-const FilterChipsSection = ({ facets }) => {
+const FilterChipsSection = ({ facets, handleFilterModal }) => {
   let filtersSelectedCount = 0;
-  const navigate = useNavigate();
-
-  const handleChipClick = (facetCode) => {
-    console.log("handleChipClick", { facetCode });
-    navigate("/filters", { state: { facetCode } });
-  };
 
   // Compute this value after the api response is received
   facets.forEach((facet) => {
@@ -30,7 +23,7 @@ const FilterChipsSection = ({ facets }) => {
         className={`${styles.filter_icon_wrapper} ${
           selected && styles.filter_icon_wrapper_selected
         }`}
-        onClick={() => navigate("/filters")}
+        onClick={() => handleFilterModal("")}
       >
         {selected ? (
           <>
@@ -66,11 +59,11 @@ const FilterChipsSection = ({ facets }) => {
           return (
             <Chip
               textVariant="caption-xx-small-semibold"
-              key={index}
+              key={facet.code}
               text={facet.name}
               withIcon={true}
               isSelected={isSelected}
-              handleChipClick={() => handleChipClick(facet.code)}
+              handleChipClick={() => handleFilterModal(facet.code)}
             />
           );
         })}
@@ -81,6 +74,7 @@ const FilterChipsSection = ({ facets }) => {
 
 FilterChipsSection.propTypes = {
   facets: PropTypes.array.isRequired,
+  handleFilterModal: PropTypes.func.isRequired,
 };
 
 export default FilterChipsSection;

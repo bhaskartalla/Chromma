@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PlpAppbar from "components/Appbar/plp_appbar";
 import Searchbar from "components/Searchbar/searchbar";
 import FilterChipsSection from "./FilterChipsSection/filter_chips_section";
@@ -10,14 +10,22 @@ import plpResponse from "apiData/plp_response.json";
 import EndOfScroll from "./EndOfScroll/end_of_scroll";
 import NoResultsFound from "components/NoResultsFound/no_results_found";
 import InlineFilters from "./InlineFilterCard/inline_filters";
+import Filters from "pages/ProductListing/Filters/filters";
+import circleCloseIcon from "assets/icons/circle-close-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const PlpPage = () => {
   const products = plpResponse?.data?.products;
+  const facets = plpResponse?.data?.facets;
   const showNoResultsCard = !products.length;
-
+  const navigate = useNavigate();
+  const [filterModal, setFilterModal] = useState({
+    state: false,
+    facetCode: "",
+  });
   const scrollToTop = useRef(null);
 
-  console.log({ plpResponse });
+  console.log({ products, facets });
 
   const handleScrollToTop = () =>
     scrollToTop.current.scrollTo({
@@ -28,14 +36,23 @@ const PlpPage = () => {
   const renderHeaderBlock = () => (
     <div className={styles.header_section}>
       <PlpAppbar pincode={400013} />
-      <Searchbar />
+      <Searchbar
+        searchedText="trimmer"
+        circleCloseIcon={circleCloseIcon}
+        handleSearchBarClick={() => navigate("/global-search")}
+      />
       <div
         className={`${styles.filter_chips_section} ${
           showNoResultsCard && styles.filter_chips_section_remove_margin
         }`}
       >
         {!showNoResultsCard && (
-          <FilterChipsSection facets={plpResponse.data.facets} />
+          <FilterChipsSection
+            facets={plpResponse.data.facets}
+            handleFilterModal={(facetCode) =>
+              setFilterModal({ state: true, facetCode })
+            }
+          />
         )}
       </div>
     </div>
@@ -72,9 +89,12 @@ const PlpPage = () => {
             <div className={styles.divider} />
             {!((index + 1) % 2) && (
               <InlineFilters
-                facets={plpResponse?.data?.facets.filter(
-                  (facet) => facet.popular
-                )}
+                facets={plpResponse?.data?.facets
+                  .filter((facet) => facet.popular)
+                  .slice(0, 2)}
+                handleSeeAllFilters={() =>
+                  setFilterModal({ state: true, facetCode: "" })
+                }
               />
             )}
           </div>
@@ -84,7 +104,15 @@ const PlpPage = () => {
     </div>
   );
 
-  return (
+  return filterModal.state ? (
+    <Filters
+      defaultSelectedFacet={filterModal.facetCode}
+      facets={facets}
+      handleCloseFilterModal={() =>
+        setFilterModal({ state: false, facetCode: "" })
+      }
+    />
+  ) : (
     <div className={styles.page_wrapper}>
       {renderHeaderBlock()}
       {showNoResultsCard ? (
