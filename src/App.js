@@ -39,7 +39,7 @@ function App() {
  * make -> below props as required
 - facets: PropTypes.array,
 - handleCloseFilterModal: PropTypes.func,
- * 
+ * radio facet ui development for multiselect value false
  * 
  * 
  * 

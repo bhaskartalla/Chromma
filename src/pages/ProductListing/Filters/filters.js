@@ -9,27 +9,49 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import accordionIcon from "assets/icons/accordion-icon.svg";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Searchbar from "components/Searchbar/searchbar";
+import Checkbox from "uiKit/Checkbox/checkbox";
+import Inputbox from "uiKit/Inputbox/inputbox";
+import leftBlackChevronIcon from "assets/icons/left-black-chevron-icon.svg";
 
 const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
   const [expanded, setExpanded] = useState(defaultSelectedFacet);
+  const [filterSearch, setFilterSearch] = useState({
+    state: false,
+    facet: {},
+    setFocus: false,
+  });
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const handleFilterSearchModal = () => {
-    console.log("handleFilterSearchModal");
+  const handleTextChange = (text) => {
+    const filteredValues = facets
+      .filter((facet) => facet.code === filterSearch.facet.code)[0]
+      .values.filter((value) => {
+        return value.name.toLowerCase().includes(text.toLowerCase());
+      });
+
+    setFilterSearch((prev) => ({
+      state: true,
+      facet: {
+        ...prev.facet,
+        values: filteredValues,
+      },
+    }));
   };
 
-  const headerBlock = (
-    <div className={styles.header_bar}>
+  const handleFilterSearchModal = (facet, setFocus) => {
+    setFilterSearch({ state: true, facet, setFocus });
+  };
+
+  const filterHeader = (
+    <div className={styles.filter_header_bar}>
       <Typography
         variant="body-medium-regular"
         style={{ color: "#212121", left: "50%", position: "absolute" }}
-        text="Filters"
+        text="Brands"
       />
       <img
         width={16}
@@ -41,6 +63,33 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
       />
     </div>
   );
+
+  const filterSearchHeader = (
+    <div className={styles.filter_search_header_bar}>
+      <img
+        width={20}
+        height={20}
+        src={leftBlackChevronIcon}
+        alt="left black Chevron"
+        style={{ marginRight: "16px" }}
+        onClick={() => setFilterSearch({ state: false, facetName: {} })}
+      />
+      <Typography
+        variant="body-medium-regular"
+        style={{ color: "#212121" }}
+        text={filterSearch?.facet?.name}
+      />
+      <img
+        width={16}
+        height={16}
+        src={crossCloseIcon}
+        alt="Close icon"
+        style={{ marginLeft: "auto" }}
+        onClick={handleCloseFilterModal}
+      />
+    </div>
+  );
+
   const bottomBlock = (
     <div className={styles.bottom_bar}>
       <Typography
@@ -72,77 +121,106 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
     </div>
   );
 
-  const accordionRadio = (
-    <div id="accordion-wrapper" className={styles.accordion_wrapper}>
-      {facets.map((facet) => (
-        <div key={facet.code}>
-          <Accordion
-            id="Accordion"
-            expanded={expanded === facet.code}
-            onChange={handleChange(facet.code)}
-          >
-            <AccordionSummary
-              id={`${facet.code}-header`}
-              expandIcon={
-                <img width={16} height={16} src={accordionIcon} alt="expand" />
-              }
-            >
-              <Typography
-                variant="body-small-regular"
-                text={facet.name}
-                style={{ color: "#212121" }}
-              />
-            </AccordionSummary>
-            <AccordionDetails id={`${facet.code}-details`}>
-              {facet.isSearchEnabled && (
-                <div style={{ marginBottom: "8px" }}>
-                  <Searchbar
-                    searchedText="Search Brand"
-                    isDarkThemed={false}
-                    handleSearchBarClick={handleFilterSearchModal}
-                  />
-                </div>
-              )}
-              <div className={styles.accordion_details}>
-                {facet.values.slice(0, 3).map((value) => (
-                  <div key={value.code} className={styles.checkbox_wrapper}>
-                    <FormControlLabel
-                      control={<Checkbox checked={value.selected} />}
-                      label={value.name}
-                      onChange={() => {
-                        // call filter change function
-                        console.log({
-                          facetCode: facet.code,
-                          valueCode: value.code,
-                          state: value.selected,
-                        });
-                      }}
-                    />
-                  </div>
-                ))}
-                {facet.values.length > 3 && (
-                  <div className={styles.view_more}>
-                    <Typography
-                      variant="label-button-x-small"
-                      text={`${facet.values.length - 3} more`.toUpperCase()}
-                      style={{ color: "#088466" }}
-                      onClick={handleFilterSearchModal}
-                    />
-                  </div>
-                )}
-              </div>
-            </AccordionDetails>
-          </Accordion>
-          <div className={styles.accordion_divider} />
+  const renderFacetValues = (facet, count) => (
+    <div className={styles.accordion_details}>
+      {facet?.values?.slice(0, count).map((value, index) => (
+        <div
+          key={value.code}
+          style={{ marginTop: index === 0 ? "8px" : "24px" }}
+          className={styles.checkbox_wrapper}
+        >
+          {facet.multiSelect ? (
+            <Checkbox
+              textVariant="label-x-small-regular"
+              textColor="#212121"
+              text={value.name}
+              checked={value.selected}
+            />
+          ) : (
+            <div id="lallan" />
+          )}
         </div>
       ))}
     </div>
   );
 
+  const accordionCheckboxRadio = facets.map((facet) => (
+    <div key={facet.code}>
+      <Accordion
+        id="Accordion"
+        expanded={expanded === facet.code}
+        onChange={handleChange(facet.code)}
+      >
+        <AccordionSummary
+          id={`${facet.code}-header`}
+          expandIcon={
+            <img width={16} height={16} src={accordionIcon} alt="expand" />
+          }
+        >
+          <Typography
+            variant="body-small-regular"
+            text={facet.name}
+            style={{ color: "#212121" }}
+          />
+        </AccordionSummary>
+        <AccordionDetails id={`${facet.code}-details`}>
+          {facet.isSearchEnabled && (
+            <div style={{ marginBottom: "24px" }}>
+              <Searchbar
+                searchedText="Search Brand"
+                isDarkThemed={false}
+                handleSearchBarClick={() =>
+                  handleFilterSearchModal(facet, true)
+                }
+              />
+            </div>
+          )}
+          {renderFacetValues(facet, 3)}
+          {facet.values.length > 3 && (
+            <div className={styles.view_more}>
+              <Typography
+                variant="label-button-x-small"
+                text={`${facet.values.length - 3} more`.toUpperCase()}
+                style={{ color: "#088466" }}
+                onClick={() => handleFilterSearchModal(facet, false)}
+              />
+            </div>
+          )}
+        </AccordionDetails>
+      </Accordion>
+      <div
+        style={{
+          margin: "0 16px",
+        }}
+        className={styles.accordion_divider}
+      />
+    </div>
+  ));
+
+  const filterSearchSection = (
+    <div id="filter-search" className={styles.filter_search}>
+      <Inputbox
+        isDarkThemed={false}
+        placeholder={`Search ${filterSearch?.facet?.name}`}
+        onChange={handleTextChange}
+        setFocus={filterSearch.setFocus}
+      />
+      <div
+        style={{
+          margin: "16px 0 20px",
+        }}
+        className={styles.accordion_divider}
+      />
+      {renderFacetValues(filterSearch.facet)}
+    </div>
+  );
+
   return (
     <div id="filter_wrapper" className={styles.filter_wrapper}>
-      {headerBlock}
-      {accordionRadio}
+      {filterSearch.state ? filterSearchHeader : filterHeader}
+      <div id="accordion-wrapper" className={styles.accordion_wrapper}>
+        {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
+      </div>
       {bottomBlock}
     </div>
   );

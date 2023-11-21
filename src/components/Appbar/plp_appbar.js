@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "uiKit/Typography/typography";
-import leftChevronIcon from "assets/icons/left-chevron-icon.svg";
+import leftWhiteChevronIcon from "assets/icons/left-white-chevron-icon.svg";
 import wishlistIcon from "assets/icons/wishlist-icon.svg";
 import cartIcon from "assets/icons/cart-icon.svg";
 import styles from "./plp_appbar.module.css";
@@ -25,7 +25,7 @@ const PLPAppbar = ({ pincode }) => {
         <img
           width={24}
           height={24}
-          src={leftChevronIcon}
+          src={leftWhiteChevronIcon}
           alt="leftChevron"
           onClick={handlePlpBackButtonClick}
         />

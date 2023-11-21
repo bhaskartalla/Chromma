@@ -4,12 +4,23 @@
   background-color: #fdfdfd;
   position: relative;
 }
-.header_bar {
+
+.filter_header_bar {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 16px 16px 0;
+  padding: 16px;
   box-sizing: border-box;
+  height: 56px;
+}
+
+.filter_search_header_bar {
+  width: 100%;
+  display: flex;
+  padding: 16px;
+  box-sizing: border-box;
+  align-items: center;
+  height: 56px;
 }
 
 .bottom_bar {
@@ -35,12 +46,11 @@
 
 .accordion_wrapper {
   overflow-y: auto;
-  height: calc(100vh - 96px);
+  height: calc(100vh - 120px);
 }
 
 .accordion_divider {
   height: 1px;
-  margin: 0 16px;
   box-sizing: border-box;
   opacity: 0.24;
   background: #c5c5c5;
@@ -52,10 +62,14 @@
 }
 
 .checkbox_wrapper {
-  margin: 0 16px;
+  margin: 24px 16px;
 }
 
 .view_more {
   text-align: center;
-  margin-bottom: 16px;
+  margin: 16px;
+}
+
+.filter_search {
+  color: unset;
 }
