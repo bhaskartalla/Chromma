@@ -1,5 +1,6 @@
 .card_wrapper {
   margin: 16px;
+  cursor: pointer;
 }
 
 .card_section {

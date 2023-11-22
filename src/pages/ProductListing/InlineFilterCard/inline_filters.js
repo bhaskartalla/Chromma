@@ -51,7 +51,7 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
         <Typography
           variant="label-button-x-small"
           text={"See all filters".toUpperCase()}
-          style={{ color: "#12DAA8" }}
+          style={{ color: "#12DAA8", cursor: "pointer" }}
           onClick={handleSeeAllFilters}
         />
         <Button

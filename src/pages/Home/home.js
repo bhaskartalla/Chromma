@@ -12,9 +12,6 @@ const Home = () => {
           <Link to="/global-search">Search page</Link>
         </li>
         <li>
-          <Link to="/filters">Search page</Link>
-        </li>
-        <li>
           <Link to="/cart">Cart page</Link>
         </li>
         <li>

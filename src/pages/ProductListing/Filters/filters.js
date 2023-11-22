@@ -102,7 +102,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
       <div className={styles.rest_apply_wrapper}>
         <Typography
           variant="label-button-x-small"
-          style={{ color: "#088466" }}
+          style={{ color: "#088466", cursor: "pointer" }}
           text={"RESET"}
           onClick={() => console.log("Reset")}
         />
@@ -181,7 +181,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
               <Typography
                 variant="label-button-x-small"
                 text={`${facet.values.length - 3} more`.toUpperCase()}
-                style={{ color: "#088466" }}
+                style={{ color: "#088466", cursor: "pointer" }}
                 onClick={() => handleFilterSearchModal(facet, false)}
               />
             </div>

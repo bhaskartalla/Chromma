@@ -20,7 +20,7 @@ const Chip = ({
       }`}
       onClick={handleChipClick}
     >
-      <div className={styles.chip_text}>
+      <div>
         <Typography
           variant={textVariant}
           style={{ color: `${isSelected ? "#12DAA8" : "#ABABAB"}` }}
@@ -28,25 +28,13 @@ const Chip = ({
         />
       </div>
       {withIcon && (
-        <>
-          {isSelected ? (
-            <img
-              width={16}
-              height={16}
-              src={downChevronGreenIcon}
-              alt="downChevronGreenIcon"
-              style={{ marginLeft: "8px" }}
-            />
-          ) : (
-            <img
-              width={16}
-              height={16}
-              src={downChevron}
-              alt="downChevron"
-              style={{ marginLeft: "8px" }}
-            />
-          )}
-        </>
+        <img
+          width={16}
+          height={16}
+          src={isSelected ? downChevronGreenIcon : downChevron}
+          alt="Chevron icon"
+          style={{ marginLeft: "8px" }}
+        />
       )}
     </div>
   );
