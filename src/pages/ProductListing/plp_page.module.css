@@ -1,6 +1,6 @@
 .page_wrapper {
   overflow: hidden;
-  height: 100vh;
+  height: 100svh;
 }
 
 .header_section {
@@ -20,7 +20,7 @@
 
 .cards_section {
   overflow-y: auto;
-  height: calc(100vh - 160px);
+  height: calc(100svh - 160px);
 }
 
 .no_of_products {

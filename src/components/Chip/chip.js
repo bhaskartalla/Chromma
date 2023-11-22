@@ -20,13 +20,11 @@ const Chip = ({
       }`}
       onClick={handleChipClick}
     >
-      <div>
-        <Typography
-          variant={textVariant}
-          style={{ color: `${isSelected ? "#12DAA8" : "#ABABAB"}` }}
-          text={text || children}
-        />
-      </div>
+      <Typography
+        variant={textVariant}
+        style={{ color: `${isSelected ? "#12DAA8" : "#ABABAB"}` }}
+        text={text || children}
+      />
       {withIcon && (
         <img
           width={16}
