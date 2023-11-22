@@ -50,8 +50,8 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
     <div className={styles.filter_header_bar}>
       <Typography
         variant="body-medium-regular"
-        style={{ color: "#212121", left: "50%", position: "absolute" }}
-        text="Brands"
+        style={{ color: "#212121", left: "45%", position: "absolute" }}
+        text="Filters"
       />
       <img
         width={16}
