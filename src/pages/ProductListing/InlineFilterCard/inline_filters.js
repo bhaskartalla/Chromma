@@ -3,15 +3,17 @@ import styles from "./inline_filters.module.css";
 import Typography from "uiKit/Typography/typography";
 import Button from "uiKit/Button/button";
 import PropTypes from "prop-types";
-
 import Chip from "components/Chip/chip";
+import { useDispatch } from "react-redux";
+import { updateInternalFacetValue } from "../state/action_creators";
 
 const InlineFilters = ({ facets, handleSeeAllFilters }) => {
+  const dispatch = useDispatch();
   const handleShowItems = () => console.log("handleShowItems");
 
   return (
     <div className={styles.inline_filter_wrapper}>
-      {facets.map((facet) => (
+      {facets?.map((facet) => (
         <div key={facet.code} style={{ marginTop: "16px" }}>
           <Typography
             variant="body-small-bold"
@@ -25,7 +27,7 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
                 style={{
                   marginLeft: `${index === 0 ? "16px" : "unset"}`,
                   marginRight: `${
-                    index === facets[1].values.length - 1 ? "16px" : "unset"
+                    index === facet.values.length - 1 ? "16px" : "unset"
                   }`,
                 }}
               >
@@ -34,12 +36,13 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
                   isSelected={value.selected}
                   textVariant="body-x-small-regular"
                   handleChipClick={() => {
-                    // call filter change function
-                    console.log({
-                      facetCode: facet.code,
-                      valueCode: value.code,
-                      state: value.selected,
-                    });
+                    dispatch(
+                      updateInternalFacetValue({
+                        facetCode: facet.code,
+                        valueCode: value.code,
+                        state: !value.selected,
+                      })
+                    );
                   }}
                 />
               </div>

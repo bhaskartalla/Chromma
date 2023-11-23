@@ -40,10 +40,10 @@ function App() {
 - facets: PropTypes.array,
 - handleCloseFilterModal: PropTypes.func,
  * radio facet ui development for multiselect value false
- * 
- * 
- * 
- * 
+ * lazy loading of components
+ * react.memo(), useMemo() and useCallback() hook fpr performance optimizations
+ * create theme setup for ligh and dark
+ * Add a error boundry HOC component
  * 
  */
 

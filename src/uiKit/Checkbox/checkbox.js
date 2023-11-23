@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import checkedboxIcon from "assets/icons/checkedbox-Icon.svg";
 import unCheckedboxIcon from "assets/icons/uncheckbox-Icon.svg";
 import Typography from "uiKit/Typography/typography";
@@ -14,6 +14,10 @@ const Checkbox = ({
 }) => {
   const [isChecked, toggleCheckbox] = useState(checked);
 
+  useEffect(() => {
+    toggleCheckbox(checked);
+  }, [checked]);
+
   const handleToggleCheckbox = () => {
     toggleCheckbox((prev) => !prev);
     onChange(isChecked);
@@ -22,6 +26,7 @@ const Checkbox = ({
   return (
     <div className={styles.checbox_wrapper}>
       <img
+        id={`${text}--${isChecked}--lallan`}
         width={24}
         height={24}
         src={isChecked ? checkedboxIcon : unCheckedboxIcon}

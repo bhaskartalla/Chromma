@@ -546,108 +546,6 @@
     "facets": [
       {
         "category": false,
-        "code": "lower_categories",
-        "multiSelect": true,
-        "name": "Categories",
-        "priority": 0,
-        "order": 1,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "444",
-            "count": 119,
-            "code": "444",
-            "selected": true
-          },
-          {
-            "name": "445",
-            "count": 22,
-            "code": "445",
-            "selected": false
-          },
-          {
-            "name": "748",
-            "count": 19,
-            "code": "748",
-            "selected": false
-          },
-          {
-            "name": "1021111",
-            "count": 1,
-            "code": "1021111",
-            "selected": false
-          }
-        ],
-        "popular": true
-      },
-      {
-        "category": false,
-        "code": "delivery_mode",
-        "multiSelect": true,
-        "name": "Delivery Mode",
-        "priority": 0,
-        "order": 2,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "Express Delivery",
-            "count": 38,
-            "code": "Express Delivery",
-            "selected": true
-          },
-          {
-            "name": "Home Delivery",
-            "count": 93,
-            "code": "Home Delivery",
-            "selected": false
-          }
-        ],
-        "popular": false
-      },
-      {
-        "category": false,
-        "code": "price_group",
-        "multiSelect": true,
-        "name": "Price in Rs",
-        "priority": 0,
-        "order": 3,
-        "isSearchEnabled": false,
-        "values": [
-          {
-            "name": "501 - 1,000",
-            "count": 32,
-            "code": "501 - 1,000",
-            "selected": false
-          },
-          {
-            "name": "1,001 - 1,500",
-            "count": 32,
-            "code": "1,001 - 1,500",
-            "selected": false
-          },
-          {
-            "name": "1,501 - 3,000",
-            "count": 32,
-            "code": "1,501 - 3,000",
-            "selected": false
-          },
-          {
-            "name": "3,001 - 5,000",
-            "count": 4,
-            "code": "3,001 - 5,000",
-            "selected": false
-          },
-          {
-            "name": "500 & Below",
-            "count": 25,
-            "code": "500 & Below",
-            "selected": false
-          }
-        ],
-        "popular": true
-      },
-      {
-        "category": false,
         "code": "SG-ManufacturerDetails-Brand",
         "multiSelect": true,
         "name": "Brand",
@@ -802,6 +700,109 @@
         ],
         "popular": true
       },
+      {
+        "category": false,
+        "code": "lower_categories",
+        "multiSelect": true,
+        "name": "Categories",
+        "priority": 0,
+        "order": 1,
+        "isSearchEnabled": false,
+        "values": [
+          {
+            "name": "444",
+            "count": 119,
+            "code": "444",
+            "selected": false
+          },
+          {
+            "name": "445",
+            "count": 22,
+            "code": "445",
+            "selected": false
+          },
+          {
+            "name": "748",
+            "count": 19,
+            "code": "748",
+            "selected": false
+          },
+          {
+            "name": "1021111",
+            "count": 1,
+            "code": "1021111",
+            "selected": false
+          }
+        ],
+        "popular": false
+      },
+      {
+        "category": false,
+        "code": "delivery_mode",
+        "multiSelect": true,
+        "name": "Delivery Mode",
+        "priority": 0,
+        "order": 2,
+        "isSearchEnabled": false,
+        "values": [
+          {
+            "name": "Express Delivery",
+            "count": 38,
+            "code": "Express Delivery",
+            "selected": false
+          },
+          {
+            "name": "Home Delivery",
+            "count": 93,
+            "code": "Home Delivery",
+            "selected": false
+          }
+        ],
+        "popular": false
+      },
+      {
+        "category": false,
+        "code": "price_group",
+        "multiSelect": true,
+        "name": "Price in Rs",
+        "priority": 0,
+        "order": 3,
+        "isSearchEnabled": false,
+        "values": [
+          {
+            "name": "501 - 1,000",
+            "count": 32,
+            "code": "501 - 1,000",
+            "selected": false
+          },
+          {
+            "name": "1,001 - 1,500",
+            "count": 32,
+            "code": "1,001 - 1,500",
+            "selected": false
+          },
+          {
+            "name": "1,501 - 3,000",
+            "count": 32,
+            "code": "1,501 - 3,000",
+            "selected": false
+          },
+          {
+            "name": "3,001 - 5,000",
+            "count": 4,
+            "code": "3,001 - 5,000",
+            "selected": false
+          },
+          {
+            "name": "500 & Below",
+            "count": 25,
+            "code": "500 & Below",
+            "selected": false
+          }
+        ],
+        "popular": false
+      },
+
       {
         "category": false,
         "code": "discount_group",

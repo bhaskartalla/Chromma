@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./filters.module.css";
 import Typography from "uiKit/Typography/typography";
 import plpResponse from "apiData/plp_response.json";
@@ -13,9 +13,15 @@ import Searchbar from "components/Searchbar/searchbar";
 import Checkbox from "uiKit/Checkbox/checkbox";
 import Inputbox from "uiKit/Inputbox/inputbox";
 import leftBlackChevronIcon from "assets/icons/left-black-chevron-icon.svg";
+import { useDispatch } from "react-redux";
+import {
+  updateInternalFacetValue,
+  resetAllFacetsValues,
+} from "../state/action_creators";
 
 const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
-  const [expanded, setExpanded] = useState(defaultSelectedFacet);
+  const dispatch = useDispatch();
+  const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet);
   const [filterSearch, setFilterSearch] = useState({
     state: false,
     facet: {},
@@ -23,7 +29,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
   });
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+    setExpandedFacet(isExpanded ? panel : false);
   };
 
   const handleTextChange = (text) => {
@@ -45,6 +51,8 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
   const handleFilterSearchModal = (facet, setFocus) => {
     setFilterSearch({ state: true, facet, setFocus });
   };
+
+  const handleResetFilters = () => dispatch(resetAllFacetsValues());
 
   const filterHeader = (
     <div className={styles.filter_header_bar}>
@@ -104,7 +112,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
           variant="label-button-x-small"
           style={{ color: "#088466", cursor: "pointer" }}
           text={"RESET"}
-          onClick={() => console.log("Reset")}
+          onClick={handleResetFilters}
         />
         <Button
           text="Apply"
@@ -135,20 +143,29 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
               textColor="#212121"
               text={value.name}
               checked={value.selected}
+              onChange={() => {
+                dispatch(
+                  updateInternalFacetValue({
+                    facetCode: facet.code,
+                    valueCode: value.code,
+                    state: !value.selected,
+                  })
+                );
+              }}
             />
           ) : (
-            <div id="lallan" />
+            <div id="radio-button" />
           )}
         </div>
       ))}
     </div>
   );
 
-  const accordionCheckboxRadio = facets.map((facet) => (
+  const accordionCheckboxRadio = facets?.map((facet) => (
     <div key={facet.code}>
       <Accordion
         id="Accordion"
-        expanded={expanded === facet.code}
+        expanded={expandedFacet === facet.code}
         onChange={handleChange(facet.code)}
       >
         <AccordionSummary
@@ -162,6 +179,15 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
             text={facet.name}
             style={{ color: "#212121" }}
           />
+          {facet?.selectedValueCount > 0 && (
+            <div className={styles.selectedValueCount}>
+              <Typography
+                variant="caption-xx-small-semibold"
+                text={facet?.selectedValueCount}
+                style={{ color: "#FFF" }}
+              />
+            </div>
+          )}
         </AccordionSummary>
         <AccordionDetails id={`${facet.code}-details`}>
           {facet.isSearchEnabled && (
@@ -230,6 +256,7 @@ Filters.propTypes = {
   defaultSelectedFacet: PropTypes.string,
   facets: PropTypes.array,
   handleCloseFilterModal: PropTypes.func,
+  showFilters: PropTypes.bool,
 };
 
 export default Filters;
