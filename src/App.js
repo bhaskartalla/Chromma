@@ -2,6 +2,7 @@ import Home from "./pages/Home/home";
 import Cart from "./pages/Cart/cart";
 import Wishlist from "./pages/Wishlist/wishlist";
 import PlpPage from "./pages/ProductListing/plp_page";
+import ProductDescription from "./pages/ProductDescription/pdp_page";
 import GlobalSearchPage from "./pages/GlobalSearch/global_search";
 import FiltersPage from "./pages/ProductListing/Filters/filters";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product-listing" element={<PlpPage />} />
+        <Route path="/product-description" element={<ProductDescription />} />
         <Route path="/global-search" element={<GlobalSearchPage />} />
         <Route path="/filters" element={<FiltersPage />} />
         <Route path="/cart" element={<Cart />} />
@@ -34,17 +36,11 @@ function App() {
  */
 
 /**
- * remove product with no skuid
- * create facets array for inline filters with popular value true
- * make -> below props as required
-- facets: PropTypes.array,
-- handleCloseFilterModal: PropTypes.func,
  * radio facet ui development for multiselect value false
  * lazy loading of components
- * react.memo(), useMemo() and useCallback() hook fpr performance optimizations
- * create theme setup for ligh and dark
+ * create theme setup for light and dark
  * Add a error boundry HOC component
- * 
+ * pincode and view store text alignment need to be fixed
  */
 
 export default App;

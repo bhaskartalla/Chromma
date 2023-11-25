@@ -8,7 +8,6 @@ const Dropdown = ({ brandList }) => {
   const [dropDown, toggleDropDown] = useState(false);
 
   const handleToggleDropDown = () => {
-    // Navigate to SERP page
     toggleDropDown((prev) => !prev);
   };
 
@@ -36,7 +35,7 @@ const Dropdown = ({ brandList }) => {
         <div className={styles.dd_options}>
           {brandList.map((brand, index) => (
             <div
-              key={index}
+              key={brand.code}
               className={styles.dd_option}
               onClick={handleRedirectionToSerp}
             >
@@ -56,4 +55,4 @@ const Dropdown = ({ brandList }) => {
 Dropdown.propTypes = {
   brandList: PropTypes.array.isRequired,
 };
-export default Dropdown;
+export default React.memo(Dropdown);

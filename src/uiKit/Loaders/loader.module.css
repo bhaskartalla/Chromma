@@ -1,0 +1,7 @@
+.page_loader {
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

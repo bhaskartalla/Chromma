@@ -7,14 +7,9 @@ import PropTypes from "prop-types";
 import Typography from "uiKit/Typography/typography";
 
 const FilterChipsSection = ({ facets, handleFilterModal }) => {
-  let filtersSelectedCount = 0;
-
-  // Compute this value after the api response is received
-  facets.forEach((facet) => {
-    if (facet.values.some((value) => value.selected)) {
-      filtersSelectedCount++;
-    }
-  });
+  let filtersSelectedCount = facets.filter(
+    (facet) => facet.selectedValueCount > 0
+  ).length;
 
   const selectedFilterIcon = (count) => {
     const selected = count > 0;
@@ -64,6 +59,11 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
               withIcon={true}
               isSelected={isSelected}
               handleChipClick={() => handleFilterModal(facet.code)}
+              style={{
+                marginRight: `${
+                  index === facets.length - 1 ? "12px" : "unset"
+                }`,
+              }}
             />
           );
         })}
@@ -77,4 +77,4 @@ FilterChipsSection.propTypes = {
   handleFilterModal: PropTypes.func.isRequired,
 };
 
-export default FilterChipsSection;
+export default React.memo(FilterChipsSection);

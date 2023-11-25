@@ -31,4 +31,4 @@ const NoResultsFound = () => {
   );
 };
 
-export default NoResultsFound;
+export default React.memo(NoResultsFound);

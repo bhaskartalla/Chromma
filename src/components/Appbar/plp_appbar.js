@@ -67,4 +67,4 @@ const PLPAppbar = ({ pincode }) => {
 PLPAppbar.propTypes = {
   pincode: PropTypes.any,
 };
-export default PLPAppbar;
+export default React.memo(PLPAppbar);

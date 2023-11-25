@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  Fragment,
+} from "react";
 import PlpAppbar from "components/Appbar/plp_appbar";
 import Searchbar from "components/Searchbar/searchbar";
 import FilterChipsSection from "./FilterChipsSection/filter_chips_section";
@@ -14,19 +20,20 @@ import circleCloseIcon from "assets/icons/circle-close-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPlpApiResponse } from "./state/action_creators";
+import PageLoader from "uiKit/Loaders/page_loader";
 
 const PlpPage = () => {
-  const plpResponse = useSelector((state) => state.plpReducer?.response);
+  const plpResponse = useSelector((state) => state.plpReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPlpApiResponse());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log("PlpPage", plpResponse);
 
-  const products = plpResponse?.products;
-  const facets = plpResponse?.facets;
-  const filterItemCount = plpResponse?.filterItemCount;
+  const { isLoading, products, facets, filterItemCount, pickAStoreList } =
+    plpResponse;
   const showNoResultsCard = !products?.length;
 
   const navigate = useNavigate();
@@ -36,11 +43,30 @@ const PlpPage = () => {
   });
   const scrollToTop = useRef(null);
 
-  const handleScrollToTop = () =>
-    scrollToTop.current.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  let start = 0;
+  let end = 0;
+  const facetPerCard = 2;
+  const getPopularFacets = () => {
+    start = end;
+    end = end + facetPerCard;
+    const newPopularFacet = facets
+      .filter((facet) => facet.popular)
+      .slice(start, end);
+    return newPopularFacet;
+  };
+
+  const handleScrollToTop = useCallback(
+    () =>
+      scrollToTop.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      }),
+    []
+  );
+
+  const handleFilterModal = useCallback((facetCode) => {
+    setFilterModal({ state: true, facetCode });
+  }, []);
 
   const renderHeaderBlock = () => (
     <div className={styles.header_section}>
@@ -58,16 +84,14 @@ const PlpPage = () => {
         {!showNoResultsCard && (
           <FilterChipsSection
             facets={facets}
-            handleFilterModal={(facetCode) => {
-              setFilterModal({ state: true, facetCode });
-            }}
+            handleFilterModal={handleFilterModal}
           />
         )}
       </div>
     </div>
   );
 
-  const noOfProducts = (facet, filterItemCount) => {
+  const noOfProducts = (pickAStoreList, filterItemCount) => {
     return (
       <div className={styles.no_of_products}>
         <Typography
@@ -80,38 +104,37 @@ const PlpPage = () => {
             color: "#A6A6A6",
           }}
         />
-        <Dropdown brandList={facet.values} />
+        <Dropdown brandList={pickAStoreList.values} />
       </div>
     );
   };
 
   const renderPlpScrollCardsBlock = () => (
     <div ref={scrollToTop} className={styles.cards_section}>
-      {noOfProducts(
-        facets.filter((facet) => facet.code === "category")[0],
-        filterItemCount
-      )}
+      {noOfProducts(pickAStoreList, filterItemCount)}
       {products.map((product, index) => {
         return (
-          <div key={product.skuId}>
+          <Fragment key={product.skuId}>
             <PlpCard productDetails={product} />
             <div className={styles.divider} />
             {!((index + 1) % 2) && (
               <InlineFilters
-                facets={facets.filter((facet) => facet.popular).slice(0, 2)}
+                facets={getPopularFacets()}
                 handleSeeAllFilters={() =>
                   setFilterModal({ state: true, facetCode: "" })
                 }
               />
             )}
-          </div>
+          </Fragment>
         );
       })}
       <EndOfScroll handleScrollToTop={handleScrollToTop} />
     </div>
   );
 
-  return (
+  return isLoading ? (
+    <PageLoader />
+  ) : (
     <div style={{ position: "relative" }}>
       <div className={styles.page_wrapper}>
         {renderHeaderBlock()}

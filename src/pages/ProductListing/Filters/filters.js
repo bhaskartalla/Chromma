@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./filters.module.css";
 import Typography from "uiKit/Typography/typography";
 import plpResponse from "apiData/plp_response.json";
@@ -27,7 +27,6 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
     facet: {},
     setFocus: false,
   });
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpandedFacet(isExpanded ? panel : false);
   };
@@ -256,7 +255,6 @@ Filters.propTypes = {
   defaultSelectedFacet: PropTypes.string,
   facets: PropTypes.array,
   handleCloseFilterModal: PropTypes.func,
-  showFilters: PropTypes.bool,
 };
 
 export default Filters;

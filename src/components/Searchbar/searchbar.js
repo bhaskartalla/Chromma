@@ -52,6 +52,7 @@ Searchbar.propTypes = {
   searchedText: PropTypes.string,
   isDarkThemed: PropTypes.bool,
   handleSearchBarClick: PropTypes.func,
+  circleCloseIcon: PropTypes.string,
 };
 
-export default Searchbar;
+export default React.memo(Searchbar);

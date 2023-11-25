@@ -30,4 +30,4 @@ EndOfScroll.propTypes = {
   handleScrollToTop: PropTypes.func.isRequired,
 };
 
-export default EndOfScroll;
+export default React.memo(EndOfScroll);

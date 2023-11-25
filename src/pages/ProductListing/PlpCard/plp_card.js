@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./plp_card.module.css";
 import Wishlist from "components/Wishlist/wishlist";
 import Typography from "uiKit/Typography/typography";
@@ -9,6 +9,7 @@ import availableIcon from "assets/icons/available-icon.svg";
 import Neupass from "components/NeuPass/neupass";
 import PropTypes from "prop-types";
 import LoadDefaultImg from "uiKit/PlaceholderImage/placeholderImage";
+import { useNavigate } from "react-router-dom";
 
 const PlpCard = ({ productDetails }) => {
   const imageUrl = productDetails?.plpImage;
@@ -32,10 +33,24 @@ const PlpCard = ({ productDetails }) => {
   const productTag = productDetails?.productTag;
   const productTag1 = productDetails?.productTag1;
 
-  const handleStorePickup = (shipNode) =>
+  const navigate = useNavigate();
+
+  const storePickUpRef = useRef(null);
+  const handleStorePickup = (event, shipNode) => {
     console.log("handleStorePickup", shipNode);
-  const handleNonServiceable = () => console.log("handleNonServiceable");
-  const handleProductCardClick = () => console.log("handleProductCardClick");
+    event.stopPropagation();
+  };
+
+  const handleNonServiceable = (event) => {
+    console.log("handleNonServiceable");
+    event.stopPropagation();
+  };
+
+  const handleProductCardClick = (event) => {
+    console.log("handleProductCardClick");
+
+    navigate("/product-description", { state: { skuId } });
+  };
 
   const getExpressTime = (timeStamp) => {
     const time = new Date(timeStamp);
@@ -83,13 +98,14 @@ const PlpCard = ({ productDetails }) => {
           />
           {secondaryText && (
             <Typography
+              ref={storePickUpRef}
               variant="caption-xxx-small-semibold"
               text={secondaryText}
               style={{
                 color: "#A6A6A6",
                 textDecoration: "underline",
               }}
-              onClick={(param) => handleSecondaryTextClick(param)}
+              onClick={(event, param) => handleSecondaryTextClick(event, param)}
             />
           )}
         </div>
@@ -167,7 +183,7 @@ const PlpCard = ({ productDetails }) => {
           }}
         />
       )}
-      {parseInt(discount.split("%")[0]) && (
+      {Boolean(parseInt(discount.split("%")[0])) && (
         <div className={styles.discount_chip}>
           <Typography
             variant="caption-xxx-small-semibold"
@@ -226,7 +242,7 @@ const PlpCard = ({ productDetails }) => {
       availableIcon,
       "Available for Pickup",
       "View Stores",
-      () => handleStorePickup(storePickup[0].shipNode)
+      (event) => handleStorePickup(event, storePickup[0].shipNode)
     );
   }
 
@@ -236,7 +252,7 @@ const PlpCard = ({ productDetails }) => {
       nonServiceableIcon,
       "Non serviceable at this Pincode ",
       pinCode,
-      handleNonServiceable
+      (event) => handleNonServiceable(event)
     );
   }
 
@@ -292,7 +308,11 @@ const PlpCard = ({ productDetails }) => {
   );
 
   return (
-    <div className={styles.card_wrapper} onClick={handleProductCardClick}>
+    <div
+      id="product-card"
+      className={styles.card_wrapper}
+      onClick={handleProductCardClick}
+    >
       <div className={styles.card_section}>
         {productImage()}
         {productDetailsBlock()}

@@ -1,4 +1,5 @@
 .filter_wrapper {
+  overflow: hidden;
   width: 100%;
   height: 100svh;
   background-color: #fdfdfd;
@@ -60,7 +61,7 @@
 
 .accordion_wrapper {
   overflow-y: auto;
-  height: calc(100vh - 120px);
+  height: calc(100svh - 120px);
 }
 
 .accordion_divider {

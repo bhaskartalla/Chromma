@@ -8,7 +8,12 @@ import {
 
 const initialState = {
   isLoading: false,
-  response: {},
+  products: [],
+  facets: [],
+  pagination: {},
+  sorts: [],
+  filterItemCount: 0,
+  pickAStoreList: {},
   isError: false,
 };
 
@@ -23,23 +28,38 @@ const plpReducer = (state = initialState, action) => {
         isError: false,
       };
 
-    case RECEIVE_PLP_API_RESPONSE:
-      const selectedFacetCounts = payload.facets.map((facet) => {
-        facet.selectedValueCount = facet.values.filter(
-          (value) => value.selected
-        ).length;
-        return facet;
+    case RECEIVE_PLP_API_RESPONSE: {
+      // filter the product with no SkuId or price value as 0
+      const filteredProducts = payload.products.filter(
+        (product) => product.skuId && product.price.value
+      );
+
+      // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
+      const selectedFacetCounts = [];
+      let pickAStoreList = {};
+      payload.facets.forEach((facet) => {
+        if (facet.code !== "category") {
+          facet.selectedValueCount = facet.values.filter(
+            (value) => value.selected
+          ).length;
+          selectedFacetCounts.push(facet);
+        } else {
+          pickAStoreList = facet;
+        }
       });
 
       return {
         ...state,
         isLoading: false,
-        response: {
-          ...payload,
-          facets: selectedFacetCounts,
-        },
+        products: filteredProducts,
+        facets: selectedFacetCounts,
+        pagination: payload.pagination,
+        sorts: payload.sorts,
+        filterItemCount: payload.filterItemCount,
+        pickAStoreList: pickAStoreList,
         isError: false,
       };
+    }
 
     case ERROR_PLP_API_RESPONSE:
       return {
@@ -48,8 +68,8 @@ const plpReducer = (state = initialState, action) => {
         isError: true,
       };
 
-    case UPDATE_FACET_VALUE:
-      const updatedFacets = state.response.facets.map((facet) => {
+    case UPDATE_FACET_VALUE: {
+      const updatedFacets = state.facets.map((facet) => {
         let count = 0;
         if (facet.code === payload.facetCode) {
           facet.values.map((value) => {
@@ -68,14 +88,11 @@ const plpReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        response: {
-          ...state.response,
-          facets: updatedFacets,
-        },
+        facets: updatedFacets,
       };
-
-    case RESET_ALL_FACETS:
-      const resetedFacets = state.response.facets.map((facet) => {
+    }
+    case RESET_ALL_FACETS: {
+      const resetedFacets = state.facets.map((facet) => {
         facet.values.map((value) => {
           value.selected = false;
           return value;
@@ -86,11 +103,9 @@ const plpReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        response: {
-          ...state.response,
-          facets: resetedFacets,
-        },
+        facets: resetedFacets,
       };
+    }
     default:
       return state;
   }

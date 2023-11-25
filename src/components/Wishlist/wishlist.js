@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./wishlist.module.css";
 import wishlistIcon from "assets/icons/wishlist-icon.svg";
 import wishlistAddedIcon from "assets/icons/wishlist-added-icon.svg";
+import PropTypes from "prop-types";
 
-const Wishlist = ({ isAddedToWishlist }) => {
+const Wishlist = ({ isAddedToWishlist = false }) => {
   return (
     <>
       {!isAddedToWishlist ? (
@@ -28,4 +29,8 @@ const Wishlist = ({ isAddedToWishlist }) => {
   );
 };
 
-export default Wishlist;
+Wishlist.propTypes = {
+  isAddedToWishlist: PropTypes.bool,
+};
+
+export default React.memo(Wishlist);

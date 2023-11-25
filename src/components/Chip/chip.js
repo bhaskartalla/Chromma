@@ -12,9 +12,11 @@ const Chip = ({
   isSelected,
   withIcon,
   handleChipClick,
+  style,
 }) => {
   return (
     <div
+      style={{ ...style }}
       className={`${styles.chip_wrapper} ${
         isSelected && styles.chip_wrapper_selected
       }`}
@@ -45,6 +47,7 @@ Chip.propTypes = {
   isSelected: PropTypes.bool,
   withIcon: PropTypes.bool,
   handleChipClick: PropTypes.func,
+  style: PropTypes.object,
 };
 
-export default Chip;
+export default React.memo(Chip);

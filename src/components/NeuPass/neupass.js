@@ -65,4 +65,4 @@ Neupass.propTypes = {
   coins: PropTypes.number.isRequired,
 };
 
-export default Neupass;
+export default React.memo(Neupass);

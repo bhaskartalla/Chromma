@@ -734,7 +734,7 @@
             "selected": false
           }
         ],
-        "popular": false
+        "popular": true
       },
       {
         "category": false,
@@ -758,7 +758,7 @@
             "selected": false
           }
         ],
-        "popular": false
+        "popular": true
       },
       {
         "category": false,
@@ -800,9 +800,8 @@
             "selected": false
           }
         ],
-        "popular": false
+        "popular": true
       },
-
       {
         "category": false,
         "code": "discount_group",
