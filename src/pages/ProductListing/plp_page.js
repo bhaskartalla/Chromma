@@ -17,7 +17,7 @@ import NoResultsFound from "components/NoResultsFound/no_results_found";
 import InlineFilters from "./InlineFilterCard/inline_filters";
 import Filters from "pages/ProductListing/Filters/filters";
 import circleCloseIcon from "assets/icons/circle-close-icon.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPlpApiResponse } from "./state/action_creators";
 import PageLoader from "uiKit/Loaders/page_loader";
@@ -25,23 +25,40 @@ import PageLoader from "uiKit/Loaders/page_loader";
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPlpApiResponse());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log("PlpPage", plpResponse);
-
-  const { isLoading, products, facets, filterItemCount, pickAStoreList } =
-    plpResponse;
-  const showNoResultsCard = !products?.length;
-
   const navigate = useNavigate();
   const [filterModal, setFilterModal] = useState({
     state: false,
     facetCode: "",
   });
   const scrollToTop = useRef(null);
+  const [params] = useSearchParams();
+
+  const query = params.get("query");
+
+  useEffect(() => {
+    dispatch(
+      fetchPlpApiResponse({
+        category: "electronics",
+        pinCode: "400001",
+        query,
+        sortBy: "relevance",
+        currentPage: 0,
+        filter: "",
+      })
+    );
+    // eslint-disable-next-line
+  }, []);
+  // console.log("PlpPage", plpResponse);
+
+  const {
+    isLoading,
+    products,
+    internalFacets,
+    filterItemCount,
+    pickAStoreList,
+    apiFilter,
+  } = plpResponse;
+  const showNoResultsCard = !products?.length;
 
   let start = 0;
   let end = 0;
@@ -49,7 +66,7 @@ const PlpPage = () => {
   const getPopularFacets = () => {
     start = end;
     end = end + facetPerCard;
-    const newPopularFacet = facets
+    const newPopularFacet = internalFacets
       .filter((facet) => facet.popular)
       .slice(start, end);
     return newPopularFacet;
@@ -72,9 +89,15 @@ const PlpPage = () => {
     <div className={styles.header_section}>
       <PlpAppbar pincode={400013} />
       <Searchbar
-        searchedText="trimmer"
+        searchedText={query}
         circleCloseIcon={circleCloseIcon}
-        handleSearchBarClick={() => navigate("/global-search")}
+        handleSearchBarClick={() =>
+          navigate(`/global-search?searchText=${query}`)
+        }
+        handleOnCloseClick={(event) => {
+          navigate("/global-search");
+          event.stopPropagation();
+        }}
       />
       <div
         className={`${styles.filter_chips_section} ${
@@ -83,7 +106,7 @@ const PlpPage = () => {
       >
         {!showNoResultsCard && (
           <FilterChipsSection
-            facets={facets}
+            facets={internalFacets}
             handleFilterModal={handleFilterModal}
           />
         )}
@@ -117,7 +140,7 @@ const PlpPage = () => {
           <Fragment key={product.skuId}>
             <PlpCard productDetails={product} />
             <div className={styles.divider} />
-            {!((index + 1) % 2) && (
+            {!((index + 1) % 2) && !apiFilter && (
               <InlineFilters
                 facets={getPopularFacets()}
                 handleSeeAllFilters={() =>
@@ -147,7 +170,7 @@ const PlpPage = () => {
       {filterModal.state && (
         <Filters
           defaultSelectedFacet={filterModal.facetCode}
-          facets={facets}
+          facets={internalFacets}
           handleCloseFilterModal={() =>
             setFilterModal({ state: false, facetCode: "" })
           }

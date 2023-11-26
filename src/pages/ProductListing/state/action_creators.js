@@ -5,16 +5,26 @@ import {
   updateInternalFacet,
   resetAllFacets,
 } from "./actions";
-import plpResponse from "apiData/plp_response.json";
+import apiInstance from "api";
 
-export const fetchPlpApiResponse = () => {
-  return (dispatch) => {
+export const fetchPlpApiResponse = (params) => {
+  return async (dispatch) => {
     dispatch(requestPlpApiRequest());
     try {
-      setTimeout(() => {
-        dispatch(receivePlpApiRequest(plpResponse.data));
-      }, 1000);
+      const plpApiResponse = await apiInstance.get(
+        "https://ppapi.tatadigital.com/api/v1/commerce/search",
+        {
+          params,
+        }
+      );
+      dispatch(
+        receivePlpApiRequest({
+          response: { ...plpApiResponse?.data?.data },
+          params,
+        })
+      );
     } catch (error) {
+      console.log({ error });
       dispatch(errorPlpApiRequest());
     }
   };

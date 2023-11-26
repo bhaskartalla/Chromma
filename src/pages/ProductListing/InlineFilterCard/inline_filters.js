@@ -4,13 +4,34 @@ import Typography from "uiKit/Typography/typography";
 import Button from "uiKit/Button/button";
 import PropTypes from "prop-types";
 import Chip from "components/Chip/chip";
-import { useDispatch } from "react-redux";
-import { updateInternalFacetValue } from "../state/action_creators";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateInternalFacetValue,
+  fetchPlpApiResponse,
+} from "../state/action_creators";
+import { useSearchParams } from "react-router-dom";
 
 const InlineFilters = ({ facets, handleSeeAllFilters }) => {
-  const dispatch = useDispatch();
+  const plpResponse = useSelector((state) => state.plpReducer);
 
-  const handleShowItems = () => console.log("handleShowItems");
+  const dispatch = useDispatch();
+  const [params] = useSearchParams();
+
+  const query = params.get("query");
+  const { internalFilter } = plpResponse;
+
+  const handleShowItems = () => {
+    dispatch(
+      fetchPlpApiResponse({
+        category: "electronics",
+        pinCode: "400001",
+        query,
+        sortBy: "relevance",
+        filter: internalFilter,
+        currentPage: 0,
+      })
+    );
+  };
 
   return (
     facets.length > 0 && (

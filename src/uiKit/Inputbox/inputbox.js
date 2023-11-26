@@ -12,6 +12,7 @@ const Inputbox = ({
   disabled = false,
   readOnly = false,
   onChange = () => {},
+  onKeyDown = () => {},
   setFocus = false,
 }) => {
   const [inputText, setInputText] = useState(value);
@@ -54,6 +55,7 @@ const Inputbox = ({
         disabled={disabled}
         onChange={handleTextChange}
         readOnly={readOnly}
+        onKeyDown={onKeyDown}
       />
       {inputText && (
         <img
@@ -75,6 +77,7 @@ Inputbox.propTypes = {
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   setFocus: PropTypes.bool,
 };
 

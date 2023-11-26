@@ -4,6 +4,7 @@ import {
   ERROR_PLP_API_RESPONSE,
   UPDATE_FACET_VALUE,
   RESET_ALL_FACETS,
+  APPLY_NEW_FACETS,
 } from "./action_types";
 
 export const requestPlpApiRequest = () => ({
@@ -26,4 +27,8 @@ export const updateInternalFacet = (payload) => ({
 
 export const resetAllFacets = () => ({
   type: RESET_ALL_FACETS,
+});
+
+export const applyAllFacets = () => ({
+  type: APPLY_NEW_FACETS,
 });

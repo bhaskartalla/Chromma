@@ -10,6 +10,7 @@ const Searchbar = ({
   isDarkThemed = true,
   circleCloseIcon,
   handleSearchBarClick,
+  handleOnCloseClick,
 }) => {
   return (
     <div
@@ -42,6 +43,7 @@ const Searchbar = ({
           height={24}
           src={circleCloseIcon}
           alt="circleCloseIcon"
+          onClick={handleOnCloseClick}
         />
       )}
     </div>
@@ -53,6 +55,7 @@ Searchbar.propTypes = {
   isDarkThemed: PropTypes.bool,
   handleSearchBarClick: PropTypes.func,
   circleCloseIcon: PropTypes.string,
+  handleOnCloseClick: PropTypes.func,
 };
 
 export default React.memo(Searchbar);

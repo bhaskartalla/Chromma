@@ -35,14 +35,14 @@
   width: 100%;
   height: 100%;
   top: 0;
+  box-sizing: border-box;
+  padding: 8px;
 }
 
 .product_image {
   object-fit: contain;
   width: inherit;
   height: inherit;
-  position: absolute;
-  top: 0;
 }
 
 .card_tag {

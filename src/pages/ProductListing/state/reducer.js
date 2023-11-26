@@ -9,7 +9,10 @@ import {
 const initialState = {
   isLoading: false,
   products: [],
-  facets: [],
+  apiFacets: [],
+  internalFacets: [],
+  apiFilter: "",
+  internalFilter: "",
   pagination: {},
   sorts: [],
   filterItemCount: 0,
@@ -30,14 +33,14 @@ const plpReducer = (state = initialState, action) => {
 
     case RECEIVE_PLP_API_RESPONSE: {
       // filter the product with no SkuId or price value as 0
-      const filteredProducts = payload.products.filter(
+      const filteredProducts = payload.response.products.filter(
         (product) => product.skuId && product.price.value
       );
 
       // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
       const selectedFacetCounts = [];
       let pickAStoreList = {};
-      payload.facets.forEach((facet) => {
+      payload.response.facets.forEach((facet) => {
         if (facet.code !== "category") {
           facet.selectedValueCount = facet.values.filter(
             (value) => value.selected
@@ -52,12 +55,16 @@ const plpReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         products: filteredProducts,
-        facets: selectedFacetCounts,
-        pagination: payload.pagination,
-        sorts: payload.sorts,
-        filterItemCount: payload.filterItemCount,
+        apiFacets: selectedFacetCounts,
+        internalFacets: selectedFacetCounts,
+        pagination: payload.response.pagination,
+        sorts: payload.response.sorts,
+        filterItemCount: payload.response.filterItemCount,
         pickAStoreList: pickAStoreList,
         isError: false,
+        apiFilter: payload.params.filter,
+        internalFilter: payload.params.filter,
+        query: payload.params.query,
       };
     }
 
@@ -69,9 +76,12 @@ const plpReducer = (state = initialState, action) => {
       };
 
     case UPDATE_FACET_VALUE: {
-      const updatedFacets = state.facets.map((facet) => {
-        let count = 0;
+      let count = 0;
+
+      // set value of a particular facet with the payload value and update the facet.selectedValueCount
+      const updatedFacets = state.internalFacets.map((facet) => {
         if (facet.code === payload.facetCode) {
+          count = 0;
           facet.values.map((value) => {
             if (value.code === payload.valueCode) {
               value.selected = payload.state;
@@ -86,13 +96,24 @@ const plpReducer = (state = initialState, action) => {
         return facet;
       });
 
+      // Create the filter string
+      let appliedFilter = "";
+      state.internalFacets.forEach((facet) => {
+        facet.values.forEach((value) => {
+          if (value.selected) {
+            appliedFilter = `${facet.code}:${value.code}:${appliedFilter}`;
+          }
+        });
+      });
+
       return {
         ...state,
-        facets: updatedFacets,
+        internalFacets: updatedFacets,
+        internalFilter: appliedFilter,
       };
     }
     case RESET_ALL_FACETS: {
-      const resetedFacets = state.facets.map((facet) => {
+      const resetedFacets = state.internalFacets.map((facet) => {
         facet.values.map((value) => {
           value.selected = false;
           return value;
@@ -103,7 +124,8 @@ const plpReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        facets: resetedFacets,
+        internalFacets: resetedFacets,
+        internalFilter: "",
       };
     }
     default:

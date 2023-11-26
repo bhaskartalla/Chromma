@@ -6,8 +6,13 @@ import ProductDescription from "./pages/ProductDescription/pdp_page";
 import GlobalSearchPage from "./pages/GlobalSearch/global_search";
 import FiltersPage from "./pages/ProductListing/Filters/filters";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { v4 as uuidV4 } from "uuid";
 
 function App() {
+  if (!window.localStorage.getItem("anonymousId")) {
+    window.localStorage.setItem("anonymousId", uuidV4());
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -41,6 +46,10 @@ function App() {
  * create theme setup for light and dark
  * Add a error boundry HOC component
  * pincode and view store text alignment need to be fixed
+ * keep all the urls in constant file
+ * move all hardcoded string values in other file
+ * add env file
+ * add logic to show applied filter in sorted order
  */
 
 export default App;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./filters.module.css";
 import Typography from "uiKit/Typography/typography";
-import plpResponse from "apiData/plp_response.json";
 import Button from "uiKit/Button/button";
 import crossCloseIcon from "assets/icons/cross-close-icon.svg";
 import PropTypes from "prop-types";
@@ -13,13 +12,16 @@ import Searchbar from "components/Searchbar/searchbar";
 import Checkbox from "uiKit/Checkbox/checkbox";
 import Inputbox from "uiKit/Inputbox/inputbox";
 import leftBlackChevronIcon from "assets/icons/left-black-chevron-icon.svg";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   updateInternalFacetValue,
   resetAllFacetsValues,
+  fetchPlpApiResponse,
 } from "../state/action_creators";
+import { useSearchParams } from "react-router-dom";
 
 const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
+  const plpResponse = useSelector((state) => state.plpReducer);
   const dispatch = useDispatch();
   const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet);
   const [filterSearch, setFilterSearch] = useState({
@@ -27,6 +29,12 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
     facet: {},
     setFocus: false,
   });
+  const [params] = useSearchParams();
+
+  const query = params.get("query");
+
+  const { internalFilter, filterItemCount } = plpResponse;
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpandedFacet(isExpanded ? panel : false);
   };
@@ -102,9 +110,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
       <Typography
         variant="body-x-small-regular"
         style={{ color: "#777" }}
-        text={`${plpResponse?.data?.filterItemCount} ${
-          plpResponse?.data?.filterItemCount > 1 ? "items" : "item"
-        }`}
+        text={`${filterItemCount} ${filterItemCount > 1 ? "items" : "item"}`}
       />
       <div className={styles.rest_apply_wrapper}>
         <Typography
@@ -122,7 +128,19 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
             width: "128px",
             height: "40px",
           }}
-          handleOnClick={() => console.log("Apply")}
+          handleOnClick={() => {
+            dispatch(
+              fetchPlpApiResponse({
+                category: "electronics",
+                pinCode: "400001",
+                query,
+                sortBy: "relevance",
+                filter: internalFilter,
+                currentPage: 0,
+              })
+            );
+            handleCloseFilterModal();
+          }}
         />
       </div>
     </div>
@@ -224,12 +242,14 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
 
   const filterSearchSection = (
     <div id="filter-search" className={styles.filter_search}>
-      <Inputbox
-        isDarkThemed={false}
-        placeholder={`Search ${filterSearch?.facet?.name}`}
-        onChange={handleTextChange}
-        setFocus={filterSearch.setFocus}
-      />
+      <div style={{ margin: "0 16px" }}>
+        <Inputbox
+          isDarkThemed={false}
+          placeholder={`Search ${filterSearch?.facet?.name}`}
+          onChange={handleTextChange}
+          setFocus={filterSearch.setFocus}
+        />
+      </div>
       <div
         style={{
           margin: "16px 0 20px",
