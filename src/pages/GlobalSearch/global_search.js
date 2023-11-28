@@ -22,7 +22,7 @@ const GlobalSearch = () => {
     <div className={style.global_search_wrapper}>
       <div className={style.inputbox_wrapper}>
         <Inputbox
-          value={searchText}
+          value={searchText || ""}
           isDarkThemed={false}
           placeholder={`Search `}
           onChange={handleTextChange}

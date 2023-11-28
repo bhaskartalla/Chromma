@@ -11,6 +11,17 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
     (facet) => facet.selectedValueCount > 0
   ).length;
 
+  const selectedFacets = [];
+  const unSelectedFacets = [];
+  facets.forEach((facet) => {
+    if (facet.selectedValueCount > 0) {
+      selectedFacets.push(facet);
+    } else {
+      unSelectedFacets.push(facet);
+    }
+  });
+  const newFacets = [...selectedFacets, ...unSelectedFacets];
+
   const selectedFilterIcon = (count) => {
     const selected = count > 0;
     return (
@@ -49,7 +60,14 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
     <div className={styles.filter_chips_wrapper}>
       {selectedFilterIcon(filtersSelectedCount)}
       <div className={styles.filter_chips_section}>
-        {facets.map((facet, index) => {
+        <Chip
+          textVariant="caption-xx-small-semibold"
+          text="Sort"
+          withIcon={true}
+          isSelected={false}
+          handleChipClick={() => {}}
+        />
+        {newFacets.map((facet, index) => {
           const isSelected = facet.values.some((value) => value.selected);
           return (
             <Chip

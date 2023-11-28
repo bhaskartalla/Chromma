@@ -16,11 +16,17 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   updateInternalFacetValue,
   resetAllFacetsValues,
+  fetchFilterApiResponse,
   fetchPlpApiResponse,
 } from "../state/action_creators";
 import { useSearchParams } from "react-router-dom";
+import PageLoader from "uiKit/Loaders/page_loader";
 
-const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
+const Filters = ({
+  defaultSelectedFacet,
+  handleCloseFilterModal,
+  handleFilterModal,
+}) => {
   const plpResponse = useSelector((state) => state.plpReducer);
   const dispatch = useDispatch();
   const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet);
@@ -33,14 +39,35 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
 
   const query = params.get("query");
 
-  const { internalFilter, filterItemCount } = plpResponse;
+  const { internalResponse, filterString } = plpResponse;
+
+  const {
+    isFilterApiLoading,
+    internalFacets,
+    internalFilterItemCount,
+    internalFilterString,
+  } = internalResponse;
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpandedFacet(isExpanded ? panel : false);
+    handleFilterModal(panel);
+
+    if (isExpanded && internalFilterString !== filterString) {
+      dispatch(
+        fetchFilterApiResponse({
+          category: "electronics",
+          pinCode: "400001",
+          query,
+          sortBy: "relevance",
+          filter: internalFilterString,
+          currentPage: 0,
+        })
+      );
+    }
   };
 
   const handleTextChange = (text) => {
-    const filteredValues = facets
+    const filteredValues = internalFacets
       .filter((facet) => facet.code === filterSearch.facet.code)[0]
       .values.filter((value) => {
         return value.name.toLowerCase().includes(text.toLowerCase());
@@ -110,7 +137,9 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
       <Typography
         variant="body-x-small-regular"
         style={{ color: "#777" }}
-        text={`${filterItemCount} ${filterItemCount > 1 ? "items" : "item"}`}
+        text={`${internalFilterItemCount} ${
+          internalFilterItemCount > 1 ? "items" : "item"
+        }`}
       />
       <div className={styles.rest_apply_wrapper}>
         <Typography
@@ -129,17 +158,17 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
             height: "40px",
           }}
           handleOnClick={() => {
+            handleCloseFilterModal();
             dispatch(
               fetchPlpApiResponse({
                 category: "electronics",
                 pinCode: "400001",
                 query,
                 sortBy: "relevance",
-                filter: internalFilter,
+                filter: internalFilterString,
                 currentPage: 0,
               })
             );
-            handleCloseFilterModal();
           }}
         />
       </div>
@@ -158,7 +187,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
             <Checkbox
               textVariant="label-x-small-regular"
               textColor="#212121"
-              text={value.name}
+              text={`${value.name} (${value.count})`}
               checked={value.selected}
               onChange={() => {
                 dispatch(
@@ -178,7 +207,7 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
     </div>
   );
 
-  const accordionCheckboxRadio = facets?.map((facet) => (
+  const accordionCheckboxRadio = internalFacets?.map((facet) => (
     <div key={facet.code}>
       <Accordion
         id="Accordion"
@@ -261,20 +290,23 @@ const Filters = ({ defaultSelectedFacet, facets, handleCloseFilterModal }) => {
   );
 
   return (
-    <div id="filter_wrapper" className={styles.filter_wrapper}>
-      {filterSearch.state ? filterSearchHeader : filterHeader}
-      <div id="accordion-wrapper" className={styles.accordion_wrapper}>
-        {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
+    <>
+      {isFilterApiLoading && <PageLoader variant="transparent" />}
+      <div id="filter_wrapper" className={styles.filter_wrapper}>
+        {filterSearch.state ? filterSearchHeader : filterHeader}
+        <div id="accordion-wrapper" className={styles.accordion_wrapper}>
+          {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
+        </div>
+        {bottomBlock}
       </div>
-      {bottomBlock}
-    </div>
+    </>
   );
 };
 
 Filters.propTypes = {
   defaultSelectedFacet: PropTypes.string,
-  facets: PropTypes.array,
   handleCloseFilterModal: PropTypes.func,
+  handleFilterModal: PropTypes.func,
 };
 
-export default Filters;
+export default React.memo(Filters);

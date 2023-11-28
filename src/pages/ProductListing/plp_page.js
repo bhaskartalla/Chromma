@@ -19,8 +19,12 @@ import Filters from "pages/ProductListing/Filters/filters";
 import circleCloseIcon from "assets/icons/circle-close-icon.svg";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPlpApiResponse } from "./state/action_creators";
+import {
+  fetchPlpApiResponse,
+  fetchPaginationApiResponse,
+} from "./state/action_creators";
 import PageLoader from "uiKit/Loaders/page_loader";
+import InlineLoader from "uiKit/Loaders/inline_loader";
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer);
@@ -30,6 +34,7 @@ const PlpPage = () => {
     state: false,
     facetCode: "",
   });
+
   const scrollToTop = useRef(null);
   const [params] = useSearchParams();
 
@@ -51,14 +56,23 @@ const PlpPage = () => {
   // console.log("PlpPage", plpResponse);
 
   const {
-    isLoading,
-    products,
-    internalFacets,
-    filterItemCount,
+    apiResponse,
+    internalResponse,
     pickAStoreList,
-    apiFilter,
+    filterString,
+    pagination,
   } = plpResponse;
-  const showNoResultsCard = !products?.length;
+
+  const { currentPage, totalPages, isPageApiLoading } = pagination;
+
+  const [isApiCalled, setIsApiCalled] = useState(isPageApiLoading);
+  useEffect(() => setIsApiCalled(isPageApiLoading), [isPageApiLoading]);
+
+  const { isPlpApiLoading, apiProducts, apiFacets, apiFilterItemCount } =
+    apiResponse;
+
+  const { internalFacets, internalFilterString } = internalResponse;
+  const showNoResultsCard = !apiProducts?.length;
 
   let start = 0;
   let end = 0;
@@ -81,6 +95,11 @@ const PlpPage = () => {
     []
   );
 
+  const handleCloseFilterModal = useCallback(
+    () => setFilterModal({ state: false, facetCode: "" }),
+    []
+  );
+
   const handleFilterModal = useCallback((facetCode) => {
     setFilterModal({ state: true, facetCode });
   }, []);
@@ -91,9 +110,10 @@ const PlpPage = () => {
       <Searchbar
         searchedText={query}
         circleCloseIcon={circleCloseIcon}
-        handleSearchBarClick={() =>
-          navigate(`/global-search?searchText=${query}`)
-        }
+        handleSearchBarClick={() => {
+          const queryString = query ? `?searchText=${query}` : "";
+          navigate(`/global-search${queryString}`);
+        }}
         handleOnCloseClick={(event) => {
           navigate("/global-search");
           event.stopPropagation();
@@ -106,7 +126,7 @@ const PlpPage = () => {
       >
         {!showNoResultsCard && (
           <FilterChipsSection
-            facets={internalFacets}
+            facets={apiFacets}
             handleFilterModal={handleFilterModal}
           />
         )}
@@ -132,15 +152,38 @@ const PlpPage = () => {
     );
   };
 
+  const onScroll = () => {
+    if (scrollToTop.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollToTop.current;
+
+      if (scrollTop + clientHeight > scrollHeight - 160) {
+        if (!isApiCalled && currentPage < totalPages - 1) {
+          setIsApiCalled(true);
+
+          dispatch(
+            fetchPaginationApiResponse({
+              category: "electronics",
+              pinCode: "400001",
+              query,
+              sortBy: "relevance",
+              currentPage: currentPage + 1,
+              filter: internalFilterString,
+            })
+          );
+        }
+      }
+    }
+  };
+
   const renderPlpScrollCardsBlock = () => (
-    <div ref={scrollToTop} className={styles.cards_section}>
-      {noOfProducts(pickAStoreList, filterItemCount)}
-      {products.map((product, index) => {
+    <div ref={scrollToTop} onScroll={onScroll} className={styles.cards_section}>
+      {noOfProducts(pickAStoreList, apiFilterItemCount)}
+      {apiProducts.map((product, index) => {
         return (
           <Fragment key={product.skuId}>
             <PlpCard productDetails={product} />
             <div className={styles.divider} />
-            {!((index + 1) % 2) && !apiFilter && (
+            {!((index + 1) % 2) && !filterString && (
               <InlineFilters
                 facets={getPopularFacets()}
                 handleSeeAllFilters={() =>
@@ -151,11 +194,14 @@ const PlpPage = () => {
           </Fragment>
         );
       })}
-      <EndOfScroll handleScrollToTop={handleScrollToTop} />
+      {isPageApiLoading && <InlineLoader />}
+      {currentPage === totalPages - 1 && (
+        <EndOfScroll handleScrollToTop={handleScrollToTop} />
+      )}
     </div>
   );
 
-  return isLoading ? (
+  return isPlpApiLoading ? (
     <PageLoader />
   ) : (
     <div style={{ position: "relative" }}>
@@ -170,10 +216,8 @@ const PlpPage = () => {
       {filterModal.state && (
         <Filters
           defaultSelectedFacet={filterModal.facetCode}
-          facets={internalFacets}
-          handleCloseFilterModal={() =>
-            setFilterModal({ state: false, facetCode: "" })
-          }
+          handleCloseFilterModal={handleCloseFilterModal}
+          handleFilterModal={handleFilterModal}
         />
       )}
     </div>

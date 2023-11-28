@@ -23,8 +23,8 @@ const PLPAppbar = ({ pincode }) => {
     <div className={styles.plp_appbar_wrapper}>
       <div className={styles.plp_appbar_title}>
         <img
-          width={24}
-          height={24}
+          width={20}
+          height={20}
           src={leftWhiteChevronIcon}
           alt="leftChevron"
           onClick={handlePlpBackButtonClick}

@@ -13,12 +13,11 @@ import { useSearchParams } from "react-router-dom";
 
 const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const plpResponse = useSelector((state) => state.plpReducer);
-
   const dispatch = useDispatch();
   const [params] = useSearchParams();
 
   const query = params.get("query");
-  const { internalFilter } = plpResponse;
+  const { internalResponse } = plpResponse;
 
   const handleShowItems = () => {
     dispatch(
@@ -27,7 +26,7 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
         pinCode: "400001",
         query,
         sortBy: "relevance",
-        filter: internalFilter,
+        filter: internalResponse.internalFilterString,
         currentPage: 0,
       })
     );

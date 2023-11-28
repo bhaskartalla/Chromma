@@ -50,6 +50,8 @@ function App() {
  * move all hardcoded string values in other file
  * add env file
  * add logic to show applied filter in sorted order
+ * remove the redundant code from reducer file
+ *
  */
 
 export default App;
