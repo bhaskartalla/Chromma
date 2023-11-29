@@ -1,10 +1,11 @@
 import {
   requestPlpApiRequest,
+  receivePlpApiRequest,
   errorPlpApiRequest,
   updateInternalFacet,
   resetAllFacets,
   requestFilterApiRequest,
-  receiveApiRequest,
+  receiveFilterApiRequest,
   errorFilterApiRequest,
   requestPageApiRequest,
   receivePageApiRequest,
@@ -24,7 +25,7 @@ export const fetchPlpApiResponse = (params) => {
         }
       );
       dispatch(
-        receiveApiRequest({
+        receivePlpApiRequest({
           response: { ...plpApiResponse?.data?.data },
           params,
           isForFilter: false,
@@ -50,7 +51,7 @@ export const fetchFilterApiResponse = (params) => {
         }
       );
       dispatch(
-        receiveApiRequest({
+        receiveFilterApiRequest({
           response: { ...plpApiResponse?.data?.data },
           params,
           isForFilter: true,

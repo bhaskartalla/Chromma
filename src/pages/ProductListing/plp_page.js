@@ -141,13 +141,15 @@ const PlpPage = () => {
           variant="body-x-small-regular"
           text={`${filterItemCount} ${
             filterItemCount > 0 ? "Products" : "Product"
-          } found`}
+          } ${pickAStoreList.values.length > 0 ? "from" : ""}`}
           style={{
             marginRight: "4px",
             color: "#A6A6A6",
           }}
         />
-        <Dropdown brandList={pickAStoreList.values} />
+        {pickAStoreList.values.length > 0 && (
+          <Dropdown brandList={pickAStoreList.values} />
+        )}
       </div>
     );
   };

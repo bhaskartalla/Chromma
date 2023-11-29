@@ -21,7 +21,7 @@ const Dropdown = ({ brandList }) => {
         <Typography
           variant="body-x-small-bold"
           style={{ color: "#12DAA8" }}
-          text="Croma"
+          text={brandList[0].name}
         />
         <img
           width={12}
@@ -33,7 +33,7 @@ const Dropdown = ({ brandList }) => {
       </div>
       {dropDown && (
         <div className={styles.dd_options}>
-          {brandList.map((brand, index) => (
+          {brandList.slice(1).map((brand, index) => (
             <div
               key={brand.code}
               className={styles.dd_option}

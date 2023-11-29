@@ -49,7 +49,6 @@ function App() {
  * keep all the urls in constant file
  * move all hardcoded string values in other file
  * add env file
- * add logic to show applied filter in sorted order
  * remove the redundant code from reducer file
  *
  */

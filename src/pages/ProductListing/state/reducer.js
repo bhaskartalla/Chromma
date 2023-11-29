@@ -1,10 +1,11 @@
 import {
   REQUEST_PLP_API_RESPONSE,
-  RECEIVE_API_RESPONSE,
+  RECEIVE_PLP_API_RESPONSE,
   UPDATE_FACET_VALUE,
   ERROR_PLP_API_RESPONSE,
   RESET_ALL_FACETS,
   REQUEST_FILTER_API_RESPONSE,
+  RECEIVE_FILTER_API_RESPONSE,
   ERROR_FILTER_API_RESPONSE,
   REQUEST_PAGE_API_RESPONSE,
   RECEIVE_PAGE_API_RESPONSE,
@@ -34,6 +35,41 @@ const initialState = {
   pickAStoreList: {},
 };
 
+function filterApiResponseData(payload) {
+  // filter the product with no SkuId or price value as 0
+  const filteredProducts = payload.response.products.filter(
+    (product) => product.skuId && product.price.value
+  );
+  const apiSelectedFacetCounts = [];
+  let pickAStoreList = {};
+  // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
+  payload.response.facets.forEach((facet) => {
+    if (facet.code !== "category") {
+      facet.selectedValueCount = facet.values.filter(
+        (value) => value.selected
+      ).length;
+      apiSelectedFacetCounts.push(facet);
+    } else {
+      pickAStoreList = facet;
+    }
+  });
+
+  const internalSelectedFacetCounts = apiSelectedFacetCounts.map((facet) => {
+    let newFacet = { ...facet };
+    newFacet.values = facet.values.map((value) => {
+      return { ...value };
+    });
+    return newFacet;
+  });
+
+  return [
+    filteredProducts,
+    apiSelectedFacetCounts,
+    pickAStoreList,
+    internalSelectedFacetCounts,
+  ];
+}
+
 const plpReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
@@ -47,6 +83,41 @@ const plpReducer = (state = initialState, action) => {
           isPlpApiError: false,
         },
       };
+    }
+
+    case RECEIVE_PLP_API_RESPONSE: {
+      const [
+        filteredProducts,
+        apiSelectedFacetCounts,
+        pickAStoreList,
+        internalSelectedFacetCounts,
+      ] = filterApiResponseData(payload);
+
+      const updateState = {
+        ...state,
+        pagination: { ...payload.response.pagination, isPageApiLoading: false },
+        sorts: payload.response.sorts,
+        pickAStoreList: pickAStoreList,
+        query: payload.params.query,
+        filterString: payload.params.filter,
+      };
+      updateState.apiResponse = {
+        isPlpApiLoading: false,
+        apiProducts: filteredProducts,
+        apiFacets: apiSelectedFacetCounts,
+        apiFilterItemCount: payload.response.filterItemCount,
+        isPlpApiError: false,
+      };
+      updateState.internalResponse = {
+        isFilterApiLoading: false,
+        internalProducts: filteredProducts,
+        internalFacets: internalSelectedFacetCounts,
+        internalFilterItemCount: payload.response.filterItemCount,
+        isFilterApiError: false,
+        internalFilterString: payload.params.filter,
+      };
+
+      return updateState;
     }
 
     case ERROR_PLP_API_RESPONSE: {
@@ -71,35 +142,13 @@ const plpReducer = (state = initialState, action) => {
       };
     }
 
-    case RECEIVE_API_RESPONSE: {
-      // filter the product with no SkuId or price value as 0
-      const filteredProducts = payload.response.products.filter(
-        (product) => product.skuId && product.price.value
-      );
-
-      const apiSelectedFacetCounts = [];
-      let pickAStoreList = {};
-      // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
-      payload.response.facets.forEach((facet) => {
-        if (facet.code !== "category") {
-          facet.selectedValueCount = facet.values.filter(
-            (value) => value.selected
-          ).length;
-          apiSelectedFacetCounts.push(facet);
-        } else {
-          pickAStoreList = facet;
-        }
-      });
-
-      const internalSelectedFacetCounts = apiSelectedFacetCounts.map(
-        (facet) => {
-          let newFacet = { ...facet };
-          newFacet.values = facet.values.map((value) => {
-            return { ...value };
-          });
-          return newFacet;
-        }
-      );
+    case RECEIVE_FILTER_API_RESPONSE: {
+      const [
+        filteredProducts,
+        apiSelectedFacetCounts,
+        pickAStoreList,
+        internalSelectedFacetCounts,
+      ] = filterApiResponseData(payload);
 
       const updateState = {
         ...state,
@@ -110,32 +159,14 @@ const plpReducer = (state = initialState, action) => {
         filterString: payload.params.filter,
       };
 
-      if (payload.isForFilter) {
-        updateState.internalResponse = {
-          isFilterApiLoading: false,
-          internalProducts: filteredProducts,
-          internalFacets: internalSelectedFacetCounts,
-          internalFilterItemCount: payload.response.filterItemCount,
-          isFilterApiError: false,
-          internalFilterString: payload.params.filter,
-        };
-      } else {
-        updateState.apiResponse = {
-          isPlpApiLoading: false,
-          apiProducts: filteredProducts,
-          apiFacets: apiSelectedFacetCounts,
-          apiFilterItemCount: payload.response.filterItemCount,
-          isPlpApiError: false,
-        };
-        updateState.internalResponse = {
-          isFilterApiLoading: false,
-          internalProducts: filteredProducts,
-          internalFacets: internalSelectedFacetCounts,
-          internalFilterItemCount: payload.response.filterItemCount,
-          isFilterApiError: false,
-          internalFilterString: payload.params.filter,
-        };
-      }
+      updateState.internalResponse = {
+        isFilterApiLoading: false,
+        internalProducts: filteredProducts,
+        internalFacets: internalSelectedFacetCounts,
+        internalFilterItemCount: payload.response.filterItemCount,
+        isFilterApiError: false,
+        internalFilterString: payload.params.filter,
+      };
 
       return updateState;
     }
@@ -223,33 +254,12 @@ const plpReducer = (state = initialState, action) => {
     }
 
     case RECEIVE_PAGE_API_RESPONSE: {
-      // filter the product with no SkuId or price value as 0
-      const filteredProducts = payload.response.products.filter(
-        (product) => product.skuId && product.price.value
-      );
-      const apiSelectedFacetCounts = [];
-      let pickAStoreList = {};
-      // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
-      payload.response.facets.forEach((facet) => {
-        if (facet.code !== "category") {
-          facet.selectedValueCount = facet.values.filter(
-            (value) => value.selected
-          ).length;
-          apiSelectedFacetCounts.push(facet);
-        } else {
-          pickAStoreList = facet;
-        }
-      });
-
-      const internalSelectedFacetCounts = apiSelectedFacetCounts.map(
-        (facet) => {
-          let newFacet = { ...facet };
-          newFacet.values = facet.values.map((value) => {
-            return { ...value };
-          });
-          return newFacet;
-        }
-      );
+      const [
+        filteredProducts,
+        apiSelectedFacetCounts,
+        pickAStoreList,
+        internalSelectedFacetCounts,
+      ] = filterApiResponseData(payload);
 
       const updateState = {
         ...state,
