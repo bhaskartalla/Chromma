@@ -1,77 +1,79 @@
-import React, { useState } from "react";
-import styles from "./filters.module.css";
-import Typography from "uiKit/Typography/typography";
-import Button from "uiKit/Button/button";
-import crossCloseIcon from "assets/icons/cross-close-icon.svg";
-import PropTypes from "prop-types";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import accordionIcon from "assets/icons/accordion-icon.svg";
-import Searchbar from "components/Searchbar/searchbar";
-import Checkbox from "uiKit/Checkbox/checkbox";
-import Inputbox from "uiKit/Inputbox/inputbox";
-import leftBlackChevronIcon from "assets/icons/left-black-chevron-icon.svg";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import styles from './filters.module.css'
+import Typography from 'uiKit/Typography/typography'
+import Button from 'uiKit/Button/button'
+import crossCloseIcon from 'assets/icons/wishlist-icon.svg'
+import PropTypes from 'prop-types'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import accordionIcon from 'assets/icons/accordion-icon.svg'
+import Searchbar from 'components/Searchbar/searchbar'
+import Checkbox from 'uiKit/Checkbox/checkbox'
+import Inputbox from 'uiKit/Inputbox/inputbox'
+import leftBlackChevronIcon from 'assets/icons/left-black-chevron-icon.svg'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   updateInternalFacetValue,
   resetAllFacetsValues,
   fetchFilterApiResponse,
   fetchPlpApiResponse,
-} from "../state/action_creators";
-import { useSearchParams } from "react-router-dom";
-import PageLoader from "uiKit/Loaders/page_loader";
+} from '../state/action_creators'
+import { useSearchParams } from 'react-router-dom'
+import PageLoader from 'uiKit/Loaders/page_loader'
+import { useTheme } from '@mui/material'
 
 const Filters = ({
   defaultSelectedFacet,
   handleCloseFilterModal,
   handleFilterModal,
 }) => {
-  const plpResponse = useSelector((state) => state.plpReducer);
-  const dispatch = useDispatch();
-  const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet);
+  const theme = useTheme()
+  const plpResponse = useSelector((state) => state.plpReducer)
+  const dispatch = useDispatch()
+  const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet)
   const [filterSearch, setFilterSearch] = useState({
     state: false,
     facet: {},
     setFocus: false,
-  });
-  const [params] = useSearchParams();
+  })
+  const [params] = useSearchParams()
 
-  const query = params.get("query");
+  const query = params.get('query')
 
-  const { internalResponse, filterString } = plpResponse;
+  const { internalResponse, filterString } = plpResponse
 
   const {
     isFilterApiLoading,
     internalFacets,
     internalFilterItemCount,
     internalFilterString,
-  } = internalResponse;
+  } = internalResponse
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpandedFacet(isExpanded ? panel : false);
-    handleFilterModal(panel);
+    setExpandedFacet(isExpanded ? panel : false)
+    handleFilterModal(panel)
 
     if (isExpanded && internalFilterString !== filterString) {
       dispatch(
         fetchFilterApiResponse({
-          category: "electronics",
-          pinCode: "400001",
+          category: 'electronics',
+          pinCode: '400001',
           query,
-          sortBy: "relevance",
+          sortBy: 'relevance',
           filter: internalFilterString,
           currentPage: 0,
         })
-      );
+      )
     }
-  };
+  }
 
   const handleTextChange = (text) => {
     const filteredValues = internalFacets
       .filter((facet) => facet.code === filterSearch.facet.code)[0]
       .values.filter((value) => {
-        return value.name.toLowerCase().includes(text.toLowerCase());
-      });
+        return value.name.toLowerCase().includes(text.toLowerCase())
+      })
 
     setFilterSearch((prev) => ({
       state: true,
@@ -79,32 +81,36 @@ const Filters = ({
         ...prev.facet,
         values: filteredValues,
       },
-    }));
-  };
+    }))
+  }
 
   const handleFilterSearchModal = (facet, setFocus) => {
-    setFilterSearch({ state: true, facet, setFocus });
-  };
+    setFilterSearch({ state: true, facet, setFocus })
+  }
 
-  const handleResetFilters = () => dispatch(resetAllFacetsValues());
+  const handleResetFilters = () => dispatch(resetAllFacetsValues())
 
   const filterHeader = (
     <div className={styles.filter_header_bar}>
       <Typography
-        variant="body-medium-regular"
-        style={{ color: "#212121", left: "45%", position: "absolute" }}
-        text="Filters"
+        variant='body-medium-regular'
+        style={{
+          color: theme.palette.color.background,
+          left: '45%',
+          position: 'absolute',
+        }}
+        text='Filters'
       />
       <img
         width={16}
         height={16}
         src={crossCloseIcon}
-        alt="Close icon"
-        style={{ marginLeft: "auto" }}
+        alt='Close icon'
+        style={{ marginLeft: 'auto' }}
         onClick={handleCloseFilterModal}
       />
     </div>
-  );
+  )
 
   const filterSearchHeader = (
     <div className={styles.filter_search_header_bar}>
@@ -112,81 +118,81 @@ const Filters = ({
         width={20}
         height={20}
         src={leftBlackChevronIcon}
-        alt="left black Chevron"
-        style={{ marginRight: "16px" }}
+        alt='left black Chevron'
+        style={{ marginRight: '16px' }}
         onClick={() => setFilterSearch({ state: false, facetName: {} })}
       />
       <Typography
-        variant="body-medium-regular"
-        style={{ color: "#212121" }}
+        variant='body-medium-regular'
+        style={{ color: theme.palette.color.background }}
         text={filterSearch?.facet?.name}
       />
       <img
         width={16}
         height={16}
         src={crossCloseIcon}
-        alt="Close icon"
-        style={{ marginLeft: "auto" }}
+        alt='Close icon'
+        style={{ marginLeft: 'auto' }}
         onClick={handleCloseFilterModal}
       />
     </div>
-  );
+  )
 
   const bottomBlock = (
     <div className={styles.bottom_bar}>
       <Typography
-        variant="body-x-small-regular"
-        style={{ color: "#777" }}
+        variant='body-x-small-regular'
+        style={{ color: theme.palette.color.onSurfaceLowContrast }}
         text={`${internalFilterItemCount} ${
-          internalFilterItemCount > 1 ? "items" : "item"
+          internalFilterItemCount > 1 ? 'items' : 'item'
         }`}
       />
       <div className={styles.rest_apply_wrapper}>
         <Typography
-          variant="label-button-x-small"
-          style={{ color: "#088466", cursor: "pointer" }}
-          text={"RESET"}
+          variant='label-button-x-small'
+          style={{ color: theme.palette.color.primary, cursor: 'pointer' }}
+          text={'RESET'}
           onClick={handleResetFilters}
         />
         <Button
-          text="Apply"
-          textVariant="label-button-x-small"
-          textColor="#FFFFFF"
+          text='Apply'
+          textVariant='label-button-x-small'
+          textColor='#FFFFFF'
           style={{
-            backgroundColor: "#088466",
-            width: "128px",
-            height: "40px",
+            backgroundColor: theme.palette.color.primary,
+            width: '128px',
+            height: '40px',
           }}
           handleOnClick={() => {
-            handleCloseFilterModal();
+            handleCloseFilterModal()
             dispatch(
               fetchPlpApiResponse({
-                category: "electronics",
-                pinCode: "400001",
+                category: 'electronics',
+                pinCode: '400001',
                 query,
-                sortBy: "relevance",
+                sortBy: 'relevance',
                 filter: internalFilterString,
                 currentPage: 0,
               })
-            );
+            )
           }}
         />
       </div>
     </div>
-  );
+  )
 
   const renderFacetValues = (facet, count) => (
     <div className={styles.accordion_details}>
       {facet?.values?.slice(0, count).map((value, index) => (
         <div
           key={value.code}
-          style={{ marginTop: index === 0 ? "8px" : "24px" }}
+          style={{ marginTop: index === 0 ? '8px' : '24px' }}
           className={styles.checkbox_wrapper}
         >
           {facet.multiSelect ? (
             <Checkbox
-              textVariant="label-x-small-regular"
-              textColor="#212121"
+              textVariant='label-x-small-regular'
+              textColor={theme.palette.color.background}
               text={`${value.name} (${value.count})`}
               checked={value.selected}
               onChange={() => {
@@ -196,50 +202,50 @@ const Filters = ({
                     valueCode: value.code,
                     state: !value.selected,
                   })
-                );
+                )
               }}
             />
           ) : (
-            <div id="radio-button" />
+            <div id='radio-button' />
           )}
         </div>
       ))}
     </div>
-  );
+  )
 
   const accordionCheckboxRadio = internalFacets?.map((facet) => (
     <div key={facet.code}>
       <Accordion
-        id="Accordion"
+        id='Accordion'
         expanded={expandedFacet === facet.code}
         onChange={handleChange(facet.code)}
       >
         <AccordionSummary
           id={`${facet.code}-header`}
           expandIcon={
-            <img width={16} height={16} src={accordionIcon} alt="expand" />
+            <img width={16} height={16} src={accordionIcon} alt='expand' />
           }
         >
           <Typography
-            variant="body-small-regular"
+            variant='body-small-regular'
             text={facet.name}
-            style={{ color: "#212121" }}
+            style={{ color: theme.palette.color.background }}
           />
           {facet?.selectedValueCount > 0 && (
             <div className={styles.selectedValueCount}>
               <Typography
-                variant="caption-xx-small-semibold"
+                variant='caption-xx-small-semibold'
                 text={facet?.selectedValueCount}
-                style={{ color: "#FFF" }}
+                style={{ color: theme.palette.color.onPrimary }}
               />
             </div>
           )}
         </AccordionSummary>
         <AccordionDetails id={`${facet.code}-details`}>
           {facet.isSearchEnabled && (
-            <div style={{ marginBottom: "24px" }}>
+            <div style={{ marginBottom: '24px' }}>
               <Searchbar
-                searchedText="Search Brand"
+                searchedText='Search Brand'
                 isDarkThemed={false}
                 handleSearchBarClick={() =>
                   handleFilterSearchModal(facet, true)
@@ -251,9 +257,12 @@ const Filters = ({
           {facet.values.length > 3 && (
             <div className={styles.view_more}>
               <Typography
-                variant="label-button-x-small"
+                variant='label-button-x-small'
                 text={`${facet.values.length - 3} more`.toUpperCase()}
-                style={{ color: "#088466", cursor: "pointer" }}
+                style={{
+                  color: theme.palette.color.primary,
+                  cursor: 'pointer',
+                }}
                 onClick={() => handleFilterSearchModal(facet, false)}
               />
             </div>
@@ -262,16 +271,16 @@ const Filters = ({
       </Accordion>
       <div
         style={{
-          margin: "0 16px",
+          margin: '0 16px',
         }}
         className={styles.accordion_divider}
       />
     </div>
-  ));
+  ))
 
   const filterSearchSection = (
-    <div id="filter-search" className={styles.filter_search}>
-      <div style={{ margin: "0 16px" }}>
+    <div id='filter-search' className={styles.filter_search}>
+      <div style={{ margin: '0 16px' }}>
         <Inputbox
           isDarkThemed={false}
           placeholder={`Search ${filterSearch?.facet?.name}`}
@@ -281,32 +290,32 @@ const Filters = ({
       </div>
       <div
         style={{
-          margin: "16px 0 20px",
+          margin: '16px 0 20px',
         }}
         className={styles.accordion_divider}
       />
       {renderFacetValues(filterSearch.facet)}
     </div>
-  );
+  )
 
   return (
     <>
-      {isFilterApiLoading && <PageLoader variant="transparent" />}
-      <div id="filter_wrapper" className={styles.filter_wrapper}>
+      {isFilterApiLoading && <PageLoader variant='transparent' />}
+      <div id='filter_wrapper' className={styles.filter_wrapper}>
         {filterSearch.state ? filterSearchHeader : filterHeader}
-        <div id="accordion-wrapper" className={styles.accordion_wrapper}>
+        <div id='accordion-wrapper' className={styles.accordion_wrapper}>
           {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
         </div>
         {bottomBlock}
       </div>
     </>
-  );
-};
+  )
+}
 
 Filters.propTypes = {
   defaultSelectedFacet: PropTypes.string,
   handleCloseFilterModal: PropTypes.func,
   handleFilterModal: PropTypes.func,
-};
+}
 
-export default React.memo(Filters);
+export default React.memo(Filters)

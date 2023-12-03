@@ -1,57 +1,292 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material'
 
-export default createTheme({
-  components: {
-    MuiAccordion: {
-      styleOverrides: {
-        root: {
-          "&.Mui-expanded": {
-            margin: "0",
-            minHeight: "56px",
-          },
-          boxShadow: "unset",
-          backgroundColor: "#fdfdfd",
-          "&:before": {
-            backgroundColor: "unset",
-          },
+const common = {
+  MuiAccordion: {
+    styleOverrides: {
+      root: {
+        '&.Mui-expanded': {
+          margin: '0',
+          minHeight: '56px',
         },
-      },
-    },
-    MuiAccordionSummary: {
-      styleOverrides: {
-        root: {
-          "&.Mui-expanded": {
-            minHeight: "56px",
-          },
-          boxShadow: "unset",
-          height: "56px",
-        },
-      },
-    },
-    MuiAccordionDetails: {
-      styleOverrides: {
-        root: {
-          padding: "0",
-        },
-      },
-    },
-
-    MuiCheckbox: {
-      styleOverrides: {
-        root: {
-          "&.Mui-checked": {
-            color: "#088062",
-          },
-        },
-      },
-    },
-    MuiSvgIcon: {
-      styleOverrides: {
-        root: {
-          width: "32px",
-          height: "32px",
+        boxShadow: 'unset',
+        backgroundColor: '#fdfdfd',
+        '&:before': {
+          backgroundColor: 'unset',
         },
       },
     },
   },
-});
+  MuiAccordionSummary: {
+    styleOverrides: {
+      root: {
+        '&.Mui-expanded': {
+          minHeight: '56px',
+        },
+        boxShadow: 'unset',
+        height: '56px',
+      },
+    },
+  },
+  MuiAccordionDetails: {
+    styleOverrides: {
+      root: {
+        padding: '0',
+      },
+    },
+  },
+  MuiCheckbox: {
+    styleOverrides: {
+      root: {
+        '&.Mui-checked': {
+          color: '#088062',
+        },
+      },
+    },
+  },
+  MuiSvgIcon: {
+    styleOverrides: {
+      root: {
+        width: '32px',
+        height: '32px',
+      },
+    },
+  },
+}
+
+export const lightTheme = createTheme({
+  palette: {
+    color: {
+      primary: '#8800EC',
+      onPrimary: '#FFFFFF',
+      primaryContainer: '#F1DAFF',
+      onPrimaryContainer: '#2B0052',
+      secondary: '#006A6A',
+      onSecondary: '#FFFFFF',
+      secondaryContainer: '#6EF6F6',
+      onSecondaryContainer: '#002020',
+      tertiary: '#005CBD',
+      onTertiary: '#FFFFFF',
+      tertiaryContainer: '#D6E3FF',
+      onTertiaryContainer: '#001B3F',
+      quaternary: '#BA005B',
+      onQuaternary: '#FFFFFF',
+      quaternaryContainer: '#FFD9E2',
+      onQuaternaryContainer: '#3F001A',
+      error: '#BA1B1B',
+      onError: '#FFFFFF',
+      errorContainer: '#FFDAD4',
+      onErrorContainer: '#410001',
+      success: '#006E1E',
+      onSuccess: '#FFFFFF',
+      successContainer: '#7CFD86',
+      onSuccessContainer: '#012106',
+      warning: '#7F5700',
+      onWarning: '#FFFFFF',
+      warningContainer: '#FFDEA9',
+      onWarningContainer: '#281900',
+      background: '#FDFDFD',
+      onBackgroundHighContrast: '#212121',
+      onBackgroundMidContrast: '#2A2A2A',
+      onBackgroundLowContrast: '#474747',
+      inverseBackground: '#212121',
+      inverseOnBackgroundHighContrast: '#E2E2E2',
+      inverseOnBackgroundMidContrast: '#C6C6C6',
+      inverseOnBackgroundLowContrast: '#ABABAB',
+      surface: '#F4F4F4',
+      surfaceLowest: '#EAEAEA',
+      surfaceLow: '#E4E4E4',
+      surfaceMid: '#DEDEDE',
+      surfaceHigh: '#DCDCDC',
+      surfaceHighest: '#D8D8D8',
+      onSurfaceHighContrast: '#2A2A2A',
+      onSurfaceMidContrast: '#474747',
+      onSurfaceLowContrast: '#5E5E5E',
+      surfaceVariant: '#E4E1E6',
+      onSurfaceVariant: '#444347',
+      inverseSurfaceVariant: '#444347',
+      inverseOnSurfaceVariant: '#C8C5CA',
+      outline: '#78767A',
+      brandTajHighContrast: '#8d7350',
+      brandTajLowContrast: '#edebe5',
+      brandTitan: '#C2A670',
+      onNeupassHighContrast: '#FFFFFF',
+      onNeupassMidContrast: '#EBDEEF',
+      onNeupassLowContrast: '#CEC3D2',
+      onOverlayHighContrast: '#F4F4F4',
+      onOverlayMidContrast: '#C6C6C6',
+      ctaOnOverlay: '#CB92FF',
+    },
+  },
+  components: common,
+})
+
+export const darkTheme = createTheme({
+  palette: {
+    color: {
+      primary: '#CB92FF',
+      onPrimary: '#2B0052',
+      primaryContainer: '#A43CFF',
+      onPrimaryContainer: '#FFFFFF',
+      secondary: '#4DDADA',
+      onSecondary: '#003738',
+      secondaryContainer: '#004F50',
+      onSecondaryContainer: '#6EF6F6',
+      tertiary: '#A8C7FF',
+      onTertiary: '#002F67',
+      tertiaryContainer: '#004591',
+      onTertiaryContainer: '#D6E3FF',
+      quaternary: '#FFB1C7',
+      onQuaternary: '#66002E',
+      quaternaryContainer: '#8E0043',
+      onQuaternaryContainer: '#FFD9E2',
+      error: '#FF897A',
+      onError: '#410001',
+      errorContainer: '#930006',
+      onErrorContainer: '#FFDAD4',
+      success: '#5FE06D',
+      onSuccess: '#00390A',
+      successContainer: '#005314',
+      onSuccessContainer: '#7CFD86',
+      warning: '#FFBA2D',
+      onWarning: '#432C00',
+      warningContainer: '#604100',
+      onWarningContainer: '#FFDEA9',
+      background: '#212121',
+      onBackgroundHighContrast: '#E2E2E2',
+      onBackgroundMidContrast: '#C6C6C6',
+      onBackgroundLowContrast: '#ABABAB',
+      inverseBackground: '#FDFDFD',
+      inverseOnBackgroundHighContrast: '#212121',
+      inverseOnBackgroundMidContrast: '#2A2A2A',
+      inverseOnBackgroundLowContrast: '#474747',
+      surface: '#2A2A2A',
+      surfaceLowest: '#323232',
+      surfaceLow: '#363636',
+      surfaceMid: '#3B3B3B',
+      surfaceHigh: '#3D3D3D',
+      surfaceHighest: '#404040',
+      onSurfaceHighContrast: '#C6C6C6',
+      onSurfaceMidContrast: '#ABABAB',
+      onSurfaceLowContrast: '#919191',
+      surfaceVariant: '#444347',
+      onSurfaceVariant: '#C8C5CA',
+      inverseSurfaceVariant: '#E4E1E6',
+      inverseOnSurfaceVariant: '#444347',
+      outline: '#929094',
+      brandTajHighContrast: '#8d7350',
+      brandTajLowContrast: '#edebe5',
+      brandTitan: '#C2A670',
+      onNeupassHighContrast: '#FFFFFF',
+      onNeupassMidContrast: '#EBDEEF',
+      onNeupassLowContrast: '#CEC3D2',
+      onOverlayHighContrast: '#F4F4F4',
+      onOverlayMidContrast: '#C6C6C6',
+      ctaOnOverlay: '#CB92FF',
+    },
+  },
+  components: common,
+})
+
+export const cromaLightTheme = createTheme({
+  palette: {
+    color: {
+      primary: '#088466',
+      onPrimary: '#FFFFFF',
+      primaryContainer: '#CFFFF3',
+      onPrimaryContainer: '#191919',
+      secondary: '#088062',
+      onSecondary: '#FFFFFF',
+      secondaryContainer: '#CFFFF1',
+      onSecondaryContainer: '#191919',
+      tertiary: '#35A7FF',
+      onTertiary: '#191919',
+      tertiaryContainer: '#CFE5FF',
+      onTertiaryContainer: '#001D34',
+      quaternary: '#BA005B',
+      onQuaternary: '#FFFFFF',
+      quaternaryContainer: '#FFD9E2',
+      onQuaternaryContainer: '#FFFFFF',
+      error: '#BA1B1B',
+      onError: '#FFFFFF',
+      errorContainer: '#FFDAD4',
+      onErrorContainer: '#410001',
+      success: '#006E1E',
+      onSuccess: '#FFFFFF',
+      successContainer: '#7CFD86',
+      onSuccessContainer: '#410001',
+      warning: '#7F5700',
+      onWarning: '#FFFFFF',
+      warningContainer: '#FFDEA9',
+      onWarningContainer: '#281900',
+      background: '#FDFDFD',
+      onBackgroundHighContrast: '#212121',
+      onBackgroundMidContrast: '#616161',
+      onBackgroundLowContrast: '#848484',
+      surface: '#F4F4F4',
+      surfaceLowest: '#EAEAEA',
+      surfaceLow: '#E4E4E4',
+      surfaceMid: '#DEDEDE',
+      surfaceHigh: '#DCDCDC',
+      surfaceHighest: '#D9D9D9',
+      onSurfaceHighContrast: '#2A2A2A',
+      onSurfaceMidContrast: '#474747',
+      onSurfaceLowContrast: '#777777',
+      surfaceVariant: '#E4E1E6',
+      onSurfaceVariant: '#444347',
+      outline: '#C5C5C5',
+    },
+  },
+  components: common,
+})
+
+export const cromaDarkTheme = createTheme({
+  palette: {
+    color: {
+      primary: '#12DAA8',
+      onPrimary: '#191919',
+      primaryContainer: '#00513C',
+      onPrimaryContainer: '#FFFFFF',
+      secondary: '#12D6A5',
+      onSecondary: '#191919',
+      secondaryContainer: '#075642',
+      onSecondaryContainer: '#FFFFFF',
+      tertiary: '#BEE3FF',
+      onTertiary: '#191919',
+      tertiaryContainer: '#1D649A',
+      onTertiaryContainer: '#FFFFFF',
+      quaternary: '#FFB1C7',
+      onQuaternary: '#66002E',
+      quaternaryContainer: '#8E0043',
+      onQuaternaryContainer: '#FFFFFF',
+      error: '#FF897A',
+      onError: '#410001',
+      errorContainer: '#930006',
+      onErrorContainer: '#FFFFFF',
+      success: '#5FE06D',
+      onSuccess: '#00390A',
+      successContainer: '#005314',
+      onSuccessContainer: '#FFFFFF',
+      warning: '#FFBA2D',
+      onWarning: '#432C00',
+      warningContainer: '#604100',
+      onWarningContainer: '#FFFFFF',
+      background: '#212121',
+      onBackgroundHighContrast: '#EFEFEF',
+      onBackgroundMidContrast: '#C6C6C6',
+      onBackgroundLowContrast: '#A6A6A6',
+      surface: '#2A2A2A',
+      surfaceLowest: '#383838',
+      surfaceLow: '#3C3C3C',
+      surfaceMid: '#414141',
+      surfaceHigh: '#424242',
+      surfaceHighest: '#454545',
+      onSurfaceHighContrast: '#DCDCDC',
+      onSurfaceMidContrast: '#ABABAB',
+      onSurfaceLowContrast: '#8B8B8B',
+      surfaceVariant: '#444347',
+      onSurfaceVariant: '#C8C5CA',
+      outline: '#616161',
+    },
+  },
+  components: common,
+})

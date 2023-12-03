@@ -1,17 +1,12 @@
 .searchbar_wrapper {
-  margin: 0 16px;
+  margin: 8px 16px 0;
   height: 40px;
   border-radius: 4px;
-  background: rgba(226, 226, 226, 0.12);
   display: flex;
   align-items: center;
   padding: 0 12px;
   justify-content: space-between;
   cursor: pointer;
-}
-
-.searchbar_wrapper_white {
-  background: rgba(27, 27, 27, 0.08);
 }
 
 .search_text {

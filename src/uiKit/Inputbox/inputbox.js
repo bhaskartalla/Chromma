@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./inputbox.module.css";
-import searchWhiteIcon from "assets/icons/search-white-icon.svg";
-import searchBlackIcon from "assets/icons/search-black-icon.svg";
-import PropTypes from "prop-types";
-import crossCloseIcon from "assets/icons/cross-close-icon.svg";
+import React, { useState, useRef, useEffect } from 'react'
+import styles from './inputbox.module.css'
+import searchWhiteIcon from 'assets/icons/search-white-icon.svg'
+import searchBlackIcon from 'assets/icons/search-white-icon.svg'
+import PropTypes from 'prop-types'
+import crossCloseIcon from 'assets/icons/wishlist-icon.svg'
 
 const Inputbox = ({
   isDarkThemed = true,
-  value = "",
+  value = '',
   placeholder,
   disabled = false,
   readOnly = false,
@@ -15,24 +15,24 @@ const Inputbox = ({
   onKeyDown = () => {},
   setFocus = false,
 }) => {
-  const [inputText, setInputText] = useState(value);
-  const inputRef = useRef(null);
+  const [inputText, setInputText] = useState(value)
+  const inputRef = useRef(null)
 
   useEffect(() => {
-    setFocus && handleClick();
-  }, [setFocus]);
+    setFocus && handleClick()
+  }, [setFocus])
 
-  const handleClick = () => inputRef?.current?.focus();
+  const handleClick = () => inputRef?.current?.focus()
 
   const handleTextChange = (event) => {
-    setInputText(event.target.value);
-    onChange(event.target.value);
-  };
+    setInputText(event.target.value)
+    onChange(event.target.value)
+  }
 
   const handleClearText = () => {
-    setInputText("");
-    onChange("");
-  };
+    setInputText('')
+    onChange('')
+  }
 
   return (
     <div
@@ -45,7 +45,7 @@ const Inputbox = ({
         width={16}
         height={16}
         src={isDarkThemed ? searchWhiteIcon : searchBlackIcon}
-        alt="Search icon"
+        alt='Search icon'
       />
       <input
         ref={inputRef}
@@ -62,13 +62,13 @@ const Inputbox = ({
           width={10}
           height={10}
           src={crossCloseIcon}
-          alt="circleCloseIcon"
+          alt='circleCloseIcon'
           onClick={handleClearText}
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 Inputbox.propTypes = {
   isDarkThemed: PropTypes.bool,
@@ -79,6 +79,6 @@ Inputbox.propTypes = {
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
   setFocus: PropTypes.bool,
-};
+}
 
-export default Inputbox;
+export default Inputbox

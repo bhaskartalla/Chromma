@@ -1,9 +1,10 @@
-import React from "react";
-import downChevron from "assets/icons/down-chevron-icon.svg";
-import downChevronGreenIcon from "assets/icons/down-chevron-green-icon.svg";
-import Typography from "uiKit/Typography/typography";
-import styles from "./chip.module.css";
-import PropTypes from "prop-types";
+import React from 'react'
+import downChevron from 'assets/icons/down-chevron-icon.svg'
+import downChevronGreenIcon from 'assets/icons/down-chevron-green-icon.svg'
+import Typography from 'uiKit/Typography/typography'
+import styles from './chip.module.css'
+import PropTypes from 'prop-types'
+import { useTheme } from '@mui/material'
 
 const Chip = ({
   text,
@@ -14,6 +15,7 @@ const Chip = ({
   handleChipClick,
   style,
 }) => {
+  const theme = useTheme()
   return (
     <div
       style={{ ...style }}
@@ -24,7 +26,13 @@ const Chip = ({
     >
       <Typography
         variant={textVariant}
-        style={{ color: `${isSelected ? "#12DAA8" : "#ABABAB"}` }}
+        style={{
+          color: `${
+            isSelected
+              ? theme.palette.color.primary
+              : theme.palette.color.onBackgroundLowContrast
+          }`,
+        }}
         text={text || children}
       />
       {withIcon && (
@@ -32,13 +40,13 @@ const Chip = ({
           width={16}
           height={16}
           src={isSelected ? downChevronGreenIcon : downChevron}
-          alt="Chevron icon"
-          style={{ marginLeft: "8px" }}
+          alt='Chevron icon'
+          style={{ marginLeft: '8px' }}
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 Chip.propTypes = {
   text: PropTypes.string,
@@ -48,6 +56,6 @@ Chip.propTypes = {
   withIcon: PropTypes.bool,
   handleChipClick: PropTypes.func,
   style: PropTypes.object,
-};
+}
 
-export default React.memo(Chip);
+export default React.memo(Chip)

@@ -4,55 +4,56 @@ import React, {
   useEffect,
   useCallback,
   Fragment,
-} from "react";
-import PlpAppbar from "components/Appbar/plp_appbar";
-import Searchbar from "components/Searchbar/searchbar";
-import FilterChipsSection from "./FilterChipsSection/filter_chips_section";
-import PlpCard from "./PlpCard/plp_card";
-import styles from "./plp_page.module.css";
-import Typography from "uiKit/Typography/typography";
-import Dropdown from "components/Dropdown/dropdown";
-import EndOfScroll from "./EndOfScroll/end_of_scroll";
-import NoResultsFound from "components/NoResultsFound/no_results_found";
-import InlineFilters from "./InlineFilterCard/inline_filters";
-import Filters from "pages/ProductListing/Filters/filters";
-import circleCloseIcon from "assets/icons/circle-close-icon.svg";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+} from 'react'
+import PlpAppbar from 'components/Appbar/plp_appbar'
+import Searchbar from 'components/Searchbar/searchbar'
+import FilterChipsSection from './FilterChipsSection/filter_chips_section'
+import PlpCard from './PlpCard/plp_card'
+import styles from './plp_page.module.css'
+import Typography from 'uiKit/Typography/typography'
+import Dropdown from 'components/Dropdown/dropdown'
+import EndOfScroll from './EndOfScroll/end_of_scroll'
+import NoResultsFound from 'components/NoResultsFound/no_results_found'
+import InlineFilters from './InlineFilterCard/inline_filters'
+import Filters from 'pages/ProductListing/Filters/filters'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchPlpApiResponse,
   fetchPaginationApiResponse,
-} from "./state/action_creators";
-import PageLoader from "uiKit/Loaders/page_loader";
-import InlineLoader from "uiKit/Loaders/inline_loader";
+} from './state/action_creators'
+import PageLoader from 'uiKit/Loaders/page_loader'
+import InlineLoader from 'uiKit/Loaders/inline_loader'
+import { useTheme } from '@mui/material'
+import { darkTheme } from 'theme'
 
 const PlpPage = () => {
-  const plpResponse = useSelector((state) => state.plpReducer);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const plpResponse = useSelector((state) => state.plpReducer)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [filterModal, setFilterModal] = useState({
     state: false,
-    facetCode: "",
-  });
+    facetCode: '',
+  })
 
-  const scrollToTop = useRef(null);
-  const [params] = useSearchParams();
-
-  const query = params.get("query");
+  const scrollToTop = useRef(null)
+  const [params] = useSearchParams()
+  const theme = useTheme()
+  const query = params.get('query')
 
   useEffect(() => {
     dispatch(
       fetchPlpApiResponse({
-        category: "electronics",
-        pinCode: "400001",
+        category: 'electronics',
+        pinCode: '400001',
         query,
-        sortBy: "relevance",
+        sortBy: 'relevance',
         currentPage: 0,
-        filter: "",
+        filter: '',
       })
-    );
+    )
     // eslint-disable-next-line
-  }, []);
+  }, [])
   // console.log("PlpPage", plpResponse);
 
   const {
@@ -61,63 +62,69 @@ const PlpPage = () => {
     pickAStoreList,
     filterString,
     pagination,
-  } = plpResponse;
+  } = plpResponse
 
-  const { currentPage, totalPages, isPageApiLoading } = pagination;
+  const { currentPage, totalPages, isPageApiLoading } = pagination
 
-  const [isApiCalled, setIsApiCalled] = useState(isPageApiLoading);
-  useEffect(() => setIsApiCalled(isPageApiLoading), [isPageApiLoading]);
+  const [isApiCalled, setIsApiCalled] = useState(isPageApiLoading)
+  useEffect(() => setIsApiCalled(isPageApiLoading), [isPageApiLoading])
 
   const { isPlpApiLoading, apiProducts, apiFacets, apiFilterItemCount } =
-    apiResponse;
+    apiResponse
 
-  const { internalFacets, internalFilterString } = internalResponse;
-  const showNoResultsCard = !apiProducts?.length;
+  const { internalFacets, internalFilterString } = internalResponse
+  const showNoResultsCard = !apiProducts?.length
 
-  let start = 0;
-  let end = 0;
-  const facetPerCard = 2;
+  let start = 0
+  let end = 0
+  const facetPerCard = 2
   const getPopularFacets = () => {
-    start = end;
-    end = end + facetPerCard;
+    start = end
+    end = end + facetPerCard
     const newPopularFacet = internalFacets
       .filter((facet) => facet.popular)
-      .slice(start, end);
-    return newPopularFacet;
-  };
+      .slice(start, end)
+    return newPopularFacet
+  }
 
   const handleScrollToTop = useCallback(
     () =>
       scrollToTop.current.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       }),
     []
-  );
+  )
 
   const handleCloseFilterModal = useCallback(
-    () => setFilterModal({ state: false, facetCode: "" }),
+    () => setFilterModal({ state: false, facetCode: '' }),
     []
-  );
+  )
 
   const handleFilterModal = useCallback((facetCode) => {
-    setFilterModal({ state: true, facetCode });
-  }, []);
+    setFilterModal({ state: true, facetCode })
+  }, [])
 
   const renderHeaderBlock = () => (
-    <div className={styles.header_section}>
-      <PlpAppbar pincode={400013} />
+    <div
+      style={{
+        backgroundColor: theme.palette.color.background,
+      }}
+      className={styles.header_section}
+    >
+      <PlpAppbar theme={darkTheme} pincode={400013} />
       <Searchbar
         searchedText={query}
-        circleCloseIcon={circleCloseIcon}
+        closeIconType={'CircleCloseIcon'}
         handleSearchBarClick={() => {
-          const queryString = query ? `?searchText=${query}` : "";
-          navigate(`/global-search${queryString}`);
+          const queryString = query ? `?searchText=${query}` : ''
+          navigate(`/global-search${queryString}`)
         }}
         handleOnCloseClick={(event) => {
-          navigate("/global-search");
-          event.stopPropagation();
+          navigate('/global-search')
+          event.stopPropagation()
         }}
+        theme={theme}
       />
       <div
         className={`${styles.filter_chips_section} ${
@@ -132,50 +139,50 @@ const PlpPage = () => {
         )}
       </div>
     </div>
-  );
+  )
 
   const noOfProducts = (pickAStoreList, filterItemCount) => {
     return (
       <div className={styles.no_of_products}>
         <Typography
-          variant="body-x-small-regular"
+          variant='body-x-small-regular'
           text={`${filterItemCount} ${
-            filterItemCount > 0 ? "Products" : "Product"
-          } ${pickAStoreList.values.length > 0 ? "from" : ""}`}
+            filterItemCount > 0 ? 'Products' : 'Product'
+          } ${pickAStoreList.values.length > 0 ? 'from' : ''}`}
           style={{
-            marginRight: "4px",
-            color: "#A6A6A6",
+            marginRight: '4px',
+            color: theme.palette.color.onBackgroundLowContrast,
           }}
         />
         {pickAStoreList.values.length > 0 && (
           <Dropdown brandList={pickAStoreList.values} />
         )}
       </div>
-    );
-  };
+    )
+  }
 
   const onScroll = () => {
     if (scrollToTop.current) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollToTop.current;
+      const { scrollTop, scrollHeight, clientHeight } = scrollToTop.current
 
       if (scrollTop + clientHeight > scrollHeight - 160) {
         if (!isApiCalled && currentPage < totalPages - 1) {
-          setIsApiCalled(true);
+          setIsApiCalled(true)
 
           dispatch(
             fetchPaginationApiResponse({
-              category: "electronics",
-              pinCode: "400001",
+              category: 'electronics',
+              pinCode: '400001',
               query,
-              sortBy: "relevance",
+              sortBy: 'relevance',
               currentPage: currentPage + 1,
               filter: internalFilterString,
             })
-          );
+          )
         }
       }
     }
-  };
+  }
 
   const renderPlpScrollCardsBlock = () => (
     <div ref={scrollToTop} onScroll={onScroll} className={styles.cards_section}>
@@ -189,24 +196,29 @@ const PlpPage = () => {
               <InlineFilters
                 facets={getPopularFacets()}
                 handleSeeAllFilters={() =>
-                  setFilterModal({ state: true, facetCode: "" })
+                  setFilterModal({ state: true, facetCode: '' })
                 }
               />
             )}
           </Fragment>
-        );
+        )
       })}
       {isPageApiLoading && <InlineLoader />}
       {currentPage === totalPages - 1 && (
         <EndOfScroll handleScrollToTop={handleScrollToTop} />
       )}
     </div>
-  );
+  )
 
   return isPlpApiLoading ? (
     <PageLoader />
   ) : (
-    <div style={{ position: "relative" }}>
+    <div
+      style={{
+        position: 'relative',
+        backgroundColor: theme.palette.color.background,
+      }}
+    >
       <div className={styles.page_wrapper}>
         {renderHeaderBlock()}
         {showNoResultsCard ? (
@@ -223,7 +235,7 @@ const PlpPage = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PlpPage;
+export default PlpPage

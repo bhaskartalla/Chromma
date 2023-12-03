@@ -1,31 +1,26 @@
-import Home from "./pages/Home/home";
-import Cart from "./pages/Cart/cart";
-import Wishlist from "./pages/Wishlist/wishlist";
-import PlpPage from "./pages/ProductListing/plp_page";
-import ProductDescription from "./pages/ProductDescription/pdp_page";
-import GlobalSearchPage from "./pages/GlobalSearch/global_search";
-import FiltersPage from "./pages/ProductListing/Filters/filters";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { v4 as uuidV4 } from "uuid";
+import Home from './pages/Home/home'
+import Cart from './pages/Cart/cart'
+import Wishlist from './pages/Wishlist/wishlist'
+import PlpPage from './pages/ProductListing/plp_page'
+import ProductDescription from './pages/ProductDescription/pdp_page'
+import GlobalSearchPage from './pages/GlobalSearch/global_search'
+import FiltersPage from './pages/ProductListing/Filters/filters'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-  if (!window.localStorage.getItem("anonymousId")) {
-    window.localStorage.setItem("anonymousId", uuidV4());
-  }
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product-listing" element={<PlpPage />} />
-        <Route path="/product-description" element={<ProductDescription />} />
-        <Route path="/global-search" element={<GlobalSearchPage />} />
-        <Route path="/filters" element={<FiltersPage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/product-listing' element={<PlpPage />} />
+        <Route path='/product-description' element={<ProductDescription />} />
+        <Route path='/global-search' element={<GlobalSearchPage />} />
+        <Route path='/filters' element={<FiltersPage />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/wishlist' element={<Wishlist />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 /**
@@ -50,7 +45,8 @@ function App() {
  * move all hardcoded string values in other file
  * add env file
  * remove the redundant code from reducer file
+ * Remove the palate object from theme
  *
  */
 
-export default App;
+export default App
