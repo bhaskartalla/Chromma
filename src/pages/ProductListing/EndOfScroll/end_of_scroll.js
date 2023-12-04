@@ -9,7 +9,12 @@ import { useTheme } from '@mui/material'
 const EndOfScroll = ({ handleScrollToTop }) => {
   const theme = useTheme()
   return (
-    <div className={styles.end_of_scroll_wrapper}>
+    <div
+      style={{
+        background: theme.palette.color.surface,
+      }}
+      className={styles.end_of_scroll_wrapper}
+    >
       <img src={endOfScrollImage} alt='End of scroll card' />
       <Typography
         variant='title-medium-bold'

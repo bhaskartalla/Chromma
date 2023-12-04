@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import styles from './plp_card.module.css'
-import Wishlist from 'components/Wishlist/wishlist'
 import Typography from 'uiKit/Typography/typography'
 import ratingIcon from 'assets/icons/rating-icon.svg'
 import nonServiceableIcon from 'assets/icons/non-serviceable-icon.svg'
@@ -11,6 +10,7 @@ import PropTypes from 'prop-types'
 import LoadDefaultImg from 'uiKit/PlaceholderImage/placeholderImage'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@mui/material'
+import WishlistIcon from 'assets/icons/wishlist-icon'
 
 const PlpCard = ({ productDetails }) => {
   const theme = useTheme()
@@ -116,18 +116,35 @@ const PlpCard = ({ productDetails }) => {
   }
 
   const productImage = () => (
-    <div className={styles.image_section}>
+    <div
+      style={{
+        background: theme.palette.color.surface,
+      }}
+      className={styles.image_section}
+    >
       <div className={styles.tag_wishlist_wrapper}>
-        {/* <div className={styles.card_tag}>
+        {/* <div
+          style={{
+            background: theme.palette.color.success,
+          }}
+          className={styles.card_tag}
+        >
           <Typography
-            variant="caption-xxx-small-semibold"
-            text={"Deals of the day"}
+            variant='caption-xxx-small-semibold'
+            text={'Deals of the day'}
             style={{
               color: theme.palette.color.onSuccess,
             }}
           />
         </div> */}
-        <Wishlist isAddedToWishlist={true} />
+        <WishlistIcon
+          withBackground
+          isAddedToWishlist={true}
+          theme={theme}
+          style={{
+            marginLeft: 'auto',
+          }}
+        />
       </div>
       <div className={styles.product_image_wrapper}>
         <LoadDefaultImg
@@ -185,8 +202,14 @@ const PlpCard = ({ productDetails }) => {
           }}
         />
       )}
+
       {Boolean(parseInt(discount.split('%')[0])) && (
-        <div className={styles.discount_chip}>
+        <div
+          style={{
+            border: `1px solid ${theme.palette.color.outline}7A`,
+          }}
+          className={styles.discount_chip}
+        >
           <Typography
             variant='caption-xxx-small-semibold'
             text={`${discount} OFF`}
@@ -261,10 +284,13 @@ const PlpCard = ({ productDetails }) => {
   const productDetailsBlock = () => (
     <div className={styles.details}>
       {ratings ? (
-        <div className={styles.review_ratings}>
+        <div>
           <Typography
             variant='caption-xx-small-semibold'
             text={Math.round((averageRating + Number.EPSILON) * 100) / 100}
+            style={{
+              color: theme.palette.color.onBackgroundHighContrast,
+            }}
           />
           <img
             width={12}
@@ -276,6 +302,9 @@ const PlpCard = ({ productDetails }) => {
           <Typography
             variant='caption-xx-small-regular'
             text={`${ratings} ratings`}
+            style={{
+              color: theme.palette.color.onBackgroundMidContrast,
+            }}
           />
         </div>
       ) : (

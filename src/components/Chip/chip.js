@@ -1,6 +1,5 @@
 import React from 'react'
-import downChevron from 'assets/icons/down-chevron-icon.svg'
-import downChevronGreenIcon from 'assets/icons/down-chevron-green-icon.svg'
+import DownChevronIcon from 'assets/icons/down-chevron-icon'
 import Typography from 'uiKit/Typography/typography'
 import styles from './chip.module.css'
 import PropTypes from 'prop-types'
@@ -18,10 +17,18 @@ const Chip = ({
   const theme = useTheme()
   return (
     <div
-      style={{ ...style }}
-      className={`${styles.chip_wrapper} ${
-        isSelected && styles.chip_wrapper_selected
-      }`}
+      style={{
+        ...style,
+        border: `1px solid ${
+          isSelected ? theme.palette.color.primary : theme.palette.color.outline
+        }66`,
+        background: `${
+          isSelected
+            ? `${theme.palette.color.primary}14`
+            : `${theme.palette.color.surface}3D`
+        }`,
+      }}
+      className={styles.chip_wrapper}
       onClick={handleChipClick}
     >
       <Typography
@@ -36,18 +43,26 @@ const Chip = ({
         text={text || children}
       />
       {withIcon && (
-        <img
-          width={16}
-          height={16}
-          src={isSelected ? downChevronGreenIcon : downChevron}
-          alt='Chevron icon'
-          style={{ marginLeft: '8px' }}
+        <DownChevronIcon
+          fill={
+            isSelected
+              ? theme.palette.color.primary
+              : theme.palette.color.onSurfaceMidContrast
+          }
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '8px',
+          }}
         />
       )}
     </div>
   )
 }
 
+{
+}
 Chip.propTypes = {
   text: PropTypes.string,
   children: PropTypes.string,

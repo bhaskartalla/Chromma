@@ -35,7 +35,12 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
 
   return (
     facets.length > 0 && (
-      <div className={styles.inline_filter_wrapper}>
+      <div
+        style={{
+          background: theme.palette.color.surface,
+        }}
+        className={styles.inline_filter_wrapper}
+      >
         {facets?.map((facet) => (
           <div key={facet.code} style={{ marginTop: '16px' }}>
             <Typography
@@ -88,6 +93,10 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
             textColor={theme.palette.color.onPrimary}
             text={'Show items'.toUpperCase()}
             handleOnClick={handleShowItems}
+            theme={theme}
+            style={{
+              background: theme?.palette.color.primary,
+            }}
           />
         </div>
       </div>

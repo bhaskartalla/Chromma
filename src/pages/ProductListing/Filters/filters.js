@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './filters.module.css'
 import Typography from 'uiKit/Typography/typography'
 import Button from 'uiKit/Button/button'
-import crossCloseIcon from 'assets/icons/wishlist-icon.svg'
+import CloseIcon from 'assets/icons/close-icon'
 import PropTypes from 'prop-types'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -21,14 +21,14 @@ import {
 } from '../state/action_creators'
 import { useSearchParams } from 'react-router-dom'
 import PageLoader from 'uiKit/Loaders/page_loader'
-import { useTheme } from '@mui/material'
+import themeHoc from 'utils/themeHoc'
 
 const Filters = ({
   defaultSelectedFacet,
   handleCloseFilterModal,
   handleFilterModal,
+  theme,
 }) => {
-  const theme = useTheme()
   const plpResponse = useSelector((state) => state.plpReducer)
   const dispatch = useDispatch()
   const [expandedFacet, setExpandedFacet] = useState(defaultSelectedFacet)
@@ -95,19 +95,19 @@ const Filters = ({
       <Typography
         variant='body-medium-regular'
         style={{
-          color: theme.palette.color.background,
+          color: theme.palette.color.onBackgroundHighContrast,
           left: '45%',
           position: 'absolute',
         }}
         text='Filters'
       />
-      <img
-        width={16}
-        height={16}
-        src={crossCloseIcon}
-        alt='Close icon'
-        style={{ marginLeft: 'auto' }}
+      <CloseIcon
+        fill={theme.palette.color.onBackgroundHighContrast}
         onClick={handleCloseFilterModal}
+        backgroundColor={theme?.palette.color.surfaceVariant}
+        style={{
+          marginLeft: 'auto',
+        }}
       />
     </div>
   )
@@ -124,22 +124,27 @@ const Filters = ({
       />
       <Typography
         variant='body-medium-regular'
-        style={{ color: theme.palette.color.background }}
+        style={{ color: theme.palette.color.onBackgroundHighContrast }}
         text={filterSearch?.facet?.name}
       />
-      <img
-        width={16}
-        height={16}
-        src={crossCloseIcon}
-        alt='Close icon'
-        style={{ marginLeft: 'auto' }}
+      <CloseIcon
+        fill={theme.palette.color.onBackgroundHighContrast}
         onClick={handleCloseFilterModal}
+        backgroundColor={theme?.palette.color.surfaceVariant}
+        style={{
+          marginLeft: 'auto',
+        }}
       />
     </div>
   )
 
   const bottomBlock = (
-    <div className={styles.bottom_bar}>
+    <div
+      style={{
+        background: theme.palette.color.background,
+      }}
+      className={styles.bottom_bar}
+    >
       <Typography
         variant='body-x-small-regular'
         style={{ color: theme.palette.color.onSurfaceLowContrast }}
@@ -181,6 +186,8 @@ const Filters = ({
     </div>
   )
 
+  console.log('theme.palette.color.secondary', theme.themeValue)
+
   const renderFacetValues = (facet, count) => (
     <div className={styles.accordion_details}>
       {facet?.values?.slice(0, count).map((value, index) => (
@@ -192,7 +199,7 @@ const Filters = ({
           {facet.multiSelect ? (
             <Checkbox
               textVariant='label-x-small-regular'
-              textColor={theme.palette.color.background}
+              textColor={theme.palette.color.onBackgroundHighContrast}
               text={`${value.name} (${value.count})`}
               checked={value.selected}
               onChange={() => {
@@ -204,6 +211,8 @@ const Filters = ({
                   })
                 )
               }}
+              fillChecked={theme.palette.color.secondary}
+              fillOutline={theme.palette.color.outline}
             />
           ) : (
             <div id='radio-button' />
@@ -229,10 +238,16 @@ const Filters = ({
           <Typography
             variant='body-small-regular'
             text={facet.name}
-            style={{ color: theme.palette.color.background }}
+            style={{ color: theme.palette.color.onBackgroundHighContrast }}
           />
           {facet?.selectedValueCount > 0 && (
-            <div className={styles.selectedValueCount}>
+            <div
+              style={{
+                border: `2px solid ${theme.palette.color.background}`,
+                background: theme.palette.color.primary,
+              }}
+              className={styles.selectedValueCount}
+            >
               <Typography
                 variant='caption-xx-small-semibold'
                 text={facet?.selectedValueCount}
@@ -245,11 +260,13 @@ const Filters = ({
           {facet.isSearchEnabled && (
             <div style={{ marginBottom: '24px' }}>
               <Searchbar
-                searchedText='Search Brand'
-                isDarkThemed={false}
-                handleSearchBarClick={() =>
+                searchedText={`Search ${facet.name}`}
+                closeIconType={'CircleCloseIcon'}
+                handleSearchBarClick={() => {
                   handleFilterSearchModal(facet, true)
-                }
+                }}
+                withCloseIcon={false}
+                theme={theme}
               />
             </div>
           )}
@@ -272,6 +289,7 @@ const Filters = ({
       <div
         style={{
           margin: '0 16px',
+          background: theme.palette.color.outline,
         }}
         className={styles.accordion_divider}
       />
@@ -282,7 +300,7 @@ const Filters = ({
     <div id='filter-search' className={styles.filter_search}>
       <div style={{ margin: '0 16px' }}>
         <Inputbox
-          isDarkThemed={false}
+          theme={theme}
           placeholder={`Search ${filterSearch?.facet?.name}`}
           onChange={handleTextChange}
           setFocus={filterSearch.setFocus}
@@ -301,7 +319,13 @@ const Filters = ({
   return (
     <>
       {isFilterApiLoading && <PageLoader variant='transparent' />}
-      <div id='filter_wrapper' className={styles.filter_wrapper}>
+      <div
+        id='filter_wrapper'
+        style={{
+          background: theme.palette.color.background,
+        }}
+        className={styles.filter_wrapper}
+      >
         {filterSearch.state ? filterSearchHeader : filterHeader}
         <div id='accordion-wrapper' className={styles.accordion_wrapper}>
           {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
@@ -316,6 +340,7 @@ Filters.propTypes = {
   defaultSelectedFacet: PropTypes.string,
   handleCloseFilterModal: PropTypes.func,
   handleFilterModal: PropTypes.func,
+  theme: PropTypes.object.isRequired,
 }
 
-export default React.memo(Filters)
+export default React.memo(themeHoc(Filters))

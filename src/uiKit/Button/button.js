@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./button.module.css";
-import Typography from "uiKit/Typography/typography";
-import PropTypes from "prop-types";
+import React from 'react'
+import styles from './button.module.css'
+import Typography from 'uiKit/Typography/typography'
+import PropTypes from 'prop-types'
 
 const Button = ({
   textVariant,
@@ -20,8 +20,8 @@ const Button = ({
         onClick={handleOnClick}
       />
     </button>
-  );
-};
+  )
+}
 
 Button.propTypes = {
   textVariant: PropTypes.string.isRequired,
@@ -30,6 +30,6 @@ Button.propTypes = {
   text: PropTypes.string,
   children: PropTypes.string,
   handleOnClick: PropTypes.func.isRequired,
-};
+}
 
-export default Button;
+export default Button

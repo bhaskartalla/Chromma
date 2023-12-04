@@ -9,21 +9,10 @@ import CloseIcon from 'assets/icons/close-icon'
 const Searchbar = ({
   searchedText,
   handleSearchBarClick,
-  closeIconType,
   handleOnCloseClick,
   theme,
+  withCloseIcon = true,
 }) => {
-  const closeIcon = () => {
-    return (
-      <CloseIcon
-        fill={theme?.palette.color.onSurfaceVariant}
-        onClick={handleOnCloseClick}
-        backgroundColor={theme?.palette.color.surfaceVariant}
-        height='24'
-        width='24'
-      />
-    )
-  }
   return (
     <div
       id='searchbar_wrapper'
@@ -44,7 +33,17 @@ const Searchbar = ({
           }}
         />
       </div>
-      {closeIcon()}
+      {withCloseIcon && (
+        <CloseIcon
+          fill={theme?.palette.color.onSurfaceVariant}
+          fillBackground={theme?.palette.color.surfaceVariant}
+          onClick={handleOnCloseClick}
+          backgroundColor={theme?.palette.color.surfaceVariant}
+          height={24}
+          width={24}
+          withBackground
+        />
+      )}
     </div>
   )
 }
@@ -53,7 +52,8 @@ Searchbar.propTypes = {
   searchedText: PropTypes.string,
   handleSearchBarClick: PropTypes.func,
   handleOnCloseClick: PropTypes.func,
-  closeIconType: PropTypes.string,
+  theme: PropTypes.object,
+  withCloseIcon: PropTypes.bool,
 }
 
 export default React.memo(themeHoc(Searchbar))

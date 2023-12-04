@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './dropdown.module.css'
 import Typography from 'uiKit/Typography/typography'
-import downChevronGreenIcon from 'assets/icons/down-chevron-green-icon.svg'
+import DownChevronIcon from 'assets/icons/down-chevron-icon'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material'
 
@@ -18,22 +18,35 @@ const Dropdown = ({ brandList }) => {
 
   return (
     <div className={styles.dd_wrapper}>
-      <div className={styles.dd_value} onClick={handleToggleDropDown}>
+      <div
+        style={{
+          background: `${theme.palette.color.primary}1E`,
+        }}
+        className={styles.dd_value}
+        onClick={handleToggleDropDown}
+      >
         <Typography
           variant='body-x-small-bold'
           style={{ color: theme.palette.color.primary }}
           text={brandList[0].name}
         />
-        <img
-          width={12}
-          height={12}
-          src={downChevronGreenIcon}
-          alt='downChevronGreenIcon'
-          style={{ marginLeft: '4px' }}
+        <DownChevronIcon
+          fill={theme.palette.color.primary}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '4px',
+          }}
         />
       </div>
       {dropDown && (
-        <div className={styles.dd_options}>
+        <div
+          style={{
+            background: theme.palette.color.surfaceLow,
+          }}
+          className={styles.dd_options}
+        >
           {brandList.slice(1).map((brand, index) => (
             <div
               key={brand.code}

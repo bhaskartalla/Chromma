@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   padding: 8px 0;
-  background: #303030;
 }
 
 .filter_chips {
@@ -15,19 +14,6 @@
 
 .filter_chips::-webkit-scrollbar {
   display: none;
-}
-
-.filter_chip {
-  width: fit-content;
-  height: 32px;
-  display: flex;
-  padding: 0 12px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  border: 1px solid rgba(146, 144, 148, 0.4);
-  background: rgba(42, 42, 42, 0.24);
-  box-sizing: border-box;
 }
 
 .see_all_filter {

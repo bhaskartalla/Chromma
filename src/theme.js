@@ -54,6 +54,7 @@ const common = {
 }
 
 export const lightTheme = createTheme({
+  themeValue: 'lightTheme',
   palette: {
     color: {
       primary: '#8800EC',
@@ -121,6 +122,7 @@ export const lightTheme = createTheme({
 })
 
 export const darkTheme = createTheme({
+  themeValue: 'darkTheme',
   palette: {
     color: {
       primary: '#CB92FF',
@@ -188,6 +190,7 @@ export const darkTheme = createTheme({
 })
 
 export const cromaLightTheme = createTheme({
+  themeValue: 'cromaLightTheme',
   palette: {
     color: {
       primary: '#088466',
@@ -240,6 +243,7 @@ export const cromaLightTheme = createTheme({
 })
 
 export const cromaDarkTheme = createTheme({
+  themeValue: 'cromaDarkTheme',
   palette: {
     color: {
       primary: '#12DAA8',

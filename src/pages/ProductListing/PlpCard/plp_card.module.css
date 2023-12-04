@@ -23,7 +23,6 @@
 .image_section {
   min-width: 136px;
   border-radius: 8px;
-  background: #303030;
   height: inherit;
   position: relative;
   margin-right: 20px;
@@ -47,7 +46,6 @@
 
 .card_tag {
   border-radius: 0px 8px 8px 0px;
-  background: var(--dark-success, #5fe06d);
   height: 20px;
   padding: 0 8px;
 }
@@ -85,7 +83,6 @@
   height: 18px;
   padding: 4px 8px;
   border-radius: 4px;
-  border: 1px solid rgba(146, 144, 148, 0.48);
   margin-left: 8px;
   width: fit-content;
 }

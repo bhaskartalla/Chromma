@@ -1,14 +1,14 @@
 import React from 'react'
 import Typography from 'uiKit/Typography/typography'
 import leftWhiteChevronIcon from 'assets/icons/left-white-chevron-icon.svg'
-import wishlistIcon from 'assets/icons/wishlist-icon.svg'
+import WishlistIcon from 'assets/icons/wishlist-icon'
 import cartIcon from 'assets/icons/cart-icon.svg'
 import styles from './plp_appbar.module.css'
 import PropTypes from 'prop-types'
 import { useNavigate, useLocation } from 'react-router-dom'
 import themeHoc from 'utils/themeHoc'
 
-const PLPAppbar = ({ pincode, theme }) => {
+const PlpAppbar = ({ pincode, theme }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -18,6 +18,10 @@ const PLPAppbar = ({ pincode, theme }) => {
     } else {
       navigate(-1)
     }
+  }
+
+  const handleWishlistIconClick = () => {
+    navigate('/wishlist')
   }
 
   return (
@@ -47,14 +51,14 @@ const PLPAppbar = ({ pincode, theme }) => {
           }}
         />
       </div>
-      <div>
-        <img
+      <div style={{ display: 'flex' }}>
+        <WishlistIcon
+          theme={theme}
           width={24}
           height={24}
-          src={wishlistIcon}
-          alt='leftChevron'
-          onClick={() => navigate('/wishlist')}
+          onClick={handleWishlistIconClick}
         />
+
         <img
           width={24}
           height={24}
@@ -68,8 +72,8 @@ const PLPAppbar = ({ pincode, theme }) => {
   )
 }
 
-PLPAppbar.propTypes = {
+PlpAppbar.propTypes = {
   pincode: PropTypes.any,
   theme: PropTypes.object.isRequired,
 }
-export default React.memo(themeHoc(PLPAppbar))
+export default React.memo(themeHoc(PlpAppbar))

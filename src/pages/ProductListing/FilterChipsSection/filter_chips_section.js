@@ -1,8 +1,7 @@
 import React from 'react'
 import Chip from 'components/Chip/chip'
 import styles from './filter_chips_section.module.css'
-import filtersIcon from 'assets/icons/filters-icon.svg'
-import filtersSelectedIcon from 'assets/icons/filters-selected-icon.svg'
+import FiltersIcon from 'assets/icons/filters-icon'
 import PropTypes from 'prop-types'
 import Typography from 'uiKit/Typography/typography'
 import { useTheme } from '@mui/material'
@@ -29,14 +28,28 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
     const selected = count > 0
     return (
       <div
-        className={`${styles.filter_icon_wrapper} ${
-          selected && styles.filter_icon_wrapper_selected
-        }`}
+        id='filter_icon'
+        style={{
+          border: `1px solid ${
+            selected ? theme.palette.color.primary : theme.palette.color.outline
+          }66`,
+          background: `${
+            selected
+              ? `${theme.palette.color.primary}14`
+              : `${theme.palette.color.surface}3D`
+          }`,
+        }}
+        className={styles.filter_icon_wrapper}
         onClick={() => handleFilterModal('')}
       >
         {selected ? (
           <>
-            <div className={styles.filter_selected_count}>
+            <div
+              style={{
+                background: theme.palette.color.primary,
+              }}
+              className={styles.filter_selected_count}
+            >
               <Typography
                 variant='caption-xx-small-semibold'
                 text={count}
@@ -45,15 +58,10 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
                 }}
               />
             </div>
-            <img
-              width={16}
-              height={16}
-              src={filtersSelectedIcon}
-              alt='filtersSelectedIcon'
-            />
+            <FiltersIcon fill={theme.palette.color.primary} />
           </>
         ) : (
-          <img width={16} height={16} src={filtersIcon} alt='filtersIcon' />
+          <FiltersIcon fill={theme.palette.color.onSurfaceMidContrast} />
         )}
       </div>
     )

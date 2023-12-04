@@ -25,7 +25,7 @@ import {
 import PageLoader from 'uiKit/Loaders/page_loader'
 import InlineLoader from 'uiKit/Loaders/inline_loader'
 import { useTheme } from '@mui/material'
-import { darkTheme } from 'theme'
+import { darkTheme, cromaLightTheme, lightTheme } from 'theme'
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer)
@@ -112,7 +112,10 @@ const PlpPage = () => {
       }}
       className={styles.header_section}
     >
-      <PlpAppbar theme={darkTheme} pincode={400013} />
+      <PlpAppbar
+        theme={theme.themeValue === 'cromaDarkTheme' ? theme : darkTheme}
+        pincode={400013}
+      />
       <Searchbar
         searchedText={query}
         closeIconType={'CircleCloseIcon'}
@@ -232,6 +235,9 @@ const PlpPage = () => {
           defaultSelectedFacet={filterModal.facetCode}
           handleCloseFilterModal={handleCloseFilterModal}
           handleFilterModal={handleFilterModal}
+          theme={
+            theme.themeValue === 'lightTheme' ? lightTheme : cromaLightTheme
+          }
         />
       )}
     </div>

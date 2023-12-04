@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styles from './inputbox.module.css'
-import searchWhiteIcon from 'assets/icons/search-white-icon.svg'
-import searchBlackIcon from 'assets/icons/search-white-icon.svg'
+import SearchIcon from 'assets/icons/search-icon'
 import PropTypes from 'prop-types'
-import crossCloseIcon from 'assets/icons/wishlist-icon.svg'
+import CloseIcon from 'assets/icons/close-icon'
+import themeHoc from 'utils/themeHoc'
 
 const Inputbox = ({
-  isDarkThemed = true,
   value = '',
   placeholder,
   disabled = false,
@@ -14,6 +13,7 @@ const Inputbox = ({
   onChange = () => {},
   onKeyDown = () => {},
   setFocus = false,
+  theme,
 }) => {
   const [inputText, setInputText] = useState(value)
   const inputRef = useRef(null)
@@ -37,15 +37,16 @@ const Inputbox = ({
   return (
     <div
       onClick={handleClick}
-      className={`${styles.input_wrapper} ${
-        !isDarkThemed && styles.input_wrapper_white
-      }`}
+      style={{
+        background: `${theme.palette.color.onBackgroundHighContrast}14`,
+      }}
+      className={styles.input_wrapper}
     >
-      <img
-        width={16}
-        height={16}
-        src={isDarkThemed ? searchWhiteIcon : searchBlackIcon}
-        alt='Search icon'
+      <SearchIcon
+        fill={theme?.palette.color.onBackgroundHighContrast}
+        style={{
+          display: 'flex',
+        }}
       />
       <input
         ref={inputRef}
@@ -58,12 +59,12 @@ const Inputbox = ({
         onKeyDown={onKeyDown}
       />
       {inputText && (
-        <img
-          width={10}
-          height={10}
-          src={crossCloseIcon}
-          alt='circleCloseIcon'
+        <CloseIcon
+          fill={theme?.palette.color.onSurfaceVariant}
           onClick={handleClearText}
+          backgroundColor={theme?.palette.color.surfaceVariant}
+          height={12}
+          width={12}
         />
       )}
     </div>
@@ -71,7 +72,6 @@ const Inputbox = ({
 }
 
 Inputbox.propTypes = {
-  isDarkThemed: PropTypes.bool,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
@@ -79,6 +79,7 @@ Inputbox.propTypes = {
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
   setFocus: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
 }
 
-export default Inputbox
+export default themeHoc(Inputbox)
