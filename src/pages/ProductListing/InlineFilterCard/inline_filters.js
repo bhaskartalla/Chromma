@@ -20,6 +20,12 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const query = params.get('query')
   const { internalResponse } = plpResponse
 
+  const showButton = facets.some((facet) =>
+    facet.values.some((value) => value.selected)
+  )
+
+  console.log({ showButton })
+
   const handleShowItems = () => {
     dispatch(
       fetchPlpApiResponse({
@@ -88,16 +94,18 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
             style={{ color: theme.palette.color.primary, cursor: 'pointer' }}
             onClick={handleSeeAllFilters}
           />
-          <Button
-            textVariant='label-button-x-small'
-            textColor={theme.palette.color.onPrimary}
-            text={'Show items'.toUpperCase()}
-            handleOnClick={handleShowItems}
-            theme={theme}
-            style={{
-              background: theme?.palette.color.primary,
-            }}
-          />
+          {showButton && (
+            <Button
+              textVariant='label-button-x-small'
+              textColor={theme.palette.color.onPrimary}
+              text={'Show items'.toUpperCase()}
+              handleOnClick={handleShowItems}
+              theme={theme}
+              style={{
+                background: theme?.palette.color.primary,
+              }}
+            />
+          )}
         </div>
       </div>
     )

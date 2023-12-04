@@ -10,6 +10,7 @@ const DownChevronIcon = ({
   return (
     <div
       style={{
+        display: 'flex',
         ...style,
       }}
     >

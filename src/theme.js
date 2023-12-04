@@ -1,6 +1,29 @@
 import { createTheme } from '@mui/material'
 
 const common = {
+  spacing: {
+    s0: 0,
+    s1: 1,
+    s2: 2,
+    s4: 4,
+    s8: 8,
+    s12: 12,
+    s16: 16,
+    s20: 20,
+    s24: 24,
+    s32: 32,
+    s40: 40,
+    s48: 48,
+    s56: 56,
+    s64: 64,
+    s72: 72,
+    s80: 80,
+  },
+  zIndex: {
+    loader: 1000,
+    modal: 1500,
+    popup: 1000,
+  },
   MuiAccordion: {
     styleOverrides: {
       root: {
@@ -239,6 +262,7 @@ export const cromaLightTheme = createTheme({
       outline: '#C5C5C5',
     },
   },
+
   components: common,
 })
 

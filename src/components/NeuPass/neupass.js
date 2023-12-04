@@ -60,7 +60,7 @@ const Neupass = ({ isLoggedIn, coins }) => {
     </div>
   )
 
-  return <>{isLoggedIn ? loggedInState : anonymousState}</>
+  return <>{!isLoggedIn ? loggedInState : anonymousState}</>
 }
 
 Neupass.propTypes = {

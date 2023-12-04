@@ -50,9 +50,6 @@ const Chip = ({
               : theme.palette.color.onSurfaceMidContrast
           }
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             marginLeft: '8px',
           }}
         />
@@ -61,8 +58,6 @@ const Chip = ({
   )
 }
 
-{
-}
 Chip.propTypes = {
   text: PropTypes.string,
   children: PropTypes.string,

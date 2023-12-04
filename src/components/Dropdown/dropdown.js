@@ -33,9 +33,6 @@ const Dropdown = ({ brandList }) => {
         <DownChevronIcon
           fill={theme.palette.color.primary}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             marginLeft: '4px',
           }}
         />

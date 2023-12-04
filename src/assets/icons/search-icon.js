@@ -8,7 +8,7 @@ const SearchIcon = ({
   style,
 }) => {
   return (
-    <div style={{ ...style }}>
+    <div style={{ display: 'flex', ...style }}>
       <svg
         width={width}
         height={height}

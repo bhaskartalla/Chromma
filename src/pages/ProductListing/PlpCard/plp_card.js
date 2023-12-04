@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import styles from './plp_card.module.css'
 import Typography from 'uiKit/Typography/typography'
-import ratingIcon from 'assets/icons/rating-icon.svg'
-import nonServiceableIcon from 'assets/icons/non-serviceable-icon.svg'
-import truckIcon from 'assets/icons/truck-icon.svg'
-import availableIcon from 'assets/icons/available-icon.svg'
+import RatingIcon from 'assets/icons/rating-icon'
+import NonServiceableIcon from 'assets/icons/non-serviceable-icon'
+import TruckIcon from 'assets/icons/truck-icon'
+import AvailableIcon from 'assets/icons/available-icon'
 import Neupass from 'components/NeuPass/neupass'
 import PropTypes from 'prop-types'
 import LoadDefaultImg from 'uiKit/PlaceholderImage/placeholderImage'
@@ -75,7 +75,7 @@ const PlpCard = ({ productDetails }) => {
   }
 
   const deliveryDetails = (
-    src,
+    icon,
     primaryText,
     secondaryText,
     handleSecondaryTextClick
@@ -83,19 +83,13 @@ const PlpCard = ({ productDetails }) => {
     return (
       <div style={{ marginTop: '8px' }}>
         <div className={styles.delivery_details}>
-          <img
-            width={24}
-            height={24}
-            src={src}
-            alt={`${src}`}
-            style={{ marginRight: '4px' }}
-          />
+          {icon}
           <Typography
             variant='caption-xxx-small-semibold'
             text={primaryText}
             style={{
               color: theme.palette.color.onBackgroundLowContrast,
-              marginRight: '3px',
+              margin: '0 4px',
             }}
           />
           {secondaryText && (
@@ -247,14 +241,20 @@ const PlpCard = ({ productDetails }) => {
   let deliveryModes
   if (expressDelivery) {
     deliveryModes = deliveryDetails(
-      truckIcon,
+      <TruckIcon
+        fillBackground={theme.palette.color.surfaceLowest}
+        fill={theme.palette.color.onBackgroundMidContrast}
+      />,
       `Express Delivery by ${getExpressTime(
         expressDelivery[0].estimatedDeliveryDate
       )} `
     )
   } else if (standardDelivery) {
     deliveryModes = deliveryDetails(
-      truckIcon,
+      <TruckIcon
+        fillBackground={theme.palette.color.surfaceLowest}
+        fill={theme.palette.color.onBackgroundMidContrast}
+      />,
       `Delivery by ${getExpressTime(
         standardDelivery[0].estimatedDeliveryDate
       )} `
@@ -264,7 +264,10 @@ const PlpCard = ({ productDetails }) => {
   let storePickUp
   if (storePickup) {
     storePickUp = deliveryDetails(
-      availableIcon,
+      <AvailableIcon
+        fillBackground={theme.palette.color.surfaceLowest}
+        fill={theme.palette.color.onBackgroundMidContrast}
+      />,
       'Available for Pickup',
       'View Stores',
       (event) => handleStorePickup(event, storePickup[0].shipNode)
@@ -274,7 +277,11 @@ const PlpCard = ({ productDetails }) => {
   let nonServiceable
   if (!(isAvailable && isServiceable)) {
     nonServiceable = deliveryDetails(
-      nonServiceableIcon,
+      <NonServiceableIcon
+        fillBackground={theme.palette.color.surfaceLowest}
+        fill={theme.palette.color.warning}
+      />,
+
       'Non serviceable at this Pincode ',
       pinCode,
       (event) => handleNonServiceable(event)
@@ -284,7 +291,7 @@ const PlpCard = ({ productDetails }) => {
   const productDetailsBlock = () => (
     <div className={styles.details}>
       {ratings ? (
-        <div>
+        <div style={{ display: 'flex' }}>
           <Typography
             variant='caption-xx-small-semibold'
             text={Math.round((averageRating + Number.EPSILON) * 100) / 100}
@@ -292,11 +299,8 @@ const PlpCard = ({ productDetails }) => {
               color: theme.palette.color.onBackgroundHighContrast,
             }}
           />
-          <img
-            width={12}
-            height={12}
-            src={ratingIcon}
-            alt='leftChevron'
+          <RatingIcon
+            fill={theme.palette.color.secondary}
             style={{ margin: '0 4px' }}
           />
           <Typography

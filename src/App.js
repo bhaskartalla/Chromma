@@ -44,7 +44,6 @@ function App() {
  * keep all the urls in constant file
  * move all hardcoded string values in other file
  * add env file
- * remove the redundant code from reducer file
  * Remove the palate object from theme
  *
  */

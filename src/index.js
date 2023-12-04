@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { v4 as uuidV4 } from 'uuid'
 
-import { cromaLightTheme, cromaDarkTheme, lightTheme } from './theme'
+import { cromaDarkTheme, lightTheme } from './theme'
 
 if (!window.localStorage.getItem('anonymousId')) {
   window.localStorage.setItem('anonymousId', uuidV4())

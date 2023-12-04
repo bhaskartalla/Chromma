@@ -6,9 +6,13 @@ import { useTheme } from '@mui/material'
 
 const NoResultsFound = () => {
   const theme = useTheme()
-
   return (
-    <div className={styles.no_results_found_wrapper}>
+    <div
+      style={{
+        background: theme.palette.color.surface,
+      }}
+      className={styles.no_results_found_wrapper}
+    >
       <img
         src={connectionImage}
         width={142}
@@ -19,7 +23,7 @@ const NoResultsFound = () => {
         variant='title-medium-bold'
         style={{
           color: theme.palette.color.onBackgroundHighContrast,
-          marginTop: '16px',
+          marginTop: theme.components.spacing.s16,
         }}
         text='Sorry! No result found'
       />

@@ -42,12 +42,7 @@ const Inputbox = ({
       }}
       className={styles.input_wrapper}
     >
-      <SearchIcon
-        fill={theme?.palette.color.onBackgroundHighContrast}
-        style={{
-          display: 'flex',
-        }}
-      />
+      <SearchIcon fill={theme?.palette.color.onBackgroundHighContrast} />
       <input
         ref={inputRef}
         className={styles.filter_search_input}

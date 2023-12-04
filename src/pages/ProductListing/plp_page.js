@@ -42,19 +42,18 @@ const PlpPage = () => {
   const query = params.get('query')
 
   useEffect(() => {
-    dispatch(
-      fetchPlpApiResponse({
-        category: 'electronics',
-        pinCode: '400001',
-        query,
-        sortBy: 'relevance',
-        currentPage: 0,
-        filter: '',
-      })
-    )
+    // dispatch(
+    //   fetchPlpApiResponse({
+    //     category: 'electronics',
+    //     pinCode: '400001',
+    //     query,
+    //     sortBy: 'relevance',
+    //     currentPage: 0,
+    //     filter: '',
+    //   })
+    // )
     // eslint-disable-next-line
   }, [])
-  // console.log("PlpPage", plpResponse);
 
   const {
     apiResponse,
