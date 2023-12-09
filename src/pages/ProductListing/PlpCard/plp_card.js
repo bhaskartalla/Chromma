@@ -11,9 +11,15 @@ import LoadDefaultImg from 'uiKit/PlaceholderImage/placeholderImage'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 import WishlistIcon from 'assets/icons/wishlist-icon'
+import { useDispatch } from 'react-redux'
+import {
+  addItemToWishlist,
+  removeItemFromWishList,
+} from '../state/cartOutlineState/action_creators'
 
-const PlpCard = ({ productDetails }) => {
+const PlpCard = ({ productDetails, wishlistSkuList }) => {
   const theme = useTheme()
+  const dispatch = useDispatch()
   const imageUrl = productDetails?.plpImage
   const skuId = productDetails?.skuId
   const productName = productDetails?.name
@@ -36,8 +42,10 @@ const PlpCard = ({ productDetails }) => {
   const productTag1 = productDetails?.productTag1
 
   const navigate = useNavigate()
-
   const storePickUpRef = useRef(null)
+
+  const isAddedToWishlist = wishlistSkuList.includes(productDetails.skuId)
+
   const handleStorePickup = (event, shipNode) => {
     console.log('handleStorePickup', shipNode)
     event.stopPropagation()
@@ -50,8 +58,16 @@ const PlpCard = ({ productDetails }) => {
 
   const handleProductCardClick = (event) => {
     console.log('handleProductCardClick')
-
     navigate('/product-description', { state: { skuId } })
+  }
+
+  const handleWishListIconClick = (event) => {
+    event.stopPropagation()
+    if (isAddedToWishlist) {
+      dispatch(removeItemFromWishList(productDetails.skuId))
+    } else {
+      dispatch(addItemToWishlist(productDetails.skuId))
+    }
   }
 
   const getExpressTime = (timeStamp) => {
@@ -133,11 +149,12 @@ const PlpCard = ({ productDetails }) => {
         </div> */}
         <WishlistIcon
           withBackground
-          isAddedToWishlist={true}
+          isAddedToWishlist={isAddedToWishlist}
           theme={theme}
           style={{
             marginLeft: 'auto',
           }}
+          onClick={handleWishListIconClick}
         />
       </div>
       <div className={styles.product_image_wrapper}>
@@ -174,7 +191,7 @@ const PlpCard = ({ productDetails }) => {
     mop && mrp >= mop ? (
       <Typography
         variant='body-medium-bold'
-        text={mop}
+        text={`₹${mop}`}
         style={{
           color: theme.palette.color.onBackgroundHighContrast,
           marginRight: '6px',

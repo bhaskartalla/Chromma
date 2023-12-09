@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   updateInternalFacetValue,
   fetchPlpApiResponse,
-} from '../state/action_creators'
+} from '../state/plpState/action_creators'
 import { useSearchParams } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 
@@ -23,8 +23,6 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const showButton = facets.some((facet) =>
     facet.values.some((value) => value.selected)
   )
-
-  console.log({ showButton })
 
   const handleShowItems = () => {
     dispatch(

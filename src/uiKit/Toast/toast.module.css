@@ -1,0 +1,42 @@
+.toast_wrapper {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: calc(100% - 32px);
+  padding: 16px 16px 16px 0;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
+    0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+  margin: 16px;
+  box-sizing: border-box;
+  min-height: 56px;
+  max-height: 68px;
+}
+
+.content_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left_line {
+  width: 4px;
+  height: 40px;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.text_content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title_description {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}

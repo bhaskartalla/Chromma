@@ -7,8 +7,6 @@ const ProductDescription = () => {
   const theme = useTheme()
   const location = useLocation()
 
-  console.log('theme', theme)
-
   return (
     <div>
       <Typography variant='h2' style={{ color: theme.palette.color.primary }}>

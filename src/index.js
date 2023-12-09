@@ -17,7 +17,7 @@ let isDarkTheme
 
 if (!window.localStorage.getItem('isDarkTheme')) {
   window.localStorage.setItem('isDarkTheme', true)
-  isDarkTheme = true
+  isDarkTheme = 'true'
 } else {
   isDarkTheme = window.localStorage.getItem('isDarkTheme')
 }

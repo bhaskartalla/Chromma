@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CloseIcon = ({
-  width = '16',
-  height = '16',
+  width = 16,
+  height = 16,
   style,
   withBackground,
   onClick,

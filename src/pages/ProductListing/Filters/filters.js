@@ -18,7 +18,7 @@ import {
   resetAllFacetsValues,
   fetchFilterApiResponse,
   fetchPlpApiResponse,
-} from '../state/action_creators'
+} from '../state/plpState/action_creators'
 import { useSearchParams } from 'react-router-dom'
 import PageLoader from 'uiKit/Loaders/page_loader'
 import themeHoc from 'utils/themeHoc'

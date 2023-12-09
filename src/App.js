@@ -6,8 +6,16 @@ import ProductDescription from './pages/ProductDescription/pdp_page'
 import GlobalSearchPage from './pages/GlobalSearch/global_search'
 import FiltersPage from './pages/ProductListing/Filters/filters'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Toast from 'uiKit/Toast/toast'
+import { useTheme } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeToast } from './globalState/actions'
 
 function App() {
+  const toast = useSelector((state) => state.commonReducer)
+  const dispatch = useDispatch()
+  const theme = useTheme()
+
   return (
     <BrowserRouter>
       <Routes>
@@ -19,6 +27,16 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/wishlist' element={<Wishlist />} />
       </Routes>
+      <Toast
+        theme={toast?.theme || theme}
+        title={toast.title}
+        open={toast.isOpen}
+        description={toast.description}
+        duration={toast.duration}
+        onClose={() => {
+          dispatch(closeToast())
+        }}
+      />
     </BrowserRouter>
   )
 }

@@ -21,14 +21,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchPlpApiResponse,
   fetchPaginationApiResponse,
-} from './state/action_creators'
+} from './state/plpState/action_creators'
+import { fetchCartOutlineResponse } from './state/cartOutlineState/action_creators'
+import { resetToastMessage } from './state/cartOutlineState/actions'
 import PageLoader from 'uiKit/Loaders/page_loader'
 import InlineLoader from 'uiKit/Loaders/inline_loader'
 import { useTheme } from '@mui/material'
 import { darkTheme, cromaLightTheme, lightTheme } from 'theme'
+import Toast from 'uiKit/Toast/toast'
+import { openToast, closeToast } from 'globalState/actions'
+
+import {
+  addItemToWishlist,
+  removeItemFromWishList,
+} from './state/cartOutlineState/action_creators'
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer)
+  const cartOutlineResponse = useSelector((state) => state.cartOutlineReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [filterModal, setFilterModal] = useState({
@@ -42,17 +52,22 @@ const PlpPage = () => {
   const query = params.get('query')
 
   useEffect(() => {
-    // dispatch(
-    //   fetchPlpApiResponse({
-    //     category: 'electronics',
-    //     pinCode: '400001',
-    //     query,
-    //     sortBy: 'relevance',
-    //     currentPage: 0,
-    //     filter: '',
-    //   })
-    // )
+    dispatch(
+      fetchCartOutlineResponse({ category: 'electronics', pinCode: '400069' })
+    )
+    dispatch(
+      fetchPlpApiResponse({
+        category: 'electronics',
+        pinCode: '400001',
+        query,
+        sortBy: 'relevance',
+        currentPage: 0,
+        filter: '',
+      })
+    )
     // eslint-disable-next-line
+
+    return () => dispatch(resetToastMessage())
   }, [])
 
   const {
@@ -62,6 +77,22 @@ const PlpPage = () => {
     filterString,
     pagination,
   } = plpResponse
+
+  const { wishlistSkuList, showToast } = cartOutlineResponse
+
+  const isAddedToWishlist = wishlistSkuList.includes('210693')
+
+  useEffect(() => {
+    if (showToast !== '') {
+      dispatch(
+        openToast({
+          title: showToast,
+        })
+      )
+    } else {
+      dispatch(closeToast())
+    }
+  }, [showToast])
 
   const { currentPage, totalPages, isPageApiLoading } = pagination
 
@@ -192,7 +223,10 @@ const PlpPage = () => {
       {apiProducts.map((product, index) => {
         return (
           <Fragment key={product.skuId}>
-            <PlpCard productDetails={product} />
+            <PlpCard
+              productDetails={product}
+              wishlistSkuList={wishlistSkuList}
+            />
             <div className={styles.divider} />
             {!((index + 1) % 2) && !filterString && (
               <InlineFilters

@@ -9,7 +9,7 @@ import {
   ERROR_FILTER_API_RESPONSE,
   REQUEST_PAGE_API_RESPONSE,
   RECEIVE_PAGE_API_RESPONSE,
-} from "./action_types";
+} from './action_types'
 
 const initialState = {
   apiResponse: {
@@ -25,53 +25,53 @@ const initialState = {
     internalFacets: [],
     internalFilterItemCount: 0,
     isFilterApiError: false,
-    internalFilterString: "",
+    internalFilterString: '',
   },
-  filterString: "",
+  filterString: '',
   pagination: {
     isPageApiLoading: false,
   },
   sorts: [],
   pickAStoreList: {},
-};
+}
 
 function filterApiResponseData(payload) {
   // filter the product with no SkuId or price value as 0
   const filteredProducts = payload.response.products.filter(
     (product) => product.skuId && product.price.value
-  );
-  const apiSelectedFacetCounts = [];
-  let pickAStoreList = {};
+  )
+  const apiSelectedFacetCounts = []
+  let pickAStoreList = {}
   // set the `selectedValueCount` value for all the values selected for a particular facet and extract the store list facet
   payload.response.facets.forEach((facet) => {
-    if (facet.code !== "category") {
+    if (facet.code !== 'category') {
       facet.selectedValueCount = facet.values.filter(
         (value) => value.selected
-      ).length;
-      apiSelectedFacetCounts.push(facet);
+      ).length
+      apiSelectedFacetCounts.push(facet)
     } else {
-      pickAStoreList = facet;
+      pickAStoreList = facet
     }
-  });
+  })
 
   const internalSelectedFacetCounts = apiSelectedFacetCounts.map((facet) => {
-    let newFacet = { ...facet };
+    let newFacet = { ...facet }
     newFacet.values = facet.values.map((value) => {
-      return { ...value };
-    });
-    return newFacet;
-  });
+      return { ...value }
+    })
+    return newFacet
+  })
 
   return [
     filteredProducts,
     apiSelectedFacetCounts,
     pickAStoreList,
     internalSelectedFacetCounts,
-  ];
+  ]
 }
 
 const plpReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload } = action
 
   switch (type) {
     case REQUEST_PLP_API_RESPONSE: {
@@ -82,7 +82,7 @@ const plpReducer = (state = initialState, action) => {
           isPlpApiLoading: true,
           isPlpApiError: false,
         },
-      };
+      }
     }
 
     case RECEIVE_PLP_API_RESPONSE: {
@@ -91,7 +91,7 @@ const plpReducer = (state = initialState, action) => {
         apiSelectedFacetCounts,
         pickAStoreList,
         internalSelectedFacetCounts,
-      ] = filterApiResponseData(payload);
+      ] = filterApiResponseData(payload)
 
       const updateState = {
         ...state,
@@ -100,14 +100,14 @@ const plpReducer = (state = initialState, action) => {
         pickAStoreList: pickAStoreList,
         query: payload.params.query,
         filterString: payload.params.filter,
-      };
+      }
       updateState.apiResponse = {
         isPlpApiLoading: false,
         apiProducts: filteredProducts,
         apiFacets: apiSelectedFacetCounts,
         apiFilterItemCount: payload.response.filterItemCount,
         isPlpApiError: false,
-      };
+      }
       updateState.internalResponse = {
         isFilterApiLoading: false,
         internalProducts: filteredProducts,
@@ -115,9 +115,9 @@ const plpReducer = (state = initialState, action) => {
         internalFilterItemCount: payload.response.filterItemCount,
         isFilterApiError: false,
         internalFilterString: payload.params.filter,
-      };
+      }
 
-      return updateState;
+      return updateState
     }
 
     case ERROR_PLP_API_RESPONSE: {
@@ -128,7 +128,7 @@ const plpReducer = (state = initialState, action) => {
           isPlpApiLoading: false,
           isPlpApiError: true,
         },
-      };
+      }
     }
 
     case REQUEST_FILTER_API_RESPONSE: {
@@ -139,7 +139,7 @@ const plpReducer = (state = initialState, action) => {
           isFilterApiLoading: true,
           isFilterApiError: false,
         },
-      };
+      }
     }
 
     case RECEIVE_FILTER_API_RESPONSE: {
@@ -148,7 +148,7 @@ const plpReducer = (state = initialState, action) => {
         apiSelectedFacetCounts,
         pickAStoreList,
         internalSelectedFacetCounts,
-      ] = filterApiResponseData(payload);
+      ] = filterApiResponseData(payload)
 
       const updateState = {
         ...state,
@@ -157,7 +157,7 @@ const plpReducer = (state = initialState, action) => {
         pickAStoreList: pickAStoreList,
         query: payload.params.query,
         filterString: payload.params.filter,
-      };
+      }
 
       updateState.internalResponse = {
         isFilterApiLoading: false,
@@ -166,9 +166,9 @@ const plpReducer = (state = initialState, action) => {
         internalFilterItemCount: payload.response.filterItemCount,
         isFilterApiError: false,
         internalFilterString: payload.params.filter,
-      };
+      }
 
-      return updateState;
+      return updateState
     }
 
     case ERROR_FILTER_API_RESPONSE: {
@@ -179,39 +179,39 @@ const plpReducer = (state = initialState, action) => {
           isFilterApiLoading: false,
           isFilterApiError: true,
         },
-      };
+      }
     }
 
     case UPDATE_FACET_VALUE: {
-      let count = 0;
+      let count = 0
 
       // set value of a particular facet with the payload value and update the facet.selectedValueCount
       const updatedFacets = state.internalResponse.internalFacets.map(
         (facet) => {
           if (facet.code === payload.facetCode) {
-            count = 0;
+            count = 0
             facet.values = facet.values.map((value) => {
               if (value.code === payload.valueCode) {
-                value.selected = payload.state;
+                value.selected = payload.state
               }
               if (value.selected) {
-                count++;
+                count++
               }
-              return value;
-            });
-            facet.selectedValueCount = count;
+              return value
+            })
+            facet.selectedValueCount = count
           }
-          return facet;
+          return facet
         }
-      );
-      let filterString = "";
+      )
+      let filterString = ''
       updatedFacets.forEach((facet) => {
         facet.values.forEach((value) => {
           if (value.selected) {
-            filterString = `${facet.code}:${value.code}:${filterString}`;
+            filterString = `${facet.code}:${value.code}:${filterString}`
           }
-        });
-      });
+        })
+      })
 
       return {
         ...state,
@@ -220,37 +220,37 @@ const plpReducer = (state = initialState, action) => {
           internalFacets: updatedFacets,
           internalFilterString: filterString,
         },
-      };
+      }
     }
 
     case RESET_ALL_FACETS: {
       const resetedFacets = state.internalResponse.internalFacets.map(
         (facet) => {
           facet.values.map((value) => {
-            value.selected = false;
-            return value;
-          });
-          facet.selectedValueCount = 0;
-          return facet;
+            value.selected = false
+            return value
+          })
+          facet.selectedValueCount = 0
+          return facet
         }
-      );
+      )
 
       return {
         ...state,
         internalResponse: {
           ...state.internalResponse,
           internalFacets: resetedFacets,
-          internalFilterString: "",
+          internalFilterString: '',
         },
-        filterString: "",
-      };
+        filterString: '',
+      }
     }
 
     case REQUEST_PAGE_API_RESPONSE: {
       return {
         ...state,
         pagination: { isPageApiLoading: true },
-      };
+      }
     }
 
     case RECEIVE_PAGE_API_RESPONSE: {
@@ -259,20 +259,20 @@ const plpReducer = (state = initialState, action) => {
         apiSelectedFacetCounts,
         pickAStoreList,
         internalSelectedFacetCounts,
-      ] = filterApiResponseData(payload);
+      ] = filterApiResponseData(payload)
 
       const updateState = {
         ...state,
         pagination: { ...payload.response.pagination, isPageApiLoading: false },
         sorts: payload.response.sorts,
         pickAStoreList: pickAStoreList,
-      };
+      }
       updateState.apiResponse = {
         ...state.apiResponse,
         apiProducts: [...state.apiResponse.apiProducts, ...filteredProducts],
         apiFacets: apiSelectedFacetCounts,
         apiFilterItemCount: payload.response.filterItemCount,
-      };
+      }
       updateState.internalResponse = {
         ...state.internalResponse,
         internalProducts: [
@@ -281,13 +281,13 @@ const plpReducer = (state = initialState, action) => {
         ],
         internalFacets: internalSelectedFacetCounts,
         internalFilterItemCount: payload.response.filterItemCount,
-      };
-      return updateState;
+      }
+      return updateState
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default plpReducer;
+export default plpReducer

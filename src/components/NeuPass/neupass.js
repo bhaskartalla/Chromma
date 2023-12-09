@@ -9,7 +9,12 @@ const Neupass = ({ isLoggedIn, coins }) => {
   const theme = useTheme()
 
   const loggedInState = (
-    <div className={styles.loggedIn_wrapper}>
+    <div
+      style={{
+        background: theme.palette.color.surfaceLowest,
+      }}
+      className={styles.loggedIn_wrapper}
+    >
       <img
         width={16}
         height={16}
