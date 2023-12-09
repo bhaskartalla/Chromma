@@ -145,6 +145,7 @@ const plpReducer = (state = initialState, action) => {
     case RECEIVE_FILTER_API_RESPONSE: {
       const [
         filteredProducts,
+        // eslint-disable-next-line
         apiSelectedFacetCounts,
         pickAStoreList,
         internalSelectedFacetCounts,

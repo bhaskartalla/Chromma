@@ -28,13 +28,7 @@ import PageLoader from 'uiKit/Loaders/page_loader'
 import InlineLoader from 'uiKit/Loaders/inline_loader'
 import { useTheme } from '@mui/material'
 import { darkTheme, cromaLightTheme, lightTheme } from 'theme'
-import Toast from 'uiKit/Toast/toast'
 import { openToast, closeToast } from 'globalState/actions'
-
-import {
-  addItemToWishlist,
-  removeItemFromWishList,
-} from './state/cartOutlineState/action_creators'
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer)
@@ -65,9 +59,9 @@ const PlpPage = () => {
         filter: '',
       })
     )
-    // eslint-disable-next-line
 
     return () => dispatch(resetToastMessage())
+    // eslint-disable-next-line
   }, [])
 
   const {
@@ -80,8 +74,6 @@ const PlpPage = () => {
 
   const { wishlistSkuList, showToast } = cartOutlineResponse
 
-  const isAddedToWishlist = wishlistSkuList.includes('210693')
-
   useEffect(() => {
     if (showToast !== '') {
       dispatch(
@@ -92,6 +84,7 @@ const PlpPage = () => {
     } else {
       dispatch(closeToast())
     }
+    // eslint-disable-next-line
   }, [showToast])
 
   const { currentPage, totalPages, isPageApiLoading } = pagination
