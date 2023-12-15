@@ -18,6 +18,8 @@ const Toast = ({
     let timer
     if (open) timer = setTimeout(() => onClose(), duration)
     return () => clearTimeout(timer)
+
+    // eslint-disable-next-line
   }, [open])
 
   const onCloseClick = () => onClose()
@@ -70,6 +72,7 @@ Toast.propTypes = {
   description: PropTypes.string,
   duration: PropTypes.number,
   open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
 }
 
 export default themeHoc(Toast)
