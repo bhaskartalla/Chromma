@@ -186,8 +186,6 @@ const Filters = ({
     </div>
   )
 
-  console.log('theme.palette.color.secondary', theme.themeValue)
-
   const renderFacetValues = (facet, count) => (
     <div className={styles.accordion_details}>
       {facet?.values?.slice(0, count).map((value, index) => (

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Inputbox from 'uiKit/Inputbox/inputbox'
 import style from './global_search.module.css'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { lightTheme } from 'theme'
+import { lightTheme, cromaDarkTheme } from 'theme'
+import PlpAppbar from 'components/Appbar/plp_appbar'
 
 const GlobalSearch = () => {
   const [searchParams] = useSearchParams('')
@@ -21,6 +22,7 @@ const GlobalSearch = () => {
 
   return (
     <div className={style.global_search_wrapper}>
+      <PlpAppbar theme={cromaDarkTheme} />
       <div className={style.inputbox_wrapper}>
         <Inputbox
           value={searchText || ''}

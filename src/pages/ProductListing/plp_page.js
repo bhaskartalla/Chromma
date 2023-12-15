@@ -29,6 +29,7 @@ import InlineLoader from 'uiKit/Loaders/inline_loader'
 import { useTheme } from '@mui/material'
 import { darkTheme, cromaLightTheme, lightTheme } from 'theme'
 import { openToast, closeToast } from 'globalState/actions'
+import SortFilters from './BottomSheets/SortFilters/sort_filters'
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer)
@@ -39,6 +40,7 @@ const PlpPage = () => {
     state: false,
     facetCode: '',
   })
+  const [isSortFiltersBSOpen, setSortFilterBottomSheetOpen] = useState(false)
 
   const scrollToTop = useRef(null)
   const [params] = useSearchParams()
@@ -128,6 +130,14 @@ const PlpPage = () => {
     setFilterModal({ state: true, facetCode })
   }, [])
 
+  const handleSorFiltersOpenBS = () => {
+    setSortFilterBottomSheetOpen(true)
+  }
+
+  const handleSorFiltersCloseBS = () => {
+    setSortFilterBottomSheetOpen(false)
+  }
+
   const renderHeaderBlock = () => (
     <div
       style={{
@@ -160,6 +170,7 @@ const PlpPage = () => {
         {!showNoResultsCard && (
           <FilterChipsSection
             facets={apiFacets}
+            handleSorFiltersOpenBS={handleSorFiltersOpenBS}
             handleFilterModal={handleFilterModal}
           />
         )}
@@ -242,31 +253,38 @@ const PlpPage = () => {
   return isPlpApiLoading ? (
     <PageLoader />
   ) : (
-    <div
-      style={{
-        position: 'relative',
-        backgroundColor: theme.palette.color.background,
-      }}
-    >
-      <div className={styles.page_wrapper}>
-        {renderHeaderBlock()}
-        {showNoResultsCard ? (
-          <NoResultsFound />
-        ) : (
-          <>{renderPlpScrollCardsBlock()}</>
+    <>
+      <div
+        style={{
+          position: 'relative',
+          backgroundColor: theme.palette.color.background,
+        }}
+      >
+        <div className={styles.page_wrapper}>
+          {renderHeaderBlock()}
+          {showNoResultsCard ? (
+            <NoResultsFound />
+          ) : (
+            <>{renderPlpScrollCardsBlock()}</>
+          )}
+        </div>
+        {filterModal.state && (
+          <Filters
+            defaultSelectedFacet={filterModal.facetCode}
+            handleCloseFilterModal={handleCloseFilterModal}
+            handleFilterModal={handleFilterModal}
+            theme={
+              theme.themeValue === 'lightTheme' ? lightTheme : cromaLightTheme
+            }
+          />
         )}
       </div>
-      {filterModal.state && (
-        <Filters
-          defaultSelectedFacet={filterModal.facetCode}
-          handleCloseFilterModal={handleCloseFilterModal}
-          handleFilterModal={handleFilterModal}
-          theme={
-            theme.themeValue === 'lightTheme' ? lightTheme : cromaLightTheme
-          }
-        />
-      )}
-    </div>
+
+      <SortFilters
+        isSortFiltersBSOpen={isSortFiltersBSOpen}
+        handleSorFiltersCloseBS={handleSorFiltersCloseBS}
+      />
+    </>
   )
 }
 

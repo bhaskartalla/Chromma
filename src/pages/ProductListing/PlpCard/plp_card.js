@@ -56,8 +56,7 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
     event.stopPropagation()
   }
 
-  const handleProductCardClick = (event) => {
-    console.log('handleProductCardClick')
+  const handleProductCardClick = () => {
     navigate('/product-description', { state: { skuId } })
   }
 
@@ -162,7 +161,6 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
           src={imageUrl}
           alt={skuId}
           className={styles.product_image}
-          component={'img'}
         />
       </div>
     </div>
@@ -379,6 +377,7 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
 
 PlpCard.propTypes = {
   productDetails: PropTypes.object.isRequired,
+  wishlistSkuList: PropTypes.array.isRequired,
 }
 
 export default PlpCard

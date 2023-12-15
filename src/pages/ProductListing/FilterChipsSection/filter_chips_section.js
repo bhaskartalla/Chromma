@@ -6,7 +6,11 @@ import PropTypes from 'prop-types'
 import Typography from 'uiKit/Typography/typography'
 import { useTheme } from '@mui/material'
 
-const FilterChipsSection = ({ facets, handleFilterModal }) => {
+const FilterChipsSection = ({
+  facets,
+  handleSorFiltersOpenBS,
+  handleFilterModal,
+}) => {
   const theme = useTheme()
 
   let filtersSelectedCount = facets.filter(
@@ -76,7 +80,7 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
           text='Sort'
           withIcon={true}
           isSelected={false}
-          handleChipClick={() => {}}
+          handleChipClick={handleSorFiltersOpenBS}
         />
         {newFacets.map((facet, index) => {
           const isSelected = facet.values.some((value) => value.selected)
@@ -104,6 +108,7 @@ const FilterChipsSection = ({ facets, handleFilterModal }) => {
 FilterChipsSection.propTypes = {
   facets: PropTypes.array.isRequired,
   handleFilterModal: PropTypes.func.isRequired,
+  handleSorFiltersOpenBS: PropTypes.func.isRequired,
 }
 
 export default React.memo(FilterChipsSection)

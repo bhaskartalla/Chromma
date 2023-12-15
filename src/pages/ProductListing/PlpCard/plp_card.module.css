@@ -21,12 +21,12 @@
 }
 
 .image_section {
-  min-width: 136px;
-  width: 100%;
   border-radius: 8px;
   height: inherit;
   position: relative;
   margin-right: 20px;
+  width: 40%;
+  max-width: 200px;
 }
 
 .product_image_wrapper {
