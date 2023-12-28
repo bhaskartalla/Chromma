@@ -9,16 +9,13 @@ import {
   updateInternalFacetValue,
   fetchPlpApiResponse,
 } from '../state/plpState/action_creators'
-import { useSearchParams } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 
 const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const plpResponse = useSelector((state) => state.plpReducer)
   const dispatch = useDispatch()
-  const [params] = useSearchParams()
   const theme = useTheme()
-  const query = params.get('query')
-  const { internalResponse } = plpResponse
+  const { internalResponse, params } = plpResponse
 
   const showButton = facets.some((facet) =>
     facet.values.some((value) => value.selected)
@@ -27,10 +24,7 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
   const handleShowItems = () => {
     dispatch(
       fetchPlpApiResponse({
-        category: 'electronics',
-        pinCode: '400001',
-        query,
-        sortBy: 'relevance',
+        ...params,
         filter: internalResponse.internalFilterString,
         currentPage: 0,
       })

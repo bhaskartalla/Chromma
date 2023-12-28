@@ -1,21 +1,32 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import BottomSheet from 'uiKit/BottomSheet/bottom_sheet'
-import themeHoc from 'utils/themeHoc'
+import React from 'react'
 import { lightTheme } from 'theme'
+import BottomSheet from 'uiKit/BottomSheet/bottom_sheet'
 import Typography from 'uiKit/Typography/typography'
-import Checkbox from 'uiKit/Checkbox/checkbox'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
+import themeHoc from 'utils/themeHoc'
+import Radio from 'uiKit/Radio/radio'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchPlpApiResponse } from '../../state/plpState/action_creators'
 
 const SortFilters = ({
+  sorts,
   isSortFiltersBSOpen,
   handleSorFiltersCloseBS,
   theme = lightTheme,
 }) => {
+  const params = useSelector((state) => state.plpReducer.params)
+  const dispatch = useDispatch()
+
+  const handleOnChange = (code) => {
+    dispatch(
+      fetchPlpApiResponse({
+        ...params,
+        sortBy: code,
+      })
+    )
+    handleSorFiltersCloseBS()
+  }
+
   return (
     <BottomSheet
       open={isSortFiltersBSOpen}
@@ -29,32 +40,34 @@ const SortFilters = ({
           color: theme.palette.color.onBackgroundHighContrast,
         }}
       />
-      <div style={{}}>
-        <FormControl>
-          <FormLabel id='demo-radio-buttons-group-label'>Gender</FormLabel>
-          <RadioGroup
-            aria-labelledby='demo-radio-buttons-group-label'
-            defaultValue='female'
-            name='radio-buttons-group'
-          >
-            <FormControlLabel
-              value='female'
-              control={<Radio />}
-              label='Female'
+      <div
+        style={{
+          margin: '8px 0 16px',
+        }}
+      >
+        {sorts?.map((sort) => (
+          <div style={{ marginTop: '16px' }} key={sort.code}>
+            <Radio
+              textVariant='label-x-small-regular'
+              fillChecked={theme.palette.color.secondary}
+              fillOutline={theme.palette.color.outline}
+              text={sort.name}
+              textColor={theme.palette.color.onBackgroundHighContrast}
+              checked={sort.selected}
+              onChange={() => handleOnChange(sort.code)}
             />
-            <FormControlLabel
-              value='male'
-              control={<Radio color='success' />}
-              label='Male'
-            />
-            <FormControlLabel value='other' control={<Radio />} label='Other' />
-          </RadioGroup>
-        </FormControl>
+          </div>
+        ))}
       </div>
     </BottomSheet>
   )
 }
 
-SortFilters.propTypes = {}
+SortFilters.propTypes = {
+  sorts: PropTypes.array,
+  isSortFiltersBSOpen: PropTypes.bool,
+  handleSorFiltersCloseBS: PropTypes.func,
+  theme: PropTypes.object,
+}
 
 export default themeHoc(SortFilters)

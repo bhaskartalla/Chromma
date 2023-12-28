@@ -2,7 +2,8 @@ import React from 'react'
 import styles from './end_of_scroll.module.css'
 import endOfScrollImage from 'assets/images/end-of-scroll-image.png'
 import Typography from 'uiKit/Typography/typography'
-import topArrowIcon from 'assets/icons/top-arrow-icon.svg'
+import TopArrowIcon from 'assets/icons/top-arrow-icon'
+
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material'
 
@@ -33,7 +34,7 @@ const EndOfScroll = ({ handleScrollToTop }) => {
         text='Tomorrow it might be gone forever'
       />
       <div className={styles.back_to_top_button} onClick={handleScrollToTop}>
-        <img width={16} height={16} src={topArrowIcon} alt='Top arrow icon' />
+        <TopArrowIcon fill={theme.palette.color.onBackgroundHighContrast} />
       </div>
     </div>
   )

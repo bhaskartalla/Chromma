@@ -7,8 +7,9 @@ import Typography from 'uiKit/Typography/typography'
 import { useTheme } from '@mui/material'
 
 const FilterChipsSection = ({
+  isSortChipSelected,
   facets,
-  handleSorFiltersOpenBS,
+  handleSortOpenBS,
   handleFilterModal,
 }) => {
   const theme = useTheme()
@@ -29,6 +30,7 @@ const FilterChipsSection = ({
   const newFacets = [...selectedFacets, ...unSelectedFacets]
 
   const selectedFilterIcon = (count) => {
+    count = isSortChipSelected ? count + 1 : count
     const selected = count > 0
     return (
       <div
@@ -78,9 +80,9 @@ const FilterChipsSection = ({
         <Chip
           textVariant='caption-xx-small-semibold'
           text='Sort'
-          withIcon={true}
-          isSelected={false}
-          handleChipClick={handleSorFiltersOpenBS}
+          withIcon
+          isSelected={isSortChipSelected}
+          handleChipClick={handleSortOpenBS}
         />
         {newFacets.map((facet, index) => {
           const isSelected = facet.values.some((value) => value.selected)
@@ -89,7 +91,7 @@ const FilterChipsSection = ({
               textVariant='caption-xx-small-semibold'
               key={facet.code}
               text={facet.name}
-              withIcon={true}
+              withIcon
               isSelected={isSelected}
               handleChipClick={() => handleFilterModal(facet.code)}
               style={{
@@ -108,7 +110,7 @@ const FilterChipsSection = ({
 FilterChipsSection.propTypes = {
   facets: PropTypes.array.isRequired,
   handleFilterModal: PropTypes.func.isRequired,
-  handleSorFiltersOpenBS: PropTypes.func.isRequired,
+  handleSortOpenBS: PropTypes.func.isRequired,
 }
 
 export default React.memo(FilterChipsSection)

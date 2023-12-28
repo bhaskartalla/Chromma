@@ -14,25 +14,25 @@ import {
 const initialState = {
   apiResponse: {
     isPlpApiLoading: false,
-    apiProducts: [],
-    apiFacets: [],
+    apiProducts: null,
+    apiFacets: null,
     apiFilterItemCount: 0,
     isPlpApiError: false,
   },
   internalResponse: {
     isFilterApiLoading: false,
-    internalProducts: [],
-    internalFacets: [],
+    internalProducts: null,
+    internalFacets: null,
     internalFilterItemCount: 0,
     isFilterApiError: false,
     internalFilterString: '',
   },
-  filterString: '',
   pagination: {
     isPageApiLoading: false,
   },
-  sorts: [],
+  sorts: null,
   pickAStoreList: {},
+  params: {},
 }
 
 function filterApiResponseData(payload) {
@@ -95,11 +95,10 @@ const plpReducer = (state = initialState, action) => {
 
       const updateState = {
         ...state,
+        params: payload.params,
         pagination: { ...payload.response.pagination, isPageApiLoading: false },
         sorts: payload.response.sorts,
         pickAStoreList: pickAStoreList,
-        query: payload.params.query,
-        filterString: payload.params.filter,
       }
       updateState.apiResponse = {
         isPlpApiLoading: false,
@@ -153,11 +152,10 @@ const plpReducer = (state = initialState, action) => {
 
       const updateState = {
         ...state,
+        params: payload.params,
         pagination: { ...payload.response.pagination, isPageApiLoading: false },
         sorts: payload.response.sorts,
         pickAStoreList: pickAStoreList,
-        query: payload.params.query,
-        filterString: payload.params.filter,
       }
 
       updateState.internalResponse = {
@@ -264,6 +262,7 @@ const plpReducer = (state = initialState, action) => {
 
       const updateState = {
         ...state,
+        params: payload.params,
         pagination: { ...payload.response.pagination, isPageApiLoading: false },
         sorts: payload.response.sorts,
         pickAStoreList: pickAStoreList,

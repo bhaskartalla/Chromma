@@ -1,35 +1,48 @@
+import { useTheme } from '@mui/material'
+import PlpAppbar from 'components/Appbar/plp_appbar'
+import Dropdown from 'components/Dropdown/dropdown'
+
 import React, {
+  Fragment,
+  useCallback,
+  useEffect,
   useRef,
   useState,
-  useEffect,
-  useCallback,
-  Fragment,
+  lazy,
 } from 'react'
-import PlpAppbar from 'components/Appbar/plp_appbar'
 import Searchbar from 'components/Searchbar/searchbar'
-import FilterChipsSection from './FilterChipsSection/filter_chips_section'
-import PlpCard from './PlpCard/plp_card'
-import styles from './plp_page.module.css'
-import Typography from 'uiKit/Typography/typography'
-import Dropdown from 'components/Dropdown/dropdown'
-import EndOfScroll from './EndOfScroll/end_of_scroll'
-import NoResultsFound from 'components/NoResultsFound/no_results_found'
-import InlineFilters from './InlineFilterCard/inline_filters'
-import Filters from 'pages/ProductListing/Filters/filters'
+import { closeToast, openToast } from 'globalState/actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-  fetchPlpApiResponse,
-  fetchPaginationApiResponse,
-} from './state/plpState/action_creators'
+import { cromaLightTheme, darkTheme, lightTheme } from 'theme'
+
+// redux
 import { fetchCartOutlineResponse } from './state/cartOutlineState/action_creators'
 import { resetToastMessage } from './state/cartOutlineState/actions'
-import PageLoader from 'uiKit/Loaders/page_loader'
+import {
+  fetchPaginationApiResponse,
+  fetchPlpApiResponse,
+} from './state/plpState/action_creators'
+
+// custom components
 import InlineLoader from 'uiKit/Loaders/inline_loader'
-import { useTheme } from '@mui/material'
-import { darkTheme, cromaLightTheme, lightTheme } from 'theme'
-import { openToast, closeToast } from 'globalState/actions'
-import SortFilters from './BottomSheets/SortFilters/sort_filters'
+import PageLoader from 'uiKit/Loaders/page_loader'
+import Typography from 'uiKit/Typography/typography'
+import FilterChipsSection from './FilterChipsSection/filter_chips_section'
+import InlineFilters from './InlineFilterCard/inline_filters'
+import PlpCard from './PlpCard/plp_card'
+import styles from './plp_page.module.css'
+
+// lazy imports
+const SortFilters = lazy(() =>
+  import('./BottomSheets/SortFilters/sort_filters')
+)
+
+const NoResultsFound = lazy(() =>
+  import('components/NoResultsFound/no_results_found')
+)
+const EndOfScroll = lazy(() => import('./EndOfScroll/end_of_scroll'))
+const Filters = lazy(() => import('pages/ProductListing/Filters/filters'))
 
 const PlpPage = () => {
   const plpResponse = useSelector((state) => state.plpReducer)
@@ -43,9 +56,20 @@ const PlpPage = () => {
   const [isSortFiltersBSOpen, setSortFilterBottomSheetOpen] = useState(false)
 
   const scrollToTop = useRef(null)
-  const [params] = useSearchParams()
+  const [queryParams] = useSearchParams()
   const theme = useTheme()
-  const query = params.get('query')
+  const searchQuery = queryParams.get('query')
+
+  const {
+    apiResponse,
+    internalResponse,
+    pickAStoreList,
+    pagination,
+    sorts,
+    params,
+  } = plpResponse
+
+  const { wishlistSkuList, showToast } = cartOutlineResponse
 
   useEffect(() => {
     dispatch(
@@ -55,7 +79,7 @@ const PlpPage = () => {
       fetchPlpApiResponse({
         category: 'electronics',
         pinCode: '400001',
-        query,
+        query: searchQuery,
         sortBy: 'relevance',
         currentPage: 0,
         filter: '',
@@ -65,16 +89,6 @@ const PlpPage = () => {
     return () => dispatch(resetToastMessage())
     // eslint-disable-next-line
   }, [])
-
-  const {
-    apiResponse,
-    internalResponse,
-    pickAStoreList,
-    filterString,
-    pagination,
-  } = plpResponse
-
-  const { wishlistSkuList, showToast } = cartOutlineResponse
 
   useEffect(() => {
     if (showToast !== '') {
@@ -92,13 +106,26 @@ const PlpPage = () => {
   const { currentPage, totalPages, isPageApiLoading } = pagination
 
   const [isApiCalled, setIsApiCalled] = useState(isPageApiLoading)
+
   useEffect(() => setIsApiCalled(isPageApiLoading), [isPageApiLoading])
 
-  const { isPlpApiLoading, apiProducts, apiFacets, apiFilterItemCount } =
-    apiResponse
+  const {
+    isPlpApiLoading,
+    apiProducts,
+    apiFacets,
+    apiFilterItemCount,
+    isPlpApiError,
+  } = apiResponse
 
-  const { internalFacets, internalFilterString } = internalResponse
-  const showNoResultsCard = !apiProducts?.length
+  const [showNoResultsCard, setShowNoResultsCard] = useState(false)
+
+  useEffect(() => {
+    if (!isPlpApiLoading && !isPlpApiError) {
+      setShowNoResultsCard(!apiProducts?.length)
+    }
+  }, [isPlpApiLoading, isPlpApiError, apiProducts])
+
+  const { internalFacets } = internalResponse
 
   let start = 0
   let end = 0
@@ -107,7 +134,7 @@ const PlpPage = () => {
     start = end
     end = end + facetPerCard
     const newPopularFacet = internalFacets
-      .filter((facet) => facet.popular)
+      ?.filter((facet) => facet.popular)
       .slice(start, end)
     return newPopularFacet
   }
@@ -130,7 +157,7 @@ const PlpPage = () => {
     setFilterModal({ state: true, facetCode })
   }, [])
 
-  const handleSorFiltersOpenBS = () => {
+  const handleSortOpenBS = () => {
     setSortFilterBottomSheetOpen(true)
   }
 
@@ -150,10 +177,10 @@ const PlpPage = () => {
         pincode={400013}
       />
       <Searchbar
-        searchedText={query}
+        searchedText={searchQuery}
         closeIconType={'CircleCloseIcon'}
         handleSearchBarClick={() => {
-          const queryString = query ? `?searchText=${query}` : ''
+          const queryString = searchQuery ? `?searchText=${searchQuery}` : ''
           navigate(`/global-search${queryString}`)
         }}
         handleOnCloseClick={(event) => {
@@ -169,8 +196,9 @@ const PlpPage = () => {
       >
         {!showNoResultsCard && (
           <FilterChipsSection
-            facets={apiFacets}
-            handleSorFiltersOpenBS={handleSorFiltersOpenBS}
+            isSortChipSelected={params.sortBy !== 'relevance'}
+            facets={apiFacets || []}
+            handleSortOpenBS={handleSortOpenBS}
             handleFilterModal={handleFilterModal}
           />
         )}
@@ -185,13 +213,13 @@ const PlpPage = () => {
           variant='body-x-small-regular'
           text={`${filterItemCount} ${
             filterItemCount > 0 ? 'Products' : 'Product'
-          } ${pickAStoreList.values.length > 0 ? 'from' : ''}`}
+          } ${pickAStoreList.values?.length > 0 ? 'from' : ''}`}
           style={{
             marginRight: '4px',
             color: theme.palette.color.onBackgroundLowContrast,
           }}
         />
-        {pickAStoreList.values.length > 0 && (
+        {pickAStoreList.values?.length > 0 && (
           <Dropdown brandList={pickAStoreList.values} />
         )}
       </div>
@@ -208,12 +236,8 @@ const PlpPage = () => {
 
           dispatch(
             fetchPaginationApiResponse({
-              category: 'electronics',
-              pinCode: '400001',
-              query,
-              sortBy: 'relevance',
+              ...params,
               currentPage: currentPage + 1,
-              filter: internalFilterString,
             })
           )
         }
@@ -232,7 +256,7 @@ const PlpPage = () => {
               wishlistSkuList={wishlistSkuList}
             />
             <div className={styles.divider} />
-            {!((index + 1) % 2) && !filterString && (
+            {!((index + 1) % 2) && !params.filter && (
               <InlineFilters
                 facets={getPopularFacets()}
                 handleSeeAllFilters={() =>
@@ -250,23 +274,29 @@ const PlpPage = () => {
     </div>
   )
 
-  return isPlpApiLoading ? (
-    <PageLoader />
-  ) : (
-    <>
+  if (isPlpApiLoading && !isPlpApiError) {
+    return <PageLoader />
+  } else {
+    return (
       <div
         style={{
           position: 'relative',
           backgroundColor: theme.palette.color.background,
+          overflow: 'hidden',
         }}
       >
         <div className={styles.page_wrapper}>
           {renderHeaderBlock()}
-          {showNoResultsCard ? (
-            <NoResultsFound />
-          ) : (
+          {!isPlpApiLoading && apiProducts && !isPlpApiError ? (
             <>{renderPlpScrollCardsBlock()}</>
+          ) : (
+            <>{showNoResultsCard && <NoResultsFound />}</>
           )}
+          <SortFilters
+            sorts={sorts}
+            isSortFiltersBSOpen={isSortFiltersBSOpen}
+            handleSorFiltersCloseBS={handleSorFiltersCloseBS}
+          />
         </div>
         {filterModal.state && (
           <Filters
@@ -279,13 +309,8 @@ const PlpPage = () => {
           />
         )}
       </div>
-
-      <SortFilters
-        isSortFiltersBSOpen={isSortFiltersBSOpen}
-        handleSorFiltersCloseBS={handleSorFiltersCloseBS}
-      />
-    </>
-  )
+    )
+  }
 }
 
 export default PlpPage

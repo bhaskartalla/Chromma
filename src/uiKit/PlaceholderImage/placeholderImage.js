@@ -2,7 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import defaultImageUrl from 'assets/images/placeholder-image.png'
 
-const LoadDefaultImg = ({ src, alt, fallBackImageUrl, className, ...rest }) => {
+const PlaceHolderImage = ({
+  src,
+  alt,
+  fallBackImageUrl,
+  className,
+  ...rest
+}) => {
   const [imgError, setImgError] = React.useState(false)
   const [onLoad, setOnLoad] = React.useState(true)
 
@@ -36,11 +42,11 @@ const LoadDefaultImg = ({ src, alt, fallBackImageUrl, className, ...rest }) => {
   )
 }
 
-LoadDefaultImg.propTypes = {
+PlaceHolderImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
   className: PropTypes.string,
   fallBackImageUrl: PropTypes.string,
 }
 
-export default LoadDefaultImg
+export default PlaceHolderImage

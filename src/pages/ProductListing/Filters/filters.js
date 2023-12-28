@@ -7,11 +7,12 @@ import PropTypes from 'prop-types'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
-import accordionIcon from 'assets/icons/accordion-icon.svg'
+import DownChevronIcon from 'assets/icons/down-chevron-icon'
 import Searchbar from 'components/Searchbar/searchbar'
 import Checkbox from 'uiKit/Checkbox/checkbox'
 import Inputbox from 'uiKit/Inputbox/inputbox'
-import leftBlackChevronIcon from 'assets/icons/left-black-chevron-icon.svg'
+import LeftChevronIcon from 'assets/icons/left-chevron-icon'
+
 import { useSelector, useDispatch } from 'react-redux'
 import {
   updateInternalFacetValue,
@@ -19,7 +20,6 @@ import {
   fetchFilterApiResponse,
   fetchPlpApiResponse,
 } from '../state/plpState/action_creators'
-import { useSearchParams } from 'react-router-dom'
 import PageLoader from 'uiKit/Loaders/page_loader'
 import themeHoc from 'utils/themeHoc'
 
@@ -37,11 +37,8 @@ const Filters = ({
     facet: {},
     setFocus: false,
   })
-  const [params] = useSearchParams()
 
-  const query = params.get('query')
-
-  const { internalResponse, filterString } = plpResponse
+  const { internalResponse, params } = plpResponse
 
   const {
     isFilterApiLoading,
@@ -54,13 +51,10 @@ const Filters = ({
     setExpandedFacet(isExpanded ? panel : false)
     handleFilterModal(panel)
 
-    if (isExpanded && internalFilterString !== filterString) {
+    if (isExpanded && internalFilterString !== params.filter) {
       dispatch(
         fetchFilterApiResponse({
-          category: 'electronics',
-          pinCode: '400001',
-          query,
-          sortBy: 'relevance',
+          ...params,
           filter: internalFilterString,
           currentPage: 0,
         })
@@ -114,13 +108,12 @@ const Filters = ({
 
   const filterSearchHeader = (
     <div className={styles.filter_search_header_bar}>
-      <img
-        width={20}
-        height={20}
-        src={leftBlackChevronIcon}
-        alt='left black Chevron'
-        style={{ marginRight: '16px' }}
+      <LeftChevronIcon
+        fill={theme.palette.color.onBackgroundHighContrast}
         onClick={() => setFilterSearch({ state: false, facetName: {} })}
+        style={{
+          marginRight: '16px',
+        }}
       />
       <Typography
         variant='body-medium-regular'
@@ -172,10 +165,7 @@ const Filters = ({
             handleCloseFilterModal()
             dispatch(
               fetchPlpApiResponse({
-                category: 'electronics',
-                pinCode: '400001',
-                query,
-                sortBy: 'relevance',
+                ...params,
                 filter: internalFilterString,
                 currentPage: 0,
               })
@@ -230,7 +220,9 @@ const Filters = ({
         <AccordionSummary
           id={`${facet.code}-header`}
           expandIcon={
-            <img width={16} height={16} src={accordionIcon} alt='expand' />
+            <DownChevronIcon
+              fill={theme.palette.color.onBackgroundHighContrast}
+            />
           }
         >
           <Typography

@@ -5,6 +5,7 @@
 
 .card_section {
   display: flex;
+  gap: 20px;
 }
 
 .badges {
@@ -22,26 +23,26 @@
 
 .image_section {
   border-radius: 8px;
-  height: inherit;
+  min-height: 192px;
   position: relative;
-  margin-right: 20px;
-  width: 40%;
   max-width: 200px;
+  min-width: 136px;
+  padding: 6px;
 }
 
 .product_image_wrapper {
   position: absolute;
-  left: 0;
   width: 100%;
   height: calc(100% - 37px);
-  top: 37px;
+  top: calc(38% - 37px);
+  /* top: 37px; */
   box-sizing: border-box;
 }
 
 .product_image {
   object-fit: contain;
-  width: inherit;
-  height: inherit;
+  width: 136px;
+  height: 136px;
 }
 
 .card_tag {

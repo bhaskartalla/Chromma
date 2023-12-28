@@ -1,15 +1,22 @@
-import Home from './pages/Home/home'
-import Cart from './pages/Cart/cart'
-import Wishlist from './pages/Wishlist/wishlist'
-import PlpPage from './pages/ProductListing/plp_page'
-import ProductDescription from './pages/ProductDescription/pdp_page'
-import GlobalSearchPage from './pages/GlobalSearch/global_search'
-import FiltersPage from './pages/ProductListing/Filters/filters'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Toast from 'uiKit/Toast/toast'
 import { useTheme } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeToast } from './globalState/actions'
+import PageLoader from 'uiKit/Loaders/page_loader'
+
+// lazy imports
+const Home = lazy(() => import('./pages/Home/home'))
+const Cart = lazy(() => import('./pages/Cart/cart'))
+const Wishlist = lazy(() => import('./pages/Wishlist/wishlist'))
+const PlpPage = lazy(() => import('./pages/ProductListing/plp_page'))
+const ProductDescription = lazy(() =>
+  import('./pages/ProductDescription/pdp_page')
+)
+const GlobalSearchPage = lazy(() =>
+  import('./pages/GlobalSearch/global_search')
+)
 
 function App() {
   const toast = useSelector((state) => state.commonReducer)
@@ -18,15 +25,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/product-listing' element={<PlpPage />} />
-        <Route path='/product-description' element={<ProductDescription />} />
-        <Route path='/global-search' element={<GlobalSearchPage />} />
-        <Route path='/filters' element={<FiltersPage />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/wishlist' element={<Wishlist />} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/product-listing' element={<PlpPage />} />
+          <Route path='/product-description' element={<ProductDescription />} />
+          <Route path='/global-search' element={<GlobalSearchPage />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/wishlist' element={<Wishlist />} />
+        </Routes>
+      </Suspense>
+
       <Toast
         theme={toast?.theme || theme}
         title={toast.title}
@@ -55,14 +64,13 @@ function App() {
 
 /**
  * radio facet ui development for multiselect value false
- * lazy loading of components
  * create theme setup for light and dark
  * Add a error boundry HOC component
  * pincode and view store text alignment need to be fixed
  * keep all the urls in constant file
  * move all hardcoded string values in other file
  * add env file
- * Remove the palate object from theme
+ * Remove the pallate object from theme
  *
  */
 

@@ -7,7 +7,7 @@ import TruckIcon from 'assets/icons/truck-icon'
 import AvailableIcon from 'assets/icons/available-icon'
 import Neupass from 'components/NeuPass/neupass'
 import PropTypes from 'prop-types'
-import LoadDefaultImg from 'uiKit/PlaceholderImage/placeholderImage'
+import PlaceHolderImage from 'uiKit/PlaceholderImage/placeholderImage'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 import WishlistIcon from 'assets/icons/wishlist-icon'
@@ -157,7 +157,7 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
         />
       </div>
       <div className={styles.product_image_wrapper}>
-        <LoadDefaultImg
+        <PlaceHolderImage
           src={imageUrl}
           alt={skuId}
           className={styles.product_image}

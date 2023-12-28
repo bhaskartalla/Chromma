@@ -1,8 +1,10 @@
 import React from 'react'
 import Typography from 'uiKit/Typography/typography'
-import leftWhiteChevronIcon from 'assets/icons/left-white-chevron-icon.svg'
+import LeftChevronIcon from 'assets/icons/left-chevron-icon'
+
 import WishlistIcon from 'assets/icons/wishlist-icon'
-import cartIcon from 'assets/icons/cart-icon.svg'
+import CartIcon from 'assets/icons/cart-icon'
+
 import styles from './plp_appbar.module.css'
 import PropTypes from 'prop-types'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -30,11 +32,10 @@ const PlpAppbar = ({ pincode, theme }) => {
       className={styles.plp_appbar_wrapper}
     >
       <div className={styles.plp_appbar_title}>
-        <img
+        <LeftChevronIcon
           width={20}
           height={20}
-          src={leftWhiteChevronIcon}
-          alt='leftChevron'
+          fill={theme.palette.color.onBackgroundHighContrast}
           onClick={handlePlpBackButtonClick}
         />
         <Typography
@@ -59,13 +60,10 @@ const PlpAppbar = ({ pincode, theme }) => {
           onClick={handleWishlistIconClick}
         />
 
-        <img
-          width={24}
-          height={24}
-          src={cartIcon}
-          alt='leftChevron'
-          style={{ marginLeft: '16px' }}
+        <CartIcon
+          fill={theme.palette.color.onBackgroundHighContrast}
           onClick={() => navigate('/cart')}
+          style={{ marginLeft: '16px' }}
         />
       </div>
     </div>
