@@ -10,6 +10,9 @@ import {
   ERROR_FILTER_API_RESPONSE,
   REQUEST_PAGE_API_RESPONSE,
   RECEIVE_PAGE_API_RESPONSE,
+  REQUEST_STORE_PICKUP_API_RESPONSE,
+  RECEIVE_STORE_PICKUP_API_RESPONSE,
+  ERROR_STORE_PICKUP_API_RESPONSE,
 } from './action_types'
 
 export const requestPlpApiRequest = () => ({
@@ -58,4 +61,17 @@ export const resetAllFacets = () => ({
 
 export const applyAllFacets = () => ({
   type: APPLY_NEW_FACETS,
+})
+
+export const requestStorePickupApiRequest = () => ({
+  type: REQUEST_STORE_PICKUP_API_RESPONSE,
+})
+
+export const receiveStorePickupApiRequest = (payload) => ({
+  type: RECEIVE_STORE_PICKUP_API_RESPONSE,
+  payload,
+})
+
+export const errorStorePickupApiRequest = () => ({
+  type: ERROR_STORE_PICKUP_API_RESPONSE,
 })

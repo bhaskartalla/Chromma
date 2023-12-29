@@ -37,6 +37,9 @@ import styles from './plp_page.module.css'
 const SortFilters = lazy(() =>
   import('./BottomSheets/SortFilters/sort_filters')
 )
+const StorePickup = lazy(() =>
+  import('./BottomSheets/StorePickup/store_pickup')
+)
 
 const NoResultsFound = lazy(() =>
   import('components/NoResultsFound/no_results_found')
@@ -54,6 +57,7 @@ const PlpPage = () => {
     facetCode: '',
   })
   const [isSortFiltersBSOpen, setSortFilterBottomSheetOpen] = useState(false)
+  const [storePickupData, setStorePickupData] = useState({})
 
   const scrollToTop = useRef(null)
   const [queryParams] = useSearchParams()
@@ -67,6 +71,7 @@ const PlpPage = () => {
     pagination,
     sorts,
     params,
+    storePickupStoreDetails,
   } = plpResponse
 
   const { wishlistSkuList, showToast } = cartOutlineResponse
@@ -157,13 +162,32 @@ const PlpPage = () => {
     setFilterModal({ state: true, facetCode })
   }, [])
 
-  const handleSortOpenBS = () => {
-    setSortFilterBottomSheetOpen(true)
-  }
+  const handleSortOpenBS = useCallback(
+    () => setSortFilterBottomSheetOpen(true),
+    []
+  )
 
-  const handleSorFiltersCloseBS = () => {
-    setSortFilterBottomSheetOpen(false)
-  }
+  const handleSortCloseBS = useCallback(
+    () => setSortFilterBottomSheetOpen(false),
+    []
+  )
+
+  const handleStorePickupOpenBS = useCallback(
+    ({ productName, mop, imageUrl }) => {
+      setStorePickupData({
+        state: true,
+        productName,
+        mop,
+        imageUrl,
+      })
+    },
+    []
+  )
+
+  const handleStorePickupCloseBS = useCallback(
+    () => setStorePickupData((prev) => ({ ...prev, state: false })),
+    []
+  )
 
   const renderHeaderBlock = () => (
     <div
@@ -254,6 +278,7 @@ const PlpPage = () => {
             <PlpCard
               productDetails={product}
               wishlistSkuList={wishlistSkuList}
+              handleStorePickupOpenBS={handleStorePickupOpenBS}
             />
             <div className={styles.divider} />
             {!((index + 1) % 2) && !params.filter && (
@@ -295,7 +320,19 @@ const PlpPage = () => {
           <SortFilters
             sorts={sorts}
             isSortFiltersBSOpen={isSortFiltersBSOpen}
-            handleSorFiltersCloseBS={handleSorFiltersCloseBS}
+            handleSortCloseBS={handleSortCloseBS}
+          />
+          <StorePickup
+            storePickupData={{
+              ...storePickupData,
+              stores: storePickupStoreDetails.stores,
+            }}
+            isStorePickupBSOpen={
+              !!(
+                storePickupStoreDetails.stores?.length && storePickupData.state
+              )
+            }
+            handleStorePickupCloseBS={handleStorePickupCloseBS}
           />
         </div>
         {filterModal.state && (

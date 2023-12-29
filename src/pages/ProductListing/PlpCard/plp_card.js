@@ -16,8 +16,13 @@ import {
   addItemToWishlist,
   removeItemFromWishList,
 } from '../state/cartOutlineState/action_creators'
+import { fetchStorePickupApiResponse } from '../state/plpState/action_creators'
 
-const PlpCard = ({ productDetails, wishlistSkuList }) => {
+const PlpCard = ({
+  productDetails,
+  wishlistSkuList,
+  handleStorePickupOpenBS,
+}) => {
   const theme = useTheme()
   const dispatch = useDispatch()
   const imageUrl = productDetails?.plpImage
@@ -46,8 +51,19 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
 
   const isAddedToWishlist = wishlistSkuList.includes(productDetails.skuId)
 
-  const handleStorePickup = (event, shipNode) => {
-    console.log('handleStorePickup', shipNode)
+  const handleStorePickup = (event) => {
+    dispatch(
+      fetchStorePickupApiResponse({
+        category: 'electronics',
+        shipNode: storePickup[0].shipNode,
+      })
+    )
+    handleStorePickupOpenBS({
+      shipNode: storePickup[0].shipNode,
+      imageUrl,
+      productName,
+      mop,
+    })
     event.stopPropagation()
   }
 
@@ -285,7 +301,7 @@ const PlpCard = ({ productDetails, wishlistSkuList }) => {
       />,
       'Available for Pickup',
       'View Stores',
-      (event) => handleStorePickup(event, storePickup[0].shipNode)
+      (event) => handleStorePickup(event)
     )
   }
 

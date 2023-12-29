@@ -12,7 +12,7 @@ apiInstance.interceptors.request.use(
       'neu-app-version': '4.2.0',
       programid: '73eb6345-9cc9-4c37-a8e8-8620d6d32cf5',
       request_id: uuidV4(),
-      authorization: 'Bearer 9e1875a5-4c71-4cac-88ec-56f1a54dddaa',
+      authorization: 'Bearer b342b111-4957-43c9-ac3f-8f681788e7e9',
     }
     // console.log('apiInstance.interceptors.request config : ', config)
     return config

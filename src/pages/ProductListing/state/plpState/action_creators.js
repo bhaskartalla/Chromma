@@ -9,6 +9,9 @@ import {
   errorFilterApiRequest,
   requestPageApiRequest,
   receivePageApiRequest,
+  requestStorePickupApiRequest,
+  receiveStorePickupApiRequest,
+  errorStorePickupApiRequest,
 } from './actions'
 import apiInstance from 'api'
 
@@ -85,6 +88,29 @@ export const fetchPaginationApiResponse = (params) => {
     } catch (error) {
       console.log({ error })
       dispatch(errorPlpApiRequest())
+    }
+  }
+}
+
+export const fetchStorePickupApiResponse = (params) => {
+  return async (dispatch) => {
+    dispatch(requestStorePickupApiRequest())
+    try {
+      const storePickStores = await apiInstance.get(
+        'https://ppapi.tatadigital.com/api/v1/commerce/detail',
+        {
+          params,
+        }
+      )
+      dispatch(
+        receiveStorePickupApiRequest({
+          stores: storePickStores?.data?.data.storeDetails,
+          shipNode: params.shipNode,
+        })
+      )
+    } catch (error) {
+      console.log({ error })
+      dispatch(errorStorePickupApiRequest())
     }
   }
 }

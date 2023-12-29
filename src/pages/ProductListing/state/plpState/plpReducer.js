@@ -9,6 +9,9 @@ import {
   ERROR_FILTER_API_RESPONSE,
   REQUEST_PAGE_API_RESPONSE,
   RECEIVE_PAGE_API_RESPONSE,
+  REQUEST_STORE_PICKUP_API_RESPONSE,
+  RECEIVE_STORE_PICKUP_API_RESPONSE,
+  ERROR_STORE_PICKUP_API_RESPONSE,
 } from './action_types'
 
 const initialState = {
@@ -33,6 +36,12 @@ const initialState = {
   sorts: null,
   pickAStoreList: {},
   params: {},
+  storePickupStoreDetails: {
+    isStorePickupApiLoading: false,
+    shipNode: '',
+    stores: [],
+    isStorePickupApiError: false,
+  },
 }
 
 function filterApiResponseData(payload) {
@@ -283,6 +292,38 @@ const plpReducer = (state = initialState, action) => {
         internalFilterItemCount: payload.response.filterItemCount,
       }
       return updateState
+    }
+
+    case REQUEST_STORE_PICKUP_API_RESPONSE: {
+      return {
+        ...state,
+        storePickupStoreDetails: {
+          ...state.storePickupStoreDetails,
+          isStorePickupApiLoading: true,
+        },
+      }
+    }
+
+    case RECEIVE_STORE_PICKUP_API_RESPONSE: {
+      return {
+        ...state,
+        storePickupStoreDetails: {
+          ...payload,
+          isStorePickupApiLoading: false,
+          isStorePickupApiError: false,
+        },
+      }
+    }
+
+    case ERROR_STORE_PICKUP_API_RESPONSE: {
+      return {
+        ...state,
+        storePickupStoreDetails: {
+          ...state.storePickupStoreDetails,
+          isStorePickupApiLoading: false,
+          isStorePickupApiError: true,
+        },
+      }
     }
 
     default:

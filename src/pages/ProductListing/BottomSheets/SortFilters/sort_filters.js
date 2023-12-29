@@ -11,7 +11,7 @@ import { fetchPlpApiResponse } from '../../state/plpState/action_creators'
 const SortFilters = ({
   sorts,
   isSortFiltersBSOpen,
-  handleSorFiltersCloseBS,
+  handleSortCloseBS,
   theme = lightTheme,
 }) => {
   const params = useSelector((state) => state.plpReducer.params)
@@ -24,40 +24,42 @@ const SortFilters = ({
         sortBy: code,
       })
     )
-    handleSorFiltersCloseBS()
+    handleSortCloseBS()
   }
 
   return (
     <BottomSheet
       open={isSortFiltersBSOpen}
-      onClose={handleSorFiltersCloseBS}
+      onClose={handleSortCloseBS}
       theme={lightTheme}
     >
-      <Typography
-        text='Sort By'
-        variant='title-medium-bold'
-        style={{
-          color: theme.palette.color.onBackgroundHighContrast,
-        }}
-      />
-      <div
-        style={{
-          margin: '8px 0 16px',
-        }}
-      >
-        {sorts?.map((sort) => (
-          <div style={{ marginTop: '16px' }} key={sort.code}>
-            <Radio
-              textVariant='label-x-small-regular'
-              fillChecked={theme.palette.color.secondary}
-              fillOutline={theme.palette.color.outline}
-              text={sort.name}
-              textColor={theme.palette.color.onBackgroundHighContrast}
-              checked={sort.selected}
-              onChange={() => handleOnChange(sort.code)}
-            />
-          </div>
-        ))}
+      <div style={{ padding: '0 16px 24px' }}>
+        <Typography
+          text='Sort By'
+          variant='title-medium-bold'
+          style={{
+            color: theme.palette.color.onBackgroundHighContrast,
+          }}
+        />
+        <div
+          style={{
+            margin: '8px 0 16px',
+          }}
+        >
+          {sorts?.map((sort) => (
+            <div style={{ marginTop: '16px' }} key={sort.code}>
+              <Radio
+                textVariant='label-x-small-regular'
+                fillChecked={theme.palette.color.secondary}
+                fillOutline={theme.palette.color.outline}
+                text={sort.name}
+                textColor={theme.palette.color.onBackgroundHighContrast}
+                checked={sort.selected}
+                onChange={() => handleOnChange(sort.code)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </BottomSheet>
   )
@@ -66,7 +68,7 @@ const SortFilters = ({
 SortFilters.propTypes = {
   sorts: PropTypes.array,
   isSortFiltersBSOpen: PropTypes.bool,
-  handleSorFiltersCloseBS: PropTypes.func,
+  handleSortCloseBS: PropTypes.func,
   theme: PropTypes.object,
 }
 
