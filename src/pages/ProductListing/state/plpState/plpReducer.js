@@ -44,6 +44,16 @@ const initialState = {
   },
 }
 
+const initial = {
+  todoList: [
+    {
+      id: 'asdf',
+      label: 'label',
+      completed: true,
+    },
+  ],
+}
+
 function filterApiResponseData(payload) {
   // filter the product with no SkuId or price value as 0
   const filteredProducts = payload.response.products.filter(

@@ -270,7 +270,11 @@ const PlpPage = () => {
   }
 
   const renderPlpScrollCardsBlock = () => (
-    <div ref={scrollToTop} onScroll={onScroll} className={styles.cards_section}>
+    <div
+      ref={scrollToTop}
+      onScroll={onScroll}
+      className={styles.cards_section}
+    >
       {noOfProducts(pickAStoreList, apiFilterItemCount)}
       {apiProducts.map((product, index) => {
         return (
