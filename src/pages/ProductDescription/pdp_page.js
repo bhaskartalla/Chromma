@@ -7,9 +7,14 @@ const ProductDescription = () => {
   const theme = useTheme()
   const location = useLocation()
 
+  console.log({ pdp: theme.typography.h1 })
   return (
     <div>
-      <Typography variant='h2' style={{ color: theme.palette.color.primary }}>
+      <Typography
+        // variant={theme.typography.h1}
+        variant='asd'
+        // style={{ color: theme.palette.color.primary, ...theme.typography.h1 }}
+      >
         ProductDescription {location.state.skuId}
       </Typography>
       <div>

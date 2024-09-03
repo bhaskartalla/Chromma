@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './neupass.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import neuIcon from 'assets/icons/neu-icon.svg'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material'

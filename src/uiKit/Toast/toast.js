@@ -4,7 +4,7 @@ import styles from './toast.module.css'
 import WaringIcon from 'assets/icons/warning-icon'
 import CloseIcon from 'assets/icons/close-icon'
 import themeHoc from 'utils/themeHoc'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 
 const Toast = ({
   theme,

@@ -3,7 +3,7 @@ import Chip from 'components/Chip/chip'
 import styles from './filter_chips_section.module.css'
 import FiltersIcon from 'assets/icons/filters-icon'
 import PropTypes from 'prop-types'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import { useTheme } from '@mui/material'
 
 const FilterChipsSection = ({

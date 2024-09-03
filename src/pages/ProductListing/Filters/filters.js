@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './filters.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import Button from 'uiKit/Button/button'
 import CloseIcon from 'assets/icons/close-icon'
 import PropTypes from 'prop-types'
@@ -287,7 +287,10 @@ const Filters = ({
   ))
 
   const filterSearchSection = (
-    <div id='filter-search' className={styles.filter_search}>
+    <div
+      id='filter-search'
+      className={styles.filter_search}
+    >
       <div style={{ margin: '0 16px' }}>
         <Inputbox
           theme={theme}
@@ -317,7 +320,10 @@ const Filters = ({
         className={styles.filter_wrapper}
       >
         {filterSearch.state ? filterSearchHeader : filterHeader}
-        <div id='accordion-wrapper' className={styles.accordion_wrapper}>
+        <div
+          id='accordion-wrapper'
+          className={styles.accordion_wrapper}
+        >
           {filterSearch.state ? filterSearchSection : accordionCheckboxRadio}
         </div>
         {bottomBlock}

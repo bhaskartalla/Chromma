@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './inline_filters.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import Button from 'uiKit/Button/button'
 import PropTypes from 'prop-types'
 import Chip from 'components/Chip/chip'
@@ -40,7 +40,10 @@ const InlineFilters = ({ facets, handleSeeAllFilters }) => {
         className={styles.inline_filter_wrapper}
       >
         {facets?.map((facet) => (
-          <div key={facet.code} style={{ marginTop: '16px' }}>
+          <div
+            key={facet.code}
+            style={{ marginTop: '16px' }}
+          >
             <Typography
               variant='body-small-bold'
               text={`Filter by ${facet.name}`}

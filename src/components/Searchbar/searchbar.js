@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './searchbar.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import PropTypes from 'prop-types'
 import themeHoc from 'utils/themeHoc'
 import SearchBlackIcon from 'assets/icons/search-icon'

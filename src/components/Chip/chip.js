@@ -1,6 +1,6 @@
 import React from 'react'
 import DownChevronIcon from 'assets/icons/down-chevron-icon'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import styles from './chip.module.css'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material'

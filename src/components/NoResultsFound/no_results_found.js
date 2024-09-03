@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './no_results_found.module.css'
 import connectionImage from 'assets/images/connection-image.png'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import { useTheme } from '@mui/material'
 
 const NoResultsFound = () => {

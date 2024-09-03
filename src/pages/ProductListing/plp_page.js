@@ -27,7 +27,7 @@ import {
 // custom components
 import InlineLoader from 'uiKit/Loaders/inline_loader'
 import PageLoader from 'uiKit/Loaders/page_loader'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import FilterChipsSection from './FilterChipsSection/filter_chips_section'
 import InlineFilters from './InlineFilterCard/inline_filters'
 import PlpCard from './PlpCard/plp_card'

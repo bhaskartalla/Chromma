@@ -1,5 +1,5 @@
 import React from 'react'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import LeftChevronIcon from 'assets/icons/left-chevron-icon'
 
 import WishlistIcon from 'assets/icons/wishlist-icon'

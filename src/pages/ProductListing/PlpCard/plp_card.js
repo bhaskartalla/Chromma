@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styles from './plp_card.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import RatingIcon from 'assets/icons/rating-icon'
 import NonServiceableIcon from 'assets/icons/non-serviceable-icon'
 import TruckIcon from 'assets/icons/truck-icon'

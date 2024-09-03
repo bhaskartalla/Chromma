@@ -141,6 +141,20 @@ export const lightTheme = createTheme({
       ctaOnOverlay: '#CB92FF',
     },
   },
+  typography: {
+    // fontFamily: 'Roboto, Arial, sans-serif',
+    asd: {
+      fontSize: '1.7rem',
+      fontWeight: 'bold',
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 'bold',
+    },
+    body1: {
+      fontSize: '1rem',
+    },
+  },
   components: common,
 })
 

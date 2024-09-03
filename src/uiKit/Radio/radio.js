@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import PropTypes from 'prop-types'
 import styles from './radio.module.css'
 
@@ -27,7 +27,10 @@ const Radio = ({
 
   return (
     <div className={styles.radio_wrapper}>
-      <div style={{ display: 'flex' }} onClick={handleToggleRadio}>
+      <div
+        style={{ display: 'flex' }}
+        onClick={handleToggleRadio}
+      >
         {checked ? (
           <svg
             xmlns='http://www.w3.org/2000/svg'

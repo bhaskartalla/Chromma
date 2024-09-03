@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import PropTypes from 'prop-types'
 import styles from './checkbox.module.css'
 
@@ -27,7 +27,10 @@ const Checkbox = ({
 
   return (
     <div className={styles.checbox_wrapper}>
-      <div style={{ display: 'flex' }} onClick={handleToggleCheckbox}>
+      <div
+        style={{ display: 'flex' }}
+        onClick={handleToggleCheckbox}
+      >
         {checked ? (
           <svg
             width={width}
@@ -36,7 +39,12 @@ const Checkbox = ({
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <rect width='24' height='24' rx='4' fill={fillChecked} />
+            <rect
+              width='24'
+              height='24'
+              rx='4'
+              fill={fillChecked}
+            />
             <path
               d='M7.5 12L10.5 15L16.5 9'
               stroke='white'

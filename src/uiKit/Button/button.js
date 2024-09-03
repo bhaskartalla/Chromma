@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './button.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import PropTypes from 'prop-types'
 
 const Button = ({
@@ -12,7 +12,10 @@ const Button = ({
   style,
 }) => {
   return (
-    <button className={styles.button} style={{ ...style }}>
+    <button
+      className={styles.button}
+      style={{ ...style }}
+    >
       <Typography
         variant={textVariant}
         text={text || children}

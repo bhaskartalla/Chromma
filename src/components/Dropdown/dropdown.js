@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './dropdown.module.css'
-import Typography from 'uiKit/Typography/typography'
+import Typography from 'uiKit/Typography'
 import DownChevronIcon from 'assets/icons/down-chevron-icon'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material'
