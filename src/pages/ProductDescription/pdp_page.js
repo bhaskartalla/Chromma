@@ -2,18 +2,19 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material'
+import PlpAppbar from 'components/Appbar/plp_appbar'
+import { cromaDarkTheme } from 'theme'
 
 const ProductDescription = () => {
   const theme = useTheme()
   const location = useLocation()
 
-  console.log({ pdp: theme.typography.h1 })
   return (
     <div>
+      <PlpAppbar theme={cromaDarkTheme} />
       <Typography
-        // variant={theme.typography.h1}
-        variant='asd'
-        // style={{ color: theme.palette.color.primary, ...theme.typography.h1 }}
+        variant={theme.typography.h1}
+        style={{ color: theme.palette.color.primary, ...theme.typography.h1 }}
       >
         ProductDescription {location.state.skuId}
       </Typography>

@@ -16,7 +16,7 @@ export const fetchCartOutlineResponse = (params) => {
     dispatch(requestCartOutlineApiRequest())
     try {
       const wishlistApiResponse = await apiInstance.get(
-        'https://ppapi.tatadigital.com/api/v1/commerce/cart-outline',
+        `${process.env.REACT_APP_API_GATEWAY_URL}/api/v1/commerce/cart-outline`,
         {
           params,
         }
@@ -33,7 +33,7 @@ export const addItemToWishlist = (skuId) => {
     dispatch(requestAddToWishlistApiRequest())
     try {
       await apiInstance.post(
-        'https://ppapi.tatadigital.com/api/v1/commerce/add-wishlist',
+        `${process.env.REACT_APP_API_GATEWAY_URL}.com/api/v1/commerce/add-wishlist`,
         {
           category: 'electronics',
           pinCode: '400001',
@@ -52,7 +52,7 @@ export const removeItemFromWishList = (skuId) => {
     dispatch(requestRemoveFromWishlistApiRequest())
     try {
       await apiInstance.delete(
-        'https://ppapi.tatadigital.com/api/v1/commerce/remove-wishlist',
+        `${process.env.REACT_APP_API_GATEWAY_URL}.com/api/v1/commerce/remove-wishlist`,
         {
           data: {
             category: 'electronics',

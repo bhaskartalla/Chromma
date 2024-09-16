@@ -12,13 +12,13 @@ apiInstance.interceptors.request.use(
       'neu-app-version': '4.2.0',
       programid: '73eb6345-9cc9-4c37-a8e8-8620d6d32cf5',
       request_id: uuidV4(),
-      authorization: 'Bearer d912477e-0680-486c-ad8f-fa8e6ec86cbb',
+      authorization: 'Bearer ec5707b3-8ed1-40da-97fe-94aab73f952d',
     }
-    // console.log('apiInstance.interceptors.request config : ', config)
+    // console.log('🚀 ~ apiInstance.interceptors.request config : ', config)
     return config
   },
   function (error) {
-    console.log('apiInstance.interceptors.request response : ', error)
+    console.log('🚀 ~ apiInstance.interceptors.request error : ', error)
     return Promise.reject(error)
   }
 )
@@ -29,7 +29,7 @@ apiInstance.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log('apiInstance.interceptors.response error : ', error)
+    console.log('🚀 ~ apiInstance.interceptors.response error:', error)
     return Promise.reject(error)
   }
 )

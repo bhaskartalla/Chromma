@@ -19,6 +19,8 @@ const GlobalSearchPage = lazy(() =>
 )
 
 function App() {
+  const env = process.env.REACT_APP_ENVIRONMENT
+  console.log('🚀 ~ App ~ env:', env)
   const toast = useSelector((state) => state.commonReducer)
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -27,12 +29,30 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/product-listing' element={<PlpPage />} />
-          <Route path='/product-description' element={<ProductDescription />} />
-          <Route path='/global-search' element={<GlobalSearchPage />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/wishlist' element={<Wishlist />} />
+          <Route
+            path='/'
+            element={<Home />}
+          />
+          <Route
+            path='/product-listing'
+            element={<PlpPage />}
+          />
+          <Route
+            path='/product-description'
+            element={<ProductDescription />}
+          />
+          <Route
+            path='/global-search'
+            element={<GlobalSearchPage />}
+          />
+          <Route
+            path='/cart'
+            element={<Cart />}
+          />
+          <Route
+            path='/wishlist'
+            element={<Wishlist />}
+          />
         </Routes>
       </Suspense>
 

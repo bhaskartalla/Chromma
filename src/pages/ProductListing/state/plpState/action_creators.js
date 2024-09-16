@@ -22,7 +22,7 @@ export const fetchPlpApiResponse = (params) => {
       if (!params.query) throw Error('query is missing')
 
       const plpApiResponse = await apiInstance.get(
-        'https://ppapi.tatadigital.com/api/v1/commerce/search',
+        `${process.env.REACT_APP_API_GATEWAY_URL}/api/v1/commerce/search`,
         {
           params,
         }
@@ -35,7 +35,6 @@ export const fetchPlpApiResponse = (params) => {
         })
       )
     } catch (error) {
-      console.log({ error })
       dispatch(errorPlpApiRequest())
     }
   }
@@ -48,7 +47,7 @@ export const fetchFilterApiResponse = (params) => {
       if (!params.query) throw Error('query is missing')
 
       const plpApiResponse = await apiInstance.get(
-        'https://ppapi.tatadigital.com/api/v1/commerce/search',
+        `${process.env.REACT_APP_API_GATEWAY_URL}/api/v1/commerce/search`,
         {
           params,
         }
@@ -61,7 +60,6 @@ export const fetchFilterApiResponse = (params) => {
         })
       )
     } catch (error) {
-      console.log({ error })
       dispatch(errorFilterApiRequest())
     }
   }
@@ -74,7 +72,7 @@ export const fetchPaginationApiResponse = (params) => {
       if (!params.query) throw Error('query is missing')
 
       const plpApiResponse = await apiInstance.get(
-        'https://ppapi.tatadigital.com/api/v1/commerce/search',
+        `${process.env.REACT_APP_API_GATEWAY_URL}/api/v1/commerce/search`,
         {
           params,
         }
@@ -86,7 +84,6 @@ export const fetchPaginationApiResponse = (params) => {
         })
       )
     } catch (error) {
-      console.log({ error })
       dispatch(errorPlpApiRequest())
     }
   }
@@ -97,7 +94,7 @@ export const fetchStorePickupApiResponse = (params) => {
     dispatch(requestStorePickupApiRequest())
     try {
       const storePickStores = await apiInstance.get(
-        'https://ppapi.tatadigital.com/api/v1/commerce/detail',
+        `${process.env.REACT_APP_API_GATEWAY_URL}/api/v1/commerce/detail`,
         {
           params,
         }
@@ -109,7 +106,6 @@ export const fetchStorePickupApiResponse = (params) => {
         })
       )
     } catch (error) {
-      console.log({ error })
       dispatch(errorStorePickupApiRequest())
     }
   }

@@ -56,7 +56,7 @@ const PlpPage = () => {
     state: false,
     facetCode: '',
   })
-  const [isSortFiltersBSOpen, setSortFilterBottomSheetOpen] = useState(false)
+  const [isSortFiltersBSOpen, setIsSortFiltersBSOpen] = useState(false)
   const [storePickupData, setStorePickupData] = useState({})
 
   const scrollToTop = useRef(null)
@@ -162,15 +162,9 @@ const PlpPage = () => {
     setFilterModal({ state: true, facetCode })
   }, [])
 
-  const handleSortOpenBS = useCallback(
-    () => setSortFilterBottomSheetOpen(true),
-    []
-  )
+  const handleSortOpenBS = useCallback(() => setIsSortFiltersBSOpen(true), [])
 
-  const handleSortCloseBS = useCallback(
-    () => setSortFilterBottomSheetOpen(false),
-    []
-  )
+  const handleSortCloseBS = useCallback(() => setIsSortFiltersBSOpen(false), [])
 
   const handleStorePickupOpenBS = useCallback(
     ({ productName, mop, imageUrl }) => {

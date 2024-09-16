@@ -68,7 +68,6 @@ const PlpCard = ({
   }
 
   const handleNonServiceable = (event) => {
-    console.log('handleNonServiceable')
     event.stopPropagation()
   }
 
